@@ -157,7 +157,10 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 .W{color:var(--win);font-weight:700}.L{color:var(--loss);font-weight:700}
 .tv{display:inline-block;font:600 11px var(--body);background:var(--chip);padding:2px 7px;border-radius:4px}
 .tbl{overflow-x:auto}
-.stack{display:grid;gap:18px;align-content:start;min-width:0}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.duo>*{min-width:0}
+.duo>.col{display:flex;flex-direction:column;gap:18px}
+@media (max-width:780px){.duo{grid-template-columns:1fr}}
 .socs{display:flex;flex-wrap:wrap;gap:8px}
 .soc{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 5px;font:600 13px var(--body)}
 .soc:hover{border-color:var(--uk)}
@@ -280,7 +283,7 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 23, 2026, 4:30 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 4:40 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -420,29 +423,49 @@ function render(){
   const P=(view,cls,html)=>`<section class="panel ${cls}" data-view="${view}">${html}</section>`;
   const pk=p=>lk([p[0]+" · "+p[1],p[2],p[3]]);
   const newsCards=t.news.map(a=>{const tg=a[3]||"News";return `<a class="nc" href="${esc(a[2])}" target="_blank" rel="noopener"><div class="band t-${tg.toLowerCase()}"><span>${esc(tg)}</span></div><div class="b"><b>${esc(a[0])}</b><span class="s">${esc(a[1])}</span></div></a>`}).join("");
-  const S=(...xs)=>`<div class="stack">${xs.join("")}</div>`;
   $("#main").innerHTML=[
     P("all news","full",`<h2>Latest</h2><div class="ncards">${newsCards}</div>`),
-    P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
-    S(P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`)),
-    P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div>${tab==="schedule"?"":`<button class="stog" type="button" id="stog" aria-expanded="${full}">${full?"Show less":`Full schedule · ${t.schedule.length} games`}</button>`}<p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
-    P("all team","",`<h2>Leaders <small>${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`),
-    S(P("all watch","watch",`<h2>How to watch</h2><dl>
+    `<div class="duo full" id="duo">${[P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+      P("all watch","watch",`<h2>How to watch</h2><dl>
       <dt>SEC Network</dt><dd>YouTube TV, Hulu + Live TV, DirecTV Stream, Fubo, Sling (Orange + SEC add-on), most cable</dd>
       <dt>ESPN / ABC</dt><dd>Cable or any live-TV streamer; ESPN app with a TV login or ESPN subscription</dd>
       <dt>SEC Network+</dt><dd>Streaming only, in the ESPN app (ESPN subscription)</dd>
       <dt>Radio</dt><dd>UK Sports Network on iHeartRadio and local affiliates</dd></dl>
-      <p class="note">Network for each game is listed in the schedule. TBA games are usually set 6–12 days out.</p>`),P("all social","",`<h2>Socials</h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`)),
+      <p class="note">Network for each game is listed in the schedule. TBA games are usually set 6–12 days out.</p>`),
+      P("all team","",`<h2>Leaders <small>${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`),
+      P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),
+      P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`),
+      P("all social","",`<h2>Socials</h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
+      P("news","",`<h2>Highlights</h2><div class="links">${t.highlights.map(lk).join("")}</div>`),
+      P("news","",`<h2>Beat coverage</h2><div class="links">${[["Kentucky Sports Radio","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/"],["A Sea of Blue","SB Nation","https://www.aseaofblue.com/"],["Lexington Herald-Leader","UK sports","https://www.kentucky.com/sports/college/kentucky-sports/"],["Kentucky Kernel","Student paper","https://kykernel.com/category/sports/"]].map(lk).join("")}</div>`)].join("")}</div>`,
     P("team","full",`<h2>Players to know</h2><div class="roster">${t.roster.map(p=>`<div class="p">${p[0]?`<span class="tag">${esc(p[0])}</span>`:""}<b>${esc(p[1])}</b><span>${esc(p[2])}</span></div>`).join("")}</div><p class="note"><a href="${esc(t.espn[1])}" target="_blank" rel="noopener">Full roster &amp; stats on ESPN ↗</a></p>`),
-    P("news","",`<h2>Highlights</h2><div class="links">${t.highlights.map(lk).join("")}</div>`),
-    P("news","",`<h2>Beat coverage</h2><div class="links">${[["Kentucky Sports Radio","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/"],["A Sea of Blue","SB Nation","https://www.aseaofblue.com/"],["Lexington Herald-Leader","UK sports","https://www.kentucky.com/sports/college/kentucky-sports/"],["Kentucky Kernel","Student paper","https://kykernel.com/category/sports/"]].map(lk).join("")}</div>`),
+    P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div>${tab==="schedule"?"":`<button class="stog" type="button" id="stog" aria-expanded="${full}">${full?"Show less":`Full schedule · ${t.schedule.length} games`}</button>`}<p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
   ].join("");
   $("#buzz").style.display=(tab==="all"||tab==="news"||tab==="social")?"block":"none";
   $("#club").style.display=(tab==="all"||tab==="club")?"block":"none";
   document.querySelectorAll("[data-view]").forEach(el=>{const v=el.dataset.view.split(" ");el.style.display=(tab==="all"?v.includes("all"):v.includes(tab))?"block":"none"});
-  document.querySelectorAll("#main .stack").forEach(st=>st.style.display=[...st.children].some(c=>c.style.display!=="none")?"grid":"none");
+  balance();
 }
 
+/* lay the middle panels out in two columns, each panel going to the shorter column,
+   then stretch the last card of the shorter column so both columns end flush */
+function balance(){const box=document.getElementById("duo");if(!box)return;
+  const items=[...box.querySelectorAll("section.panel")];
+  items.forEach((it,i)=>{if(it.dataset.o==null)it.dataset.o=i});items.sort((a,b)=>a.dataset.o-b.dataset.o);
+  box.querySelectorAll(".col").forEach(c=>c.remove());
+  items.forEach(it=>{it.style.flex="";box.appendChild(it)});
+  const vis=items.filter(it=>it.style.display!=="none");
+  box.style.display=vis.length?"grid":"none";
+  if(!vis.length||window.innerWidth<=780)return;
+  const cols=[document.createElement("div"),document.createElement("div")];cols.forEach(c=>{c.className="col";box.appendChild(c)});
+  items.forEach(it=>cols[0].appendChild(it));
+  const hs=new Map(vis.map(it=>[it,it.offsetHeight]));
+  const tot=[0,0],last=[null,null];
+  vis.forEach(it=>{const c=tot[0]<=tot[1]?0:1;cols[c].appendChild(it);tot[c]+=hs.get(it)+18;last[c]=it});
+  const s=tot[0]<tot[1]?0:1;if(last[s])last[s].style.flex="1";
+}
+let _bt;window.addEventListener("resize",()=>{clearTimeout(_bt);_bt=setTimeout(balance,120)});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(balance);
 function tick(){const el=document.getElementById("clock"); if(!el)return;
   const ms=new Date(D[sport].next.when)-Date.now();
   if(ms<=0){el.innerHTML=`<div><b>LIVE</b><span>or final</span></div>`;return}
