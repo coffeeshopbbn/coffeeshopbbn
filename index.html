@@ -111,8 +111,8 @@ nav button[aria-current="true"]{color:#fff;background:rgba(255,255,255,.16)}
 .bz{flex:0 0 min(78%,280px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden;display:flex;flex-direction:column;gap:0;text-decoration:none;min-width:0}
 .bz:hover{border-color:var(--uk)}
 .bz:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
-.bz .band,.feat .band{height:46px;display:flex;align-items:flex-end;padding:8px 14px;background:#0033A0;color:#fff;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 12px)}
-.bz .band span,.feat .band span{font:800 13px var(--display);letter-spacing:1.5px;text-transform:uppercase}
+.bz .band{height:46px;display:flex;align-items:flex-end;padding:8px 14px;background:#0033A0;color:#fff;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 12px)}
+.bz .band span{font:800 13px var(--display);letter-spacing:1.5px;text-transform:uppercase}
 .bz .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
 .bz q{font:700 19px/1.2 var(--display);quotes:none;flex:1;text-wrap:balance}
 .bz .who{font-size:12px;color:var(--muted)}
@@ -158,12 +158,11 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
 .duo>*{min-width:0}
 section.panel.fp{padding:0;overflow:hidden}
-.feat{display:flex;flex-direction:column;text-decoration:none;height:100%}
-.feat .band{height:60px}
-.feat .b{padding:14px 18px 18px;display:grid;gap:6px}
-.feat b{font:800 26px/1.1 var(--display);text-wrap:balance}
+.feat{display:flex;flex-direction:column;justify-content:center;gap:8px;text-decoration:none;height:100%;padding:20px 20px 20px 18px;background:var(--chip);border-left:5px solid var(--uk)}
+.feat .lab{font:700 11px var(--body);letter-spacing:1.4px;text-transform:uppercase;color:var(--uk)}
+.feat b{font:800 28px/1.08 var(--display);text-wrap:balance}
 .feat .s{font-size:13px;color:var(--muted)}
-.feat .rd{font:700 13px var(--body);color:var(--uk)}
+.feat .rd{align-self:flex-start;margin-top:6px;font:700 13px var(--body);color:#fff;background:var(--uk);padding:8px 14px;border-radius:8px}
 .feat:hover b{color:var(--uk)}
 .feat:focus-visible{outline:2px solid var(--uk);outline-offset:-2px}
 .inj{display:grid;gap:12px}
@@ -309,7 +308,7 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 23, 2026, 5:42 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 6:07 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -330,8 +329,8 @@ football:{
   outlook:[["Heather Dinich","ESPN","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Andy Staples","On3","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Brad Crawford","CBS Sports","First round: (10) Kentucky at (7) Ole Miss","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Bryan Fischer","Sports Illustrated","No. 10 seed at No. 7 Indiana; winner faces Ohio State in the Rose Bowl","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Scott Dochterman","The Athletic","In the Playoff field, just ahead of Iowa and USC","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"]],
   buzz:[["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"The place is on fire.\"","Mark Pope on Kroger Field and Will Stein's run · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-mark-pope-kentucky-football-success"],["Quote","\"Because of me, to be honest.\"","Will Stein, on why he can win big at UK · SI","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Fans react","Highlights, MVP and Twitter cheers from the wild win at Oklahoma","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-news/184383/highlights-mvp-twitter-reactions-social-media-uk-oklahoma-football"],["Quote","\"Tough as hell.\"","Bill Connelly · ESPN, even with SP+ skeptical","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-oklahoma-national-media-takes-predictions"],["Quote","\"This was for Big Blue Nation.\"","Will Stein after beating LSU · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-dedicates-kentucky-win-over-lsu-to-the-fans-big-blue-nation/"],["Storyline","Five Cats out vs. Vandy, incl. Sam Greene and Nic Anderson; CJ Baxter plays","KSR · SEC availability report","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-two-kentucky-starters-downgraded-to-out-vs-vanderbilt"]],
   xsearch:[["#BBN","%23BBN"],["Kentucky football","Kentucky%20football"],["Will Stein","%22Will%20Stein%22"]],
-  leaders:[["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
-  leadNote:"QB Kenny Minchey: 21-of-28, 2 TD in the 21-13 win at Oklahoma. Season totals on the official stats page.",
+  leaders:[["Passing","Kenny Minchey","1,552 yds · 13 TD"],["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
+  leadNote:"Season totals on the official stats page.",
   roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher"],["RB","Jason Patterson","Go-ahead drive at OU"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Out vs. Vanderbilt"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","2 INT at OU"],["DB","Jordan Castell","Pick-six at OU"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["K","Adam Zouagui","Long of 52"]],
   injuries:{game:"Vanderbilt",asof:"SEC availability report · Thu, Oct 22",
     uk:[["Out","Sam Greene (EDGE), Nic Anderson (WR), Grant Grayton (CB), Antwan Smith (LB), Jaden Smith (nickel)"],["Questionable","Cole Marszalek (LS), Tyler Thomas (DL)"],["Cleared","CJ Baxter (RB), Tavion Wallace (LB), Kalen Edwards (DT)"]],
@@ -453,8 +452,7 @@ function render(){
   $("#buzz").innerHTML=`<h2>The Buzz <small>Headlines, takes and trending posts · swipe</small></h2><div class="rail">${
     heads.map(a=>card(a[2],a[3]||"News",`<q>${esc(a[0])}</q><span class="who">${esc(a[1])} ↗</span>`)).join("")}${
     t.buzz.map(b=>b[0]==="Post"?card(b[3],"Post on X",`<div class="h"><span class="av">${esc((b[2].replace(/^@/,"")[0]||"").toUpperCase())}</span><b>${esc(b[2])}</b></div><q>${esc(b[1])}</q><span class="who">Open post ↗</span>`).replace('class="bz"','class="bz post"'):card(b[3],b[0],`<q>${esc(b[1])}</q><span class="who">${esc(b[2])} ↗</span>`)).join("")}${
-    t.xsearch.map(x=>card(`https://x.com/search?q=${x[1]}&f=live`,"Live on X",`<q>${esc(x[0])}</q><span class="who">See the latest posts ↗</span>`)).join("")}</div>
-    <div class="socs follow"><span class="cat">Follow</span>${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`;
+    t.xsearch.map(x=>card(`https://x.com/search?q=${x[1]}&f=live`,"Live on X",`<q>${esc(x[0])}</q><span class="who">See the latest posts ↗</span>`)).join("")}</div>`;
 
   const nextIdx=t.schedule.findIndex(r=>!isRes(r));
   /* schedule is collapsed to the last 2 results + next games unless expanded or on the Schedule tab */
@@ -468,12 +466,13 @@ function render(){
   const tvs=n.tv||"TBA",stream=/SEC Network\+/.test(tvs)?"Streaming only, in the ESPN app":/ESPN|ABC/.test(tvs)?"Cable, any live-TV streamer, or the ESPN app":/SEC Network/.test(tvs)?"YouTube TV, Hulu + Live TV, Fubo, Sling, DirecTV Stream or cable":"Check local listings";
   $("#main").innerHTML=[
     `<div class="sect full" data-view="all"><h2>Game Day · ${n.home?"vs":"at"} ${esc(n.opp)} <small>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</small></h2></div>`,
-    `<div class="duo full fixed">${[P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
-      feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><div class="band"><span>Game preview</span></div><div class="b"><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">Read the preview ↗</span></div></a>`):"",
+    `<div class="duo full fixed" data-left="2">${[P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+      P("all social","",`<h2>Follow <small>Official Kentucky ${sport==="football"?"football":"men's basketball"} accounts</small></h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
+      feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><span class="lab">Game preview</span><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">Read the preview ↗</span></a>`):"",
       (()=>{const J=t.injuries;if(!J||J.game!==n.opp)return "";const grp=(name,rows)=>rows&&rows.length?`<div><h4>${esc(name)}</h4>${rows.map(r=>`<p><b class="${/^out/i.test(r[0])?"out":""}">${esc(r[0])}</b>${esc(r[1])}</p>`).join("")}</div>`:"";
         const src=J.src||(injNews?[injNews[0],injNews[1],injNews[2]]:null);
         return P("all","",`<h2>Injury report <small>${esc(J.asof||"")}</small></h2><div class="inj">${grp("Kentucky",J.uk)}${grp(n.opp,J.opp)}</div>${src?`<p class="note"><a href="${esc(src[2])}" target="_blank" rel="noopener">${esc(src[1])} ↗</a></p>`:""}`)})(),
-      P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`)].join("")}</div>`,
+      P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${/official stats/i.test(t.leadNote)?`<a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.leadNote)} ↗</a>`:esc(t.leadNote)}</p>`)].join("")}</div>`,
     P("all","full watchline",`<div class="wl"><b>How to watch</b><span>TV: ${esc(tvs)} · ${esc(stream)}</span><button type="button" class="wlink" data-go="watch">Full guide ›</button></div>`),
     `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook, recruiting and the transfer portal</small></h2></div>`,
     `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),
@@ -513,12 +512,14 @@ function balanceOne(box){
   /* try every split (first panel always on the left) and keep the most even one */
   let best=null;
   /* a "fixed" pair keeps its first panel on the left and everything else on the right */
-  if(box.classList.contains("fixed")){const m=(1<<vis.length)-2,t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);best={m,d:0,t}}
+  if(box.classList.contains("fixed")){const nl=+(box.dataset.left||1),m=((1<<vis.length)-1)&~((1<<nl)-1),t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);best={m,d:0,t}}
   else for(let m=0;m<1<<vis.length;m+=2){const t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);
     if(!t[1])continue;const d=Math.abs(t[0]-t[1]);if(!best||d<best.d)best={m,d,t}}
   if(!best)best={m:0,t:[1,0]};
   const last=[null,null];vis.forEach((it,i)=>{const c=(best.m>>i)&1;cols[c].appendChild(it);last[c]=it});
-  const s=best.t[0]<best.t[1]?0:1;if(last[s])last[s].style.flex="1";
+  const s=best.t[0]<best.t[1]?0:1;
+  /* in Game Day the top panel of the shorter column grows (Odds & Picks on the left, the preview on the right) */
+  const grow=box.classList.contains("fixed")?cols[s].querySelector("section.panel:not([style*='display: none'])"):last[s];if(grow)grow.style.flex="1";
 }
 let _bt;window.addEventListener("resize",()=>{clearTimeout(_bt);_bt=setTimeout(balance,120)});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(balance);
