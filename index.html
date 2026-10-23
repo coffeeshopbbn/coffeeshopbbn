@@ -157,6 +157,8 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 .W{color:var(--win);font-weight:700}.L{color:var(--loss);font-weight:700}
 .tv{display:inline-block;font:600 11px var(--body);background:var(--chip);padding:2px 7px;border-radius:4px}
 .tbl{overflow-x:auto}
+.stog{all:unset;cursor:pointer;box-sizing:border-box;display:block;width:100%;text-align:center;margin-top:10px;padding:9px;border-radius:8px;background:var(--chip);font:700 13px var(--body);color:var(--uk)}
+.stog:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
 
 .leaders{display:grid;gap:10px}
 .leader{display:grid;grid-template-columns:86px 1fr auto;gap:10px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
@@ -272,7 +274,7 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 23, 2026, 4:00 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 4:05 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -339,7 +341,7 @@ basketball:{
 const TABS=[["all","Overview"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"],["club","Clubhouse"]];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let sport="football",tab="all";
+let sport="football",tab="all",schedOpen=false;
 try{const s=localStorage.getItem("bbn-sport");if(s&&D[s])sport=s;}catch(e){}
 const h=(location.hash||"").slice(1); if(D[h])sport=h;
 
@@ -403,9 +405,11 @@ function render(){
     t.xsearch.map(x=>`<a class="bz x" href="https://x.com/search?q=${x[1]}&f=live" target="_blank" rel="noopener"><span class="k">Live on X</span><q>${esc(x[0])}</q><span class="who">See the latest posts ↗</span></a>`).join("")}</div>`;
 
   const nextIdx=t.schedule.findIndex(r=>!isRes(r));
+  /* schedule is collapsed to the last 2 results + next games unless expanded or on the Schedule tab */
+  const ni=nextIdx<0?t.schedule.length:nextIdx,lo=Math.max(0,Math.min(ni-2,t.schedule.length-5)),hi=lo+5,full=schedOpen||tab==="schedule";
   const rows=t.schedule.map((r,i)=>{const pre=r[2]===1?"vs":r[2]===0?"at":"vs";
     const res=isRes(r)?`<span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}`:/^\d{1,2}(:\d\d)? ?(AM|PM)$/.test(r[3]||"")?etpt(r[3]+" ET").split(" / ").map(esc).join("<br>"):esc(r[3]);
-    return `<tr class="${i<nextIdx?"past":""} ${i===nextIdx?"nextrow":""}"><td class="d">${esc(r[0])}</td><td class="opp"><em>${pre}</em>${esc(r[1])}</td><td>${r[4]?`<span class="tv">${esc(r[4])}</span>`:""}</td><td class="res">${res}</td></tr>`}).join("");
+    return `<tr class="${i<nextIdx?"past":""} ${i===nextIdx?"nextrow":""}"><td class="d">${esc(r[0])}</td><td class="opp"><em>${pre}</em>${esc(r[1])}</td><td>${r[4]?`<span class="tv">${esc(r[4])}</span>`:""}</td><td class="res">${res}</td></tr>`}).filter((_,i)=>full||(i>=lo&&i<hi)).join("");
 
   const P=(view,cls,html)=>`<section class="panel ${cls}" data-view="${view}">${html}</section>`;
   const pk=p=>lk([p[0]+" · "+p[1],p[2],p[3]]);
@@ -414,7 +418,7 @@ function render(){
     P("all news","full",`<h2>Latest</h2><div class="ncards">${newsCards}</div>`),
     P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
     P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),
-    P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div><p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
+    P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div>${tab==="schedule"?"":`<button class="stog" type="button" id="stog" aria-expanded="${full}">${full?"Show less":`Full schedule · ${t.schedule.length} games`}</button>`}<p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
     P("all team","",`<h2>Leaders <small>${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`),
     P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`),
     P("team","full",`<h2>Players to know</h2><div class="roster">${t.roster.map(p=>`<div class="p">${p[0]?`<span class="tag">${esc(p[0])}</span>`:""}<b>${esc(p[1])}</b><span>${esc(p[2])}</span></div>`).join("")}</div><p class="note"><a href="${esc(t.espn[1])}" target="_blank" rel="noopener">Full roster &amp; stats on ESPN ↗</a></p>`),
@@ -443,6 +447,7 @@ setInterval(tick,1000);
 document.querySelector(".switch").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   sport=b.dataset.sport;try{localStorage.setItem("bbn-sport",sport)}catch(_){} render();});
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tab=b.dataset.tab;render();window.scrollTo({top:0})});
+$("#main").addEventListener("click",e=>{if(e.target.closest("#stog")){schedOpen=!schedOpen;render()}});
 render();
 /* show the footer's update time in Eastern and Pacific */
 (function(){const f=document.querySelector("footer");if(!f)return;const MS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -543,7 +548,7 @@ function drawMember(){
     <div class="who" id="c-who"></div>
     <div class="cgrid"><div><h4>Pick'em</h4><div id="c-games"></div><h4 style="margin-top:16px">Leaderboard</h4><div class="board" id="c-board"></div></div>
     <div><h4>Group chat</h4><div class="chat"><div class="list" id="c-list"></div>
-      <form id="c-chatf"><input class="cin" id="c-text" maxlength="500" placeholder="Say something, BBN" autocomplete="off"><button class="cbtn" type="submit">Send</button></form></div></div></div>`);
+      <form id="c-chatf"><input class="cin" id="c-text" maxlength="500" placeholder="Say something, Coffeeshop" autocomplete="off"><button class="cbtn" type="submit">Send</button></form></div></div></div>`);
   document.getElementById("c-edit").onclick=()=>{C.editing=true;drawJoin()};
   document.getElementById("c-out").onclick=()=>C.auth.signOut();
   document.getElementById("c-chatf").onsubmit=async ev=>{ev.preventDefault();const inp=document.getElementById("c-text"),text=inp.value.trim();if(!text)return;inp.value="";
