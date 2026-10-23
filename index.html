@@ -108,21 +108,19 @@ nav button[aria-current="true"]{color:#fff;background:rgba(255,255,255,.16)}
 .buzz{padding-block:20px 4px}
 .buzz h2{margin-bottom:10px}
 .rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin}
-.bz{flex:0 0 min(78%,280px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;text-decoration:none;min-width:0}
+.bz{flex:0 0 min(78%,280px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden;display:flex;flex-direction:column;gap:0;text-decoration:none;min-width:0}
 .bz:hover{border-color:var(--uk)}
 .bz:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
-.bz .k{font:700 10px var(--body);letter-spacing:1.2px;text-transform:uppercase;color:var(--uk)}
+.bz .band,.feat .band{height:46px;display:flex;align-items:flex-end;padding:8px 14px;background:#0033A0;color:#fff;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 12px)}
+.bz .band span,.feat .band span{font:800 13px var(--display);letter-spacing:1.5px;text-transform:uppercase}
+.bz .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
 .bz q{font:700 19px/1.2 var(--display);quotes:none;flex:1;text-wrap:balance}
 .bz .who{font-size:12px;color:var(--muted)}
-.bz.post{border-left:4px solid var(--uk)}
 .bz.post .h{display:flex;align-items:center;gap:8px}
 .bz.post .av{width:30px;height:30px;border-radius:50%;background:var(--uk);color:#fff;display:grid;place-items:center;font:800 13px var(--display)}
 .bz.post .h b{font-size:13px}
 .bz.post q{font:500 15px/1.4 var(--body)}
-.bz.x{background:#0033A0;border-color:#0033A0;color:#fff}
-.bz.x .k{color:rgba(255,255,255,.75)}
 .bz.x q{font-size:26px}
-.bz.x .who{color:rgba(255,255,255,.8)}
 
 main{padding-block:18px 48px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -159,6 +157,20 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 .tbl{overflow-x:auto}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
 .duo>*{min-width:0}
+section.panel.fp{padding:0;overflow:hidden}
+.feat{display:flex;flex-direction:column;text-decoration:none;height:100%}
+.feat .band{height:60px}
+.feat .b{padding:14px 18px 18px;display:grid;gap:6px}
+.feat b{font:800 26px/1.1 var(--display);text-wrap:balance}
+.feat .s{font-size:13px;color:var(--muted)}
+.feat .rd{font:700 13px var(--body);color:var(--uk)}
+.feat:hover b{color:var(--uk)}
+.feat:focus-visible{outline:2px solid var(--uk);outline-offset:-2px}
+.inj{display:grid;gap:12px}
+.inj h4{margin:0 0 4px;font:800 15px var(--display);text-transform:uppercase;letter-spacing:.5px}
+.inj p{margin:0;font-size:14px;line-height:1.45}
+.inj p b{font:700 11px var(--body);letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.inj p b.out{color:var(--loss)}
 .sect{padding-top:10px}
 .sect h2{font-size:30px;margin:0;padding-left:12px;border-left:5px solid var(--uk)}
 .watchline{padding:12px 18px}
@@ -297,7 +309,7 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 23, 2026, 4:56 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 5:42 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -321,6 +333,10 @@ football:{
   leaders:[["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
   leadNote:"QB Kenny Minchey: 21-of-28, 2 TD in the 21-13 win at Oklahoma. Season totals on the official stats page.",
   roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher"],["RB","Jason Patterson","Go-ahead drive at OU"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Out vs. Vanderbilt"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","2 INT at OU"],["DB","Jordan Castell","Pick-six at OU"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["K","Adam Zouagui","Long of 52"]],
+  injuries:{game:"Vanderbilt",asof:"SEC availability report · Thu, Oct 22",
+    uk:[["Out","Sam Greene (EDGE), Nic Anderson (WR), Grant Grayton (CB), Antwan Smith (LB), Jaden Smith (nickel)"],["Questionable","Cole Marszalek (LS), Tyler Thomas (DL)"],["Cleared","CJ Baxter (RB), Tavion Wallace (LB), Kalen Edwards (DT)"]],
+    opp:[["Out","Blaze Berlowitz (QB), Jaylin Lackey (CB), Brian Allen Jr. (EDGE), Josiah Broxton (LB), Jamison Curtis (LB), Gunner Givens (OL), Aaron Bryant (DT), Kahden Smith (WR), Nikhil Jefferson (DT)"]],
+    src:["SEC availability report","Full report on KSR","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-two-kentucky-starters-downgraded-to-out-vs-vanderbilt"]},
   portal:[["Stein, Cats adding through the portal","Messenger-Inquirer","https://www.messenger-inquirer.com/sports/local/stein-cats-adding-through-portal/article_47daf55b-5688-5590-a10a-398403cb5040.html"],["Kentucky football transfer portal big board","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-football-transfer-portal-big-board-jan-6-update"]],
   recruiting:[["Football recruiting on 247Sports","Class rankings, commits, visits","https://247sports.com/college/kentucky/"],["KSR football recruiting (On3)","Commit news and offers","https://www.on3.com/teams/kentucky-wildcats/"]],
   news:[["Big Blue Belief: Inside Will Stein's Kentucky homecoming","SI · Pat Forde · Oct 23","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming","Feature"],["Later, Sooners: No. 15 Kentucky wins at Oklahoma","UK Athletics · Oct 17","https://ukathletics.com/news/2026/10/17/later-sooners-no-15-kentucky-wins-at-oklahoma/","Recap"],["How No. 12 Kentucky and Vanderbilt match up","Yahoo Sports","https://sports.yahoo.com/articles/no-12-kentucky-football-vanderbilt-100000953.html","Preview"],["Kentucky vs. Vanderbilt injury report: Sam Greene and Nic Anderson are out; CJ Baxter will play","A Sea of Blue via Yahoo · Oct 22","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-injury-report-001840765.html","Injuries"]],
@@ -354,6 +370,10 @@ basketball:{
   leaders:[["Returning","Malachi Moreno","7.8 ppg · 6.3 rpg"],["Returning","Kam Williams","6.0 ppg"],["Transfer","Milan Momcilovic","from Iowa State"],["Transfer","Zoom Diallo","from Washington"]],
   leadNote:"Stats reset when the season tips Nov 3. Figures above are last season's.",
   roster:[["C","Malachi Moreno","So. · returning"],["G","Kam Williams","Returning"],["F","Trent Noah","Returning"],["F","Braydon Hawthorne","Returning"],["C","Reece Potter","Returning"],["G","Zoom Diallo","Transfer · Washington"],["F","Milan Momcilovic","Transfer · Iowa State"],["C","Franck Kepnang","Transfer · Washington"],["F","Justin McBride","Transfer · James Madison"],["G","Jerone Morton","Transfer · Washington St."],["G","Alex Wilkins","Transfer · Furman"],["PG","Mason Williams","Freshman"],["","Zyon Hawthorne","Freshman"],["","Ousmane N'Diaye","Freshman · international"]],
+  injuries:{game:"Texas Tech",asof:"KSR game-day preview · Oct 23",
+    uk:[["Out","Kam Williams, Trent Noah, Jerone Morton"]],
+    opp:[["Out","J.T. Toppin (ACL)"]],
+    src:["KSR Gameday","Full preview on KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksr-gameday-no-23-kentucky-hosts-no-19-texas-tech-in-exhibition-battle"]},
   portal:[["Offseason tracker: who's back, who's gone","Kentucky Kernel","https://kykernel.com/125102/sports/kentucky-basketball-offseason-tracker-whos-back-whos-gone-and-whats-changing-for-the-2026-27-season/"],["2026-27 roster tracker: transfers and recruits","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-basketball/168005/roster-tracker-2026-27-transfer-targets-recruits"]],
   recruiting:[["Ryan Hampton commits to Kentucky","5-star, No. 6 in the 2027 class","https://www.on3.com/teams/kentucky-wildcats/news/top-10-2027-recruit-ryan-hampton-commits-to-kentucky/"],["UK ramps up 2027 recruiting","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/the-kentucky-staff-is-ramping-up-recruiting-efforts-with-the-2027-class"],["Basketball recruiting on 247Sports","Commits, targets, rankings","https://247sports.com/college/kentucky/"]],
   news:[["KSR Gameday: No. 23 Kentucky hosts No. 19 Texas Tech","KSR · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/ksr-gameday-no-23-kentucky-hosts-no-19-texas-tech-in-exhibition-battle","Preview"],["KSR's takeaways from the first AP Top 25","Kentucky opens No. 23","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/","Rankings"],["No. 23 Kentucky set to face No. 19 Texas Tech in second exhibition","Kentucky Kernel","https://kykernel.com/129772/sports/no-23-kentucky-mens-basketball-set-to-face-no-19-texas-tech-in-second-exhibition/","Preview"],["Meet the team: Kentucky 2026-27","Kentucky Kernel","https://kykernel.com/129404/sports/mens-basketball/meet-the-team-kentucky-mens-basketball-2026-27/","Feature"]],
@@ -426,12 +446,14 @@ function render(){
   tick();
 
   /* game-specific stories (previews, injury reports) live in Game Day; everything else is a Buzz headline */
-  const GD=["preview","injuries","game day"],isGD=a=>GD.includes((a[3]||"").toLowerCase());
-  const gdNews=t.news.filter(isGD),heads=t.news.filter(a=>!isGD(a));
-  const newsCards=heads.map(a=>{const tg=a[3]||"News";return `<a class="nc" href="${esc(a[2])}" target="_blank" rel="noopener"><div class="band t-${tg.toLowerCase()}"><span>${esc(tg)}</span></div><div class="b"><b>${esc(a[0])}</b><span class="s">${esc(a[1])}</span></div></a>`}).join("");
-  $("#buzz").innerHTML=`<h2>The Buzz <small>Headlines, takes and trending posts</small></h2>${newsCards?`<div class="ncards">${newsCards}</div>`:""}<div class="rail" style="margin-top:14px">${
-    t.buzz.map(b=>b[0]==="Post"?`<a class="bz post" href="${esc(b[3])}" target="_blank" rel="noopener"><span class="k">Post on X</span><div class="h"><span class="av">${esc((b[2].replace(/^@/,"")[0]||"").toUpperCase())}</span><b>${esc(b[2])}</b></div><q>${esc(b[1])}</q><span class="who">Open post ↗</span></a>`:`<a class="bz" href="${esc(b[3])}" target="_blank" rel="noopener"><span class="k">${esc(b[0])}</span><q>${esc(b[1])}</q><span class="who">${esc(b[2])} ↗</span></a>`).join("")}${
-    t.xsearch.map(x=>`<a class="bz x" href="https://x.com/search?q=${x[1]}&f=live" target="_blank" rel="noopener"><span class="k">Live on X</span><q>${esc(x[0])}</q><span class="who">See the latest posts ↗</span></a>`).join("")}</div>
+  /* one featured preview for Game Day; injury-report stories feed the injury panel; everything else is a Buzz headline */
+  const prevs=t.news.filter(a=>(a[3]||"").toLowerCase()==="preview"),feat=prevs[0],injNews=t.news.find(a=>(a[3]||"").toLowerCase()==="injuries");
+  const heads=t.news.filter(a=>a!==feat&&a!==injNews&&(a[3]||"").toLowerCase()!=="game day");
+  const card=(href,label,body)=>`<a class="bz" href="${esc(href)}" target="_blank" rel="noopener"><div class="band"><span>${esc(label)}</span></div><div class="bd">${body}</div></a>`;
+  $("#buzz").innerHTML=`<h2>The Buzz <small>Headlines, takes and trending posts · swipe</small></h2><div class="rail">${
+    heads.map(a=>card(a[2],a[3]||"News",`<q>${esc(a[0])}</q><span class="who">${esc(a[1])} ↗</span>`)).join("")}${
+    t.buzz.map(b=>b[0]==="Post"?card(b[3],"Post on X",`<div class="h"><span class="av">${esc((b[2].replace(/^@/,"")[0]||"").toUpperCase())}</span><b>${esc(b[2])}</b></div><q>${esc(b[1])}</q><span class="who">Open post ↗</span>`).replace('class="bz"','class="bz post"'):card(b[3],b[0],`<q>${esc(b[1])}</q><span class="who">${esc(b[2])} ↗</span>`)).join("")}${
+    t.xsearch.map(x=>card(`https://x.com/search?q=${x[1]}&f=live`,"Live on X",`<q>${esc(x[0])}</q><span class="who">See the latest posts ↗</span>`)).join("")}</div>
     <div class="socs follow"><span class="cat">Follow</span>${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`;
 
   const nextIdx=t.schedule.findIndex(r=>!isRes(r));
@@ -446,8 +468,11 @@ function render(){
   const tvs=n.tv||"TBA",stream=/SEC Network\+/.test(tvs)?"Streaming only, in the ESPN app":/ESPN|ABC/.test(tvs)?"Cable, any live-TV streamer, or the ESPN app":/SEC Network/.test(tvs)?"YouTube TV, Hulu + Live TV, Fubo, Sling, DirecTV Stream or cable":"Check local listings";
   $("#main").innerHTML=[
     `<div class="sect full" data-view="all"><h2>Game Day · ${n.home?"vs":"at"} ${esc(n.opp)} <small>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</small></h2></div>`,
-    `<div class="duo full">${[P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
-      gdNews.length?P("all news","",`<h2>Previews <small>This game</small></h2><div class="links">${gdNews.map(a=>lk([a[0],a[1]+(a[3]&&a[3].toLowerCase()!=="preview"?" · "+a[3]:""),a[2]])).join("")}</div>`):"",
+    `<div class="duo full fixed">${[P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+      feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><div class="band"><span>Game preview</span></div><div class="b"><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">Read the preview ↗</span></div></a>`):"",
+      (()=>{const J=t.injuries;if(!J||J.game!==n.opp)return "";const grp=(name,rows)=>rows&&rows.length?`<div><h4>${esc(name)}</h4>${rows.map(r=>`<p><b class="${/^out/i.test(r[0])?"out":""}">${esc(r[0])}</b>${esc(r[1])}</p>`).join("")}</div>`:"";
+        const src=J.src||(injNews?[injNews[0],injNews[1],injNews[2]]:null);
+        return P("all","",`<h2>Injury report <small>${esc(J.asof||"")}</small></h2><div class="inj">${grp("Kentucky",J.uk)}${grp(n.opp,J.opp)}</div>${src?`<p class="note"><a href="${esc(src[2])}" target="_blank" rel="noopener">${esc(src[1])} ↗</a></p>`:""}`)})(),
       P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`)].join("")}</div>`,
     P("all","full watchline",`<div class="wl"><b>How to watch</b><span>TV: ${esc(tvs)} · ${esc(stream)}</span><button type="button" class="wlink" data-go="watch">Full guide ›</button></div>`),
     `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook, recruiting and the transfer portal</small></h2></div>`,
@@ -486,7 +511,10 @@ function balanceOne(box){
   items.forEach(it=>cols[0].appendChild(it));
   const hs=new Map(vis.map(it=>[it,it.offsetHeight]));
   /* try every split (first panel always on the left) and keep the most even one */
-  let best=null;for(let m=0;m<1<<vis.length;m+=2){const t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);
+  let best=null;
+  /* a "fixed" pair keeps its first panel on the left and everything else on the right */
+  if(box.classList.contains("fixed")){const m=(1<<vis.length)-2,t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);best={m,d:0,t}}
+  else for(let m=0;m<1<<vis.length;m+=2){const t=[0,0];vis.forEach((it,i)=>t[(m>>i)&1]+=hs.get(it)+18);
     if(!t[1])continue;const d=Math.abs(t[0]-t[1]);if(!best||d<best.d)best={m,d,t}}
   if(!best)best={m:0,t:[1,0]};
   const last=[null,null];vis.forEach((it,i)=>{const c=(best.m>>i)&1;cols[c].appendChild(it);last[c]=it});
@@ -502,7 +530,7 @@ function tick(){const el=document.getElementById("clock"); if(!el)return;
 setInterval(tick,1000);
 
 document.querySelector(".switch").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
-  sport=b.dataset.sport;try{localStorage.setItem("bbn-sport",sport)}catch(_){} render();});
+  sport=b.dataset.sport;try{localStorage.setItem("bbn-sport",sport)}catch(_){} render();window.dispatchEvent(new Event("bbn-sport"));});
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tab=b.dataset.tab;render();window.scrollTo({top:0})});
 $("#main").addEventListener("click",e=>{if(e.target.closest("#stog")){schedOpen=!schedOpen;render()}
   const g=e.target.closest("[data-go]");if(g){tab=g.dataset.go;render();window.scrollTo({top:0})}});
@@ -593,11 +621,9 @@ function games(){
     const row=t.schedule[i],n=t.next||{},lock=n.when?new Date(n.when):null;
     return{sport,row,id:gid(sport,row),opp:n.opp||row[1],abbr:n.oppAbbr||row[5]||"OPP",lock,open:!!lock&&Date.now()<lock.getTime(),whenText:(n.whenText||row[0])+(n.timeText?" · "+etpt(n.timeText):"")}}).filter(Boolean);
 }
-/* pick'em shows only the single next game, whichever sport it is */
-function nextGame(){const gs=games(),now=Date.now();
-  const open=gs.filter(g=>g.open).sort((a,b)=>a.lock-b.lock);if(open.length)return [open[0]];
-  const tba=gs.filter(g=>!g.lock);if(tba.length)return [tba[0]];
-  return gs.sort((a,b)=>b.lock-a.lock).slice(0,1);}
+/* pick'em shows the next game of whichever sport is selected at the top */
+function nextGame(){return games().filter(g=>g.sport===sport)}
+window.addEventListener("bbn-sport",()=>{if(C.member&&!C.editing)drawGames()});
 function drawMember(){
   if(C.editing)return drawJoin();
   const me=C.member;
