@@ -224,7 +224,9 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 .pk .ppl{display:flex;justify-content:center;gap:2px;flex-wrap:wrap;margin-top:6px;min-height:22px}
 .pk .cnt{display:block;font:600 11px var(--body);color:var(--muted);text-transform:none;letter-spacing:0;margin-top:2px}
 .sg{display:flex;gap:6px;align-items:center;margin-top:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
-.sg input{width:64px}
+.sg input{width:72px}
+.sg .sgl{flex-basis:100%;font:700 12px var(--body);color:var(--fg);text-transform:uppercase;letter-spacing:.8px}
+.mid span+span{margin-top:2px;font-weight:600;opacity:.8}
 .board{display:grid;gap:6px}
 .board div{display:grid;grid-template-columns:22px 28px 1fr auto;gap:8px;align-items:center;font-size:14px}
 .board b{font:800 16px var(--display);font-variant-numeric:tabular-nums}
@@ -270,7 +272,7 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 23, 2026, 2:40 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 4:00 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -343,6 +345,8 @@ const h=(location.hash||"").slice(1); if(D[h])sport=h;
 
 const lk=a=>`<a class="lk" href="${esc(a[2])}" target="_blank" rel="noopener"><div><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div><i>↗</i></a>`;
 const isRes=r=>/^[WL] \d/.test(r[3]||"");
+/* add Pacific time next to any Eastern time, e.g. "7:00 PM ET" -> "7:00 PM ET / 4:00 PM PT" */
+const etpt=s=>String(s??"").replace(/\b(\d{1,2})(?::(\d{2}))? ?(AM|PM) ET\b(?! \/)/g,(m,h,mi,ap)=>{let H=(+h%12)+(ap==="PM"?12:0)-3;if(H<0)H+=24;return `${m} / ${H%12||12}${mi?":"+mi:""} ${H>=12?"PM":"AM"} PT`});
 
 function pulseChart(t){
   const games=t.schedule.filter(isRes).map(r=>{const m=r[3].match(/^([WL]) (\d+)-(\d+)/);const a=+m[2],b=+m[3];return{abbr:r[5]||r[1].slice(0,3).toUpperCase(),w:m[1]==="W",margin:a-b,score:`${a}-${b}`}});
@@ -385,9 +389,9 @@ function render(){
   const ukB=`<div class="team"><div class="badge uk">UK</div><div class="tname">Kentucky</div>${n.ukRank?`<span class="rank">${esc(n.ukRank)}</span>`:""}<div class="trec">${esc(n.ukRec)}</div></div>`;
   const opB=`<div class="team"><div class="badge" style="background:${esc(n.oppBg||"#334")};color:${esc(n.oppFg||"#fff")}">${esc(n.oppAbbr||n.opp.slice(0,3).toUpperCase())}</div><div class="tname">${esc(n.opp)}</div>${n.oppRank?`<span class="rank">${esc(n.oppRank)}</span>`:""}<div class="trec">${esc(n.oppRec)}</div></div>`;
   const matchup=`<div class="card-h"><div class="eyebrow" style="text-align:center">Next up · ${t.label}</div>
-    <div class="mu">${n.home?ukB:opB}<div class="mid"><b>VS</b><span>${esc(n.timeText||"TBA")}</span></div>${n.home?opB:ukB}</div>
+    <div class="mu">${n.home?ukB:opB}<div class="mid"><b>VS</b>${etpt(n.timeText||"TBA").split(" / ").map(x=>`<span>${esc(x)}</span>`).join("")}</div>${n.home?opB:ukB}</div>
     <div class="meta"><span>${esc(n.whenText)}</span><span>${esc(n.venue)}</span><span>TV: ${esc(n.tv)}</span></div>
-    ${n.live?`<div class="live"><span>Live · updated ${esc(n.liveAt||"")}</span><b>${esc(n.live)}</b></div>`:(n.when?`<div class="clock" id="clock"></div>`:"")}
+    ${n.live?`<div class="live"><span>Live · updated ${esc(etpt(n.liveAt||""))}</span><b>${esc(n.live)}</b></div>`:(n.when?`<div class="clock" id="clock"></div>`:"")}
     ${wp?`<div class="hwp"><div class="hwp-top"><span>UK ${wp.uk}%</span><span style="opacity:.7">${esc(wp.opp)} ${(100-wp.uk).toFixed(1)}%</span></div><div class="hwp-bar" role="img" aria-label="Win probability Kentucky ${wp.uk}%"><div class="a" style="width:${wp.uk}%"></div></div><div class="hwp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}</div>`;
   const pc=pulseChart(t);
   const right=(pc?`<div class="desk-only">${pc}</div>`:"")+`<div class="${pc?"mob-only":""}"><div class="stats" style="margin-top:0">${t.stats.map(s=>`<div class="stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div></div>`;
@@ -400,7 +404,7 @@ function render(){
 
   const nextIdx=t.schedule.findIndex(r=>!isRes(r));
   const rows=t.schedule.map((r,i)=>{const pre=r[2]===1?"vs":r[2]===0?"at":"vs";
-    const res=isRes(r)?`<span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}`:esc(r[3]);
+    const res=isRes(r)?`<span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}`:/^\d{1,2}(:\d\d)? ?(AM|PM)$/.test(r[3]||"")?etpt(r[3]+" ET").split(" / ").map(esc).join("<br>"):esc(r[3]);
     return `<tr class="${i<nextIdx?"past":""} ${i===nextIdx?"nextrow":""}"><td class="d">${esc(r[0])}</td><td class="opp"><em>${pre}</em>${esc(r[1])}</td><td>${r[4]?`<span class="tv">${esc(r[4])}</span>`:""}</td><td class="res">${res}</td></tr>`}).join("");
 
   const P=(view,cls,html)=>`<section class="panel ${cls}" data-view="${view}">${html}</section>`;
@@ -408,7 +412,7 @@ function render(){
   const newsCards=t.news.map(a=>{const tg=a[3]||"News";return `<a class="nc" href="${esc(a[2])}" target="_blank" rel="noopener"><div class="band t-${tg.toLowerCase()}"><span>${esc(tg)}</span></div><div class="b"><b>${esc(a[0])}</b><span class="s">${esc(a[1])}</span></div></a>`}).join("");
   $("#main").innerHTML=[
     P("all news","full",`<h2>Latest</h2><div class="ncards">${newsCards}</div>`),
-    P("all odds","",`<h2>Odds &amp; Picks <small>${esc(t.odds.game)}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+    P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
     P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),
     P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div><p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
     P("all team","",`<h2>Leaders <small>${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${esc(t.leadNote)}</p>`),
@@ -524,8 +528,13 @@ function shrink(file){return new Promise((res,rej)=>{const img=new Image(),url=U
 function games(){
   return ["football","basketball"].map(sport=>{const t=D[sport];if(!t)return null;const i=t.schedule.findIndex(r=>!isRes(r));if(i<0)return null;
     const row=t.schedule[i],n=t.next||{},lock=n.when?new Date(n.when):null;
-    return{sport,row,id:gid(sport,row),opp:n.opp||row[1],abbr:n.oppAbbr||row[5]||"OPP",lock,open:!!lock&&Date.now()<lock.getTime(),whenText:(n.whenText||row[0])+(n.timeText?" · "+n.timeText:"")}}).filter(Boolean);
+    return{sport,row,id:gid(sport,row),opp:n.opp||row[1],abbr:n.oppAbbr||row[5]||"OPP",lock,open:!!lock&&Date.now()<lock.getTime(),whenText:(n.whenText||row[0])+(n.timeText?" · "+etpt(n.timeText):"")}}).filter(Boolean);
 }
+/* pick'em shows only the single next game, whichever sport it is */
+function nextGame(){const gs=games(),now=Date.now();
+  const open=gs.filter(g=>g.open).sort((a,b)=>a.lock-b.lock);if(open.length)return [open[0]];
+  const tba=gs.filter(g=>!g.lock);if(tba.length)return [tba[0]];
+  return gs.sort((a,b)=>b.lock-a.lock).slice(0,1);}
 function drawMember(){
   if(C.editing)return drawJoin();
   const me=C.member;
@@ -544,21 +553,24 @@ function drawMember(){
 function drawWho(){const el=document.getElementById("c-who");if(!el)return;
   el.innerHTML=Object.entries(C.members).sort((a,b)=>(a[1].name||"").localeCompare(b[1].name||"")).map(([id,m])=>`<div>${av(m,40,id)}<span>${esc((m.name||"").split(" ")[0])}</span></div>`).join("");}
 function drawGames(){const el=document.getElementById("c-games");if(!el)return;
-  const gs=games();if(!gs.length){el.innerHTML=`<p class="cmsg">No upcoming games on the schedule.</p>`;return}
+  const gs=nextGame();if(!gs.length){el.innerHTML=`<p class="cmsg">No upcoming games on the schedule.</p>`;return}
   el.innerHTML=gs.map(g=>{const ps=C.picks.filter(p=>p.gameId===g.id),mine=ps.find(p=>p.uid===C.user.uid),d=C.drafts[g.id]||{};
     const sel=d.pick||(mine&&mine.pick)||"";
     const side=(k,label)=>{const who=ps.filter(p=>p.pick===k);return `<button class="pk" type="button" data-g="${g.id}" data-k="${k}" aria-pressed="${sel===k}" ${g.open?"":"disabled"}>${esc(label)}<span class="cnt">${who.length} pick${who.length===1?"":"s"}</span><span class="ppl">${who.map(p=>av(C.members[p.uid],22,p.uid)).join("")}</span></button>`};
-    const status=!g.lock?"Picks open once the game time is announced.":g.open?`Locks at ${g.lock.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"})} your time`:"Picks locked";
+    const status=!g.lock?"Picks open once the game time is announced.":g.open?`Picks lock at ${g.sport==="football"?"kickoff":"tip-off"}`:"Picks locked";
     const us=d.us??(mine&&mine.ukScore!=null?mine.ukScore:""),them=d.them??(mine&&mine.oppScore!=null?mine.oppScore:"");
     return `<div class="game"><h3>${g.sport==="football"?"Football":"Basketball"}: Kentucky vs ${esc(g.opp)}</h3><div class="gm">${esc(g.whenText)} · ${esc(status)}</div>
       <div class="sides">${side("UK","Kentucky")}${side("OPP",g.opp)}</div>
-      ${g.open?`<div class="sg">Score guess (tiebreaker): UK <input class="cin" type="number" min="0" max="200" id="us-${g.id}" value="${esc(us)}"> ${esc(g.abbr)} <input class="cin" type="number" min="0" max="200" id="them-${g.id}" value="${esc(them)}">
-        <button class="cbtn" type="button" data-save="${g.id}" ${sel?"":"disabled"}>${mine?"Update pick":"Lock in pick"}</button></div>`:""}
+      ${g.open?`<div class="sg"><span class="sgl">Your score guess</span>Kentucky <input class="cin" type="number" min="0" max="200" id="us-${g.id}" value="${esc(us)}"> ${esc(g.abbr)} <input class="cin" type="number" min="0" max="200" id="them-${g.id}" value="${esc(them)}">
+        <button class="cbtn" type="button" data-save="${g.id}" ${sel&&us!==""&&them!==""?"":"disabled"}>${mine?"Update pick":"Lock in pick"}</button></div>`:""}
       ${mine?`<div class="cmsg" style="margin-top:8px">Your pick: ${mine.pick==="UK"?"Kentucky":esc(g.opp)}${mine.ukScore!=null?` (${mine.ukScore}-${mine.oppScore})`:""}</div>`:""}
       <div class="cerr" id="err-${g.id}"></div></div>`}).join("");
   el.querySelectorAll(".pk").forEach(b=>b.onclick=()=>{const id=b.dataset.g;C.drafts[id]=Object.assign(C.drafts[id]||{},readScores(id),{pick:b.dataset.k});drawGames()});
   el.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>savePick(b.dataset.save));
-  el.querySelectorAll("input[id^='us-'],input[id^='them-']").forEach(i=>i.oninput=()=>{const id=i.id.replace(/^(us|them)-/,"");C.drafts[id]=Object.assign(C.drafts[id]||{},readScores(id))});
+  el.querySelectorAll("input[id^='us-'],input[id^='them-']").forEach(i=>i.oninput=()=>{const id=i.id.replace(/^(us|them)-/,""),sc=readScores(id),d=C.drafts[id]=Object.assign(C.drafts[id]||{},sc);
+    if(sc.us!==""&&sc.them!==""&&+sc.us!==+sc.them){d.pick=+sc.us>+sc.them?"UK":"OPP";el.querySelectorAll(`.pk[data-g="${id}"]`).forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===d.pick))}
+    const mine=C.picks.find(p=>p.gameId===id&&p.uid===C.user.uid),pick=d.pick||(mine&&mine.pick),btn=el.querySelector(`[data-save="${id}"]`);
+    if(btn)btn.disabled=!(pick&&sc.us!==""&&sc.them!=="")});
 }
 function readScores(id){const u=document.getElementById("us-"+id),t=document.getElementById("them-"+id);return{us:u?u.value:"",them:t?t.value:""}}
 async function savePick(id){
@@ -567,6 +579,7 @@ async function savePick(id){
   const pick=d.pick||(mine&&mine.pick);if(!pick)return;
   const num=v=>v===""||v==null||isNaN(+v)?null:Math.max(0,Math.min(200,Math.round(+v)));
   const us=num(d.us),them=num(d.them);
+  if(us==null||them==null){const el=document.getElementById("err-"+id);if(el)el.textContent="Enter a score for both teams.";return}
   try{await C.db.collection("picks").doc(id+"_"+C.user.uid).set({uid:C.user.uid,gameId:id,sport:g.sport,pick,ukScore:us!=null&&them!=null?us:null,oppScore:us!=null&&them!=null?them:null,
       lockAt:firebase.firestore.Timestamp.fromDate(g.lock),at:firebase.firestore.FieldValue.serverTimestamp()});delete C.drafts[id]}
   catch(e){const el=document.getElementById("err-"+id);if(el)el.textContent=e.code==="permission-denied"?"Picks are locked for this game.":e.message}
