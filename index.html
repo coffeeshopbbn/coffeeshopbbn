@@ -197,7 +197,7 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 
 /* clubhouse */
-.club{padding-block:14px 0}
+.club{padding-block:0 32px}
 .club .cgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
 .club .cgrid>*{min-width:0}
 @media (max-width:780px){.club .cgrid{grid-template-columns:1fr}}
@@ -236,6 +236,21 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 .chat .m time{font-size:11px;color:var(--muted);margin-left:6px}
 .chat .m p{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
 .chat form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.club [data-uid]{cursor:pointer}
+.club [data-uid]:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
+.pmodal{position:fixed;inset:0;z-index:60;background:rgba(4,10,28,.62);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.pmodal[hidden]{display:none}
+.pcard{position:relative;background:var(--surface);color:var(--fg);border-radius:16px;padding:18px;width:min(380px,100%);max-height:100%;overflow:auto;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.pbig{display:grid;place-items:center;width:100%;max-width:100%;aspect-ratio:1/1;border-radius:12px;object-fit:cover;background:#0033A0;color:#fff;font:900 120px/1 var(--display)}
+.pcard h3{font:800 28px/1.1 var(--display);text-transform:uppercase;margin:14px 0 2px;letter-spacing:.5px}
+.pmeta{font-size:12px;color:var(--muted)}
+.pstats{display:flex;justify-content:center;margin-top:12px}
+.pstats div{background:var(--chip);border-radius:10px;padding:10px 18px}
+.pstats b{display:block;font:800 26px/1 var(--display);font-variant-numeric:tabular-nums}
+.pstats span,.pcur span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.pcur{margin-top:12px;font-size:14px;display:grid;gap:4px}
+.pclose{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
+.pclose:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .club h4{font:800 16px var(--display);text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px}
 </style>
 
@@ -253,9 +268,9 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 
 <div class="hero"><div class="wrap hero-grid" id="hero"></div></div>
 <div class="wrap buzz" id="buzz"></div>
-<div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
-<footer class="wrap">Updated Oct 23, 2026, 2:00 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
+<footer class="wrap">Updated Oct 23, 2026, 2:40 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -271,10 +286,10 @@ football:{
    ["Oct 17","Oklahoma",0,"W 21-13","SECN","OU"],["Oct 24","Vanderbilt",1,"7:30 PM","SECN","VU"],
    ["Nov 7","Tennessee",0,"TBA","TBA","TENN"],["Nov 14","Florida",1,"TBA","TBA","UF"],
    ["Nov 21","Missouri",0,"TBA","TBA","MIZ"],["Nov 28","Louisville",1,"TBA","TBA","LOU"]],
-  odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated (FanDuel has the total at 50.5)",winprob:{uk:85.4,opp:"Vanderbilt",src:"ESPN Matchup Predictor"}},
+  odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated; FanDuel matches at UK -10.5, -450 and 51.5",winprob:{uk:85.4,opp:"Vanderbilt",src:"ESPN Matchup Predictor"}},
   picks:[["Iain MacMillan","Sports Illustrated","Kentucky -10.5. \"Lay the points on the Wildcats at home\": UK's run game vs. a weak Vandy run defense.","https://www.si.com/betting/vanderbilt-vs-kentucky-prediction-odds-and-key-players-to-watch-for-college-football-week-8-2026"],["Mark Story","Lexington Herald-Leader","Kentucky 33, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Tristan Pharis","A Sea of Blue","Kentucky 31, Vanderbilt 17","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["TeamRankings","Computer model","Kentucky 31, Vanderbilt 20","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["DRatings","Computer model","Kentucky 31, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Expert pick","Predictem","Kentucky 34, Vanderbilt 21. Likes the Over 51.5.","https://www.predictem.com/college-football/vanderbilt-vs-kentucky-odds-and-expert-pick-for-oct-24/"]],
   outlook:[["Heather Dinich","ESPN","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Andy Staples","On3","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Brad Crawford","CBS Sports","First round: (10) Kentucky at (7) Ole Miss","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Bryan Fischer","Sports Illustrated","No. 10 seed at No. 7 Indiana; winner faces Ohio State in the Rose Bowl","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Scott Dochterman","The Athletic","In the Playoff field, just ahead of Iowa and USC","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"]],
-  buzz:[["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"Because of me, to be honest.\"","Will Stein, on why he can win big at UK · SI","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Fans react","Highlights, MVP and Twitter cheers from the wild win at Oklahoma","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-news/184383/highlights-mvp-twitter-reactions-social-media-uk-oklahoma-football"],["Quote","\"Tough as hell.\"","Bill Connelly · ESPN, even with SP+ skeptical","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-oklahoma-national-media-takes-predictions"],["Quote","\"This was for Big Blue Nation.\"","Will Stein after beating LSU · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-dedicates-kentucky-win-over-lsu-to-the-fans-big-blue-nation/"],["Storyline","Nic Anderson ruled out vs. Vandy; CJ Baxter off the injury report","A Sea of Blue","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-injury-report-001840765.html"]],
+  buzz:[["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"The place is on fire.\"","Mark Pope on Kroger Field and Will Stein's run · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-mark-pope-kentucky-football-success"],["Quote","\"Because of me, to be honest.\"","Will Stein, on why he can win big at UK · SI","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Fans react","Highlights, MVP and Twitter cheers from the wild win at Oklahoma","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-news/184383/highlights-mvp-twitter-reactions-social-media-uk-oklahoma-football"],["Quote","\"Tough as hell.\"","Bill Connelly · ESPN, even with SP+ skeptical","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-oklahoma-national-media-takes-predictions"],["Quote","\"This was for Big Blue Nation.\"","Will Stein after beating LSU · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-dedicates-kentucky-win-over-lsu-to-the-fans-big-blue-nation/"],["Storyline","Five Cats out vs. Vandy, incl. Sam Greene and Nic Anderson; CJ Baxter plays","KSR · SEC availability report","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-two-kentucky-starters-downgraded-to-out-vs-vanderbilt"]],
   xsearch:[["#BBN","%23BBN"],["Kentucky football","Kentucky%20football"],["Will Stein","%22Will%20Stein%22"]],
   leaders:[["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
   leadNote:"QB Kenny Minchey: 21-of-28, 2 TD in the 21-13 win at Oklahoma. Season totals on the official stats page.",
@@ -312,14 +327,14 @@ basketball:{
   leadNote:"Stats reset when the season tips Nov 3. Figures above are last season's.",
   roster:[["C","Malachi Moreno","So. · returning"],["G","Kam Williams","Returning"],["F","Trent Noah","Returning"],["F","Braydon Hawthorne","Returning"],["C","Reece Potter","Returning"],["G","Zoom Diallo","Transfer · Washington"],["F","Milan Momcilovic","Transfer · Iowa State"],["C","Franck Kepnang","Transfer · Washington"],["F","Justin McBride","Transfer · James Madison"],["G","Jerone Morton","Transfer · Washington St."],["G","Alex Wilkins","Transfer · Furman"],["PG","Mason Williams","Freshman"],["","Zyon Hawthorne","Freshman"],["","Ousmane N'Diaye","Freshman · international"]],
   recruiting:[["Ryan Hampton commits to Kentucky","5-star, No. 6 in the 2027 class","https://www.on3.com/teams/kentucky-wildcats/news/top-10-2027-recruit-ryan-hampton-commits-to-kentucky/"],["UK ramps up 2027 recruiting","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/the-kentucky-staff-is-ramping-up-recruiting-efforts-with-the-2027-class"],["Basketball recruiting on 247Sports","Commits, targets, rankings","https://247sports.com/college/kentucky/"]],
-  news:[["KSR Gameday: No. 23 Kentucky hosts No. 19 Texas Tech","KSR · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/ksr-gameday-no-23-kentucky-hosts-no-19-texas-tech-in-exhibition-battle","Preview"],["KSR's takeaways from the first AP Top 25","Kentucky opens No. 23","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/","Rankings"],["Complete 2026-27 schedule finalized","UK Athletics","https://ukathletics.com/?p=468246","News"],["Meet the team: Kentucky 2026-27","Kentucky Kernel","https://kykernel.com/129404/sports/mens-basketball/meet-the-team-kentucky-mens-basketball-2026-27/","Feature"]],
+  news:[["KSR Gameday: No. 23 Kentucky hosts No. 19 Texas Tech","KSR · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/ksr-gameday-no-23-kentucky-hosts-no-19-texas-tech-in-exhibition-battle","Preview"],["KSR's takeaways from the first AP Top 25","Kentucky opens No. 23","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/","Rankings"],["No. 23 Kentucky set to face No. 19 Texas Tech in second exhibition","Kentucky Kernel","https://kykernel.com/129772/sports/no-23-kentucky-mens-basketball-set-to-face-no-19-texas-tech-in-second-exhibition/","Preview"],["Meet the team: Kentucky 2026-27","Kentucky Kernel","https://kykernel.com/129404/sports/mens-basketball/meet-the-team-kentucky-mens-basketball-2026-27/","Feature"]],
   highlights:[["Kentucky Basketball on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"],["ESPN Kentucky videos","Game highlights","https://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"]],
   socials:[["X","@KentuckyMBB","https://x.com/KentuckyMBB"],["Instagram","@kentuckymbb","https://www.instagram.com/kentuckymbb/"],["X","@UKAthletics","https://x.com/UKAthletics"]],
   official:["Official schedule & stats","https://ukathletics.com/sports/mbball/schedule/"],
   espn:["ESPN team page","https://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"]
 }};
 
-const TABS=[["all","Overview"],["club","Clubhouse"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"]];
+const TABS=[["all","Overview"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"],["club","Clubhouse"]];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let sport="football",tab="all";
@@ -443,7 +458,7 @@ const root=document.getElementById("club");
 const panel=h=>`<section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2>${h}</section>`;
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
 const okPhoto=p=>typeof p==="string"&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(p);
-const av=(m,sz)=>m&&okPhoto(m.photo)?`<img class="cav" src="${m.photo}" alt="" style="width:${sz}px;height:${sz}px">`:`<span class="cav" style="width:${sz}px;height:${sz}px;font-size:${Math.round(sz*.45)}px">${esc(((m&&m.name)||"?").trim().charAt(0).toUpperCase()||"?")}</span>`;
+const av=(m,sz,uid)=>{const a=uid?` data-uid="${esc(uid)}" role="button" tabindex="0" title="${esc((m&&m.name)||"")}"`:"";return m&&okPhoto(m.photo)?`<img class="cav"${a} src="${m.photo}" alt="" style="width:${sz}px;height:${sz}px">`:`<span class="cav"${a} style="width:${sz}px;height:${sz}px;font-size:${Math.round(sz*.45)}px">${esc(((m&&m.name)||"?").trim().charAt(0).toUpperCase()||"?")}</span>`};
 const gid=(sport,row)=>(sport+"-"+row[0]+"-"+row[1]).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
 
@@ -501,8 +516,8 @@ function drawJoin(err){
     catch(e){btn.disabled=false;drawJoin(e.code==="permission-denied"?(C.member?"Couldn't save. Try a smaller photo.":"That invite code didn't work."):e.message)}};
 }
 function shrink(file){return new Promise((res,rej)=>{const img=new Image(),url=URL.createObjectURL(file);
-  img.onload=()=>{const s=160,c=document.createElement("canvas");c.width=s;c.height=s;const x=c.getContext("2d");
-    const r=Math.max(s/img.width,s/img.height),w=img.width*r,h=img.height*r;x.drawImage(img,(s-w)/2,(s-h)/2,w,h);URL.revokeObjectURL(url);res(c.toDataURL("image/jpeg",.8))};
+  img.onload=()=>{URL.revokeObjectURL(url);let out="";for(const [s,q] of [[480,.82],[400,.72],[320,.68],[240,.65]]){const c=document.createElement("canvas");c.width=s;c.height=s;const x=c.getContext("2d");
+    const r=Math.max(s/img.width,s/img.height),w=img.width*r,h=img.height*r;x.drawImage(img,(s-w)/2,(s-h)/2,w,h);out=c.toDataURL("image/jpeg",q);if(out.length<140000)break}res(out)};
   img.onerror=rej;img.src=url;});}
 
 /* ---------- member view ---------- */
@@ -514,7 +529,7 @@ function games(){
 function drawMember(){
   if(C.editing)return drawJoin();
   const me=C.member;
-  root.innerHTML=panel(`<div class="crow" style="justify-content:space-between;margin-bottom:10px"><div class="crow">${av(me,32)}<b>${esc(me.name)}</b></div>
+  root.innerHTML=panel(`<div class="crow" style="justify-content:space-between;margin-bottom:10px"><div class="crow">${av(me,32,C.user.uid)}<b>${esc(me.name)}</b></div>
      <div class="crow"><button class="cbtn alt" type="button" id="c-edit">Edit profile</button><button class="cbtn alt" type="button" id="c-out">Sign out</button></div></div>
     <div class="who" id="c-who"></div>
     <div class="cgrid"><div><h4>Pick'em</h4><div id="c-games"></div><h4 style="margin-top:16px">Leaderboard</h4><div class="board" id="c-board"></div></div>
@@ -527,12 +542,12 @@ function drawMember(){
   drawWho();drawGames();drawBoard();drawChat();
 }
 function drawWho(){const el=document.getElementById("c-who");if(!el)return;
-  el.innerHTML=Object.entries(C.members).sort((a,b)=>(a[1].name||"").localeCompare(b[1].name||"")).map(([id,m])=>`<div>${av(m,40)}<span>${esc((m.name||"").split(" ")[0])}</span></div>`).join("");}
+  el.innerHTML=Object.entries(C.members).sort((a,b)=>(a[1].name||"").localeCompare(b[1].name||"")).map(([id,m])=>`<div>${av(m,40,id)}<span>${esc((m.name||"").split(" ")[0])}</span></div>`).join("");}
 function drawGames(){const el=document.getElementById("c-games");if(!el)return;
   const gs=games();if(!gs.length){el.innerHTML=`<p class="cmsg">No upcoming games on the schedule.</p>`;return}
   el.innerHTML=gs.map(g=>{const ps=C.picks.filter(p=>p.gameId===g.id),mine=ps.find(p=>p.uid===C.user.uid),d=C.drafts[g.id]||{};
     const sel=d.pick||(mine&&mine.pick)||"";
-    const side=(k,label)=>{const who=ps.filter(p=>p.pick===k);return `<button class="pk" type="button" data-g="${g.id}" data-k="${k}" aria-pressed="${sel===k}" ${g.open?"":"disabled"}>${esc(label)}<span class="cnt">${who.length} pick${who.length===1?"":"s"}</span><span class="ppl">${who.map(p=>av(C.members[p.uid],22)).join("")}</span></button>`};
+    const side=(k,label)=>{const who=ps.filter(p=>p.pick===k);return `<button class="pk" type="button" data-g="${g.id}" data-k="${k}" aria-pressed="${sel===k}" ${g.open?"":"disabled"}>${esc(label)}<span class="cnt">${who.length} pick${who.length===1?"":"s"}</span><span class="ppl">${who.map(p=>av(C.members[p.uid],22,p.uid)).join("")}</span></button>`};
     const status=!g.lock?"Picks open once the game time is announced.":g.open?`Locks at ${g.lock.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"})} your time`:"Picks locked";
     const us=d.us??(mine&&mine.ukScore!=null?mine.ukScore:""),them=d.them??(mine&&mine.oppScore!=null?mine.oppScore:"");
     return `<div class="game"><h3>${g.sport==="football"?"Football":"Basketball"}: Kentucky vs ${esc(g.opp)}</h3><div class="gm">${esc(g.whenText)} · ${esc(status)}</div>
@@ -556,23 +571,45 @@ async function savePick(id){
       lockAt:firebase.firestore.Timestamp.fromDate(g.lock),at:firebase.firestore.FieldValue.serverTimestamp()});delete C.drafts[id]}
   catch(e){const el=document.getElementById("err-"+id);if(el)el.textContent=e.code==="permission-denied"?"Picks are locked for this game.":e.message}
 }
-function drawBoard(){const el=document.getElementById("c-board");if(!el)return;
+function tallies(){
   const finals={};["football","basketball"].forEach(sport=>(D[sport]?D[sport].schedule:[]).forEach(r=>{if(isRes(r)){const m=r[3].match(/^([WL]) (\d+)-(\d+)/);finals[gid(sport,r)]={w:m[1]==="W",a:+m[2],b:+m[3]}}}));
   const tally={};
   C.picks.forEach(p=>{const f=finals[p.gameId];if(!f||!C.members[p.uid])return;const t=tally[p.uid]=tally[p.uid]||{w:0,l:0,err:0};
     if((p.pick==="UK")===f.w)t.w++;else t.l++;
     if(p.ukScore!=null&&p.oppScore!=null)t.err+=Math.abs(p.ukScore-f.a)+Math.abs(p.oppScore-f.b);else t.err+=999;});
+  return tally;
+}
+function drawBoard(){const el=document.getElementById("c-board");if(!el)return;
+  const tally=tallies();
   const rows=Object.entries(tally).sort((a,b)=>b[1].w-a[1].w||a[1].err-b[1].err);
-  el.innerHTML=rows.length?rows.map(([uid,t],i)=>`<div><span class="rk">${i+1}</span>${av(C.members[uid],28)}<span>${esc(C.members[uid].name)}</span><b>${t.w}-${t.l}</b></div>`).join("")
+  el.innerHTML=rows.length?rows.map(([uid,t],i)=>`<div><span class="rk">${i+1}</span>${av(C.members[uid],28,uid)}<span>${esc(C.members[uid].name)}</span><b>${t.w}-${t.l}</b></div>`).join("")
     :`<p class="cmsg">Standings appear once a game you picked goes final. Ties are broken by closest score guesses.</p>`;
 }
 function drawChat(){const el=document.getElementById("c-list");if(!el)return;
   const atBottom=el.scrollHeight-el.scrollTop-el.clientHeight<40;
   el.innerHTML=C.chat.length?C.chat.map(m=>{const who=C.members[m.uid]||{name:"Former member"},d=m.at&&m.at.toDate?m.at.toDate():null;
-    return `<div class="m">${av(who,28)}<div><b>${esc(who.name)}</b><time>${d?d.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"}):""}</time><p>${esc(m.text)}</p></div></div>`}).join("")
+    return `<div class="m">${av(who,28,m.uid)}<div><b>${esc(who.name)}</b><time>${d?d.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"}):""}</time><p>${esc(m.text)}</p></div></div>`}).join("")
     :`<p class="cmsg">No messages yet. Start the trash talk.</p>`;
   if(atBottom||!el.dataset.init){el.scrollTop=el.scrollHeight;el.dataset.init="1"}
 }
+
+/* ---------- profile card ---------- */
+const modal=document.createElement("div");modal.className="pmodal";modal.hidden=true;
+modal.innerHTML=`<div class="pcard" role="dialog" aria-modal="true" aria-label="Profile"><button class="pclose" type="button" aria-label="Close">×</button><div id="pbody"></div></div>`;
+document.body.appendChild(modal);
+const closeProfile=()=>{modal.hidden=true};
+modal.addEventListener("click",e=>{if(e.target===modal||e.target.closest(".pclose"))closeProfile()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeProfile()});
+function showProfile(uid){const m=C.members[uid];if(!m)return;
+  const t=tallies()[uid],j=m.joinedAt&&m.joinedAt.toDate?m.joinedAt.toDate():null;
+  const mine=C.picks.filter(p=>p.uid===uid);
+  const cur=games().map(g=>{const p=mine.find(x=>x.gameId===g.id);return p?`<div>${g.sport==="football"?"Football":"Basketball"} vs ${esc(g.opp)}: <b>${p.pick==="UK"?"Kentucky":esc(g.opp)}</b>${p.ukScore!=null?` (${p.ukScore}-${p.oppScore})`:""}</div>`:""}).join("");
+  document.getElementById("pbody").innerHTML=(okPhoto(m.photo)?`<img class="pbig" src="${m.photo}" alt="${esc(m.name)}">`:`<div class="pbig">${esc((m.name||"?").trim().charAt(0).toUpperCase())}</div>`)
+    +`<h3>${esc(m.name)}</h3><div class="pmeta">${j?"Joined "+j.toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"}):""}</div>
+    <div class="pstats"><div><b>${t?t.w+"-"+t.l:"0-0"}</b><span>Pick'em record</span></div></div>${cur?`<div class="pcur"><span>Current picks</span>${cur}</div>`:""}`;
+  modal.hidden=false;modal.querySelector(".pclose").focus();}
+root.addEventListener("click",e=>{const a=e.target.closest("[data-uid]");if(a){e.stopPropagation();e.preventDefault();showProfile(a.dataset.uid)}},true);
+root.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("[data-uid]")){e.preventDefault();showProfile(e.target.dataset.uid)}});
 
 /* ---------- auth flow ---------- */
 function onUser(u){
