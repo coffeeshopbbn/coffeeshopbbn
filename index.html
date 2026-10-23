@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 </head>
 <body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Coffeeshop BBN Hub</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,6 +82,11 @@ nav button[aria-current="true"]{color:#fff;background:rgba(255,255,255,.16)}
 .clock div{background:rgba(0,0,0,.25);border-radius:6px;padding:6px 10px;text-align:center;min-width:56px}
 .clock b{display:block;font:800 26px/1 var(--display);font-variant-numeric:tabular-nums}
 .clock span{font-size:10px;letter-spacing:1px;text-transform:uppercase;opacity:.7}
+.live{margin:14px auto 0;text-align:center;background:rgba(0,0,0,.28);border-radius:8px;padding:10px 16px;max-width:340px}
+.live span{display:flex;align-items:center;justify-content:center;gap:6px;font:700 10px var(--body);letter-spacing:1.4px;text-transform:uppercase;color:#ff6b6b}
+.live span::before{content:"";width:7px;height:7px;border-radius:50%;background:#ff3b30;animation:pulse 1.4s infinite}
+.live b{display:block;font:800 26px/1.1 var(--display);margin-top:4px;font-variant-numeric:tabular-nums}
+@keyframes pulse{50%{opacity:.25}}
 .hwp{margin-top:16px}
 .hwp-top{display:flex;justify-content:space-between;font:800 18px/1 var(--display);margin-bottom:5px;font-variant-numeric:tabular-nums}
 .hwp-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:rgba(255,255,255,.15)}
@@ -189,6 +195,48 @@ h2 small{font:500 12px var(--body);text-transform:none;letter-spacing:0;color:va
 .wp-bar .b{background:var(--muted);opacity:.45}
 .wp-cap{font-size:12px;color:var(--muted);margin-top:6px}
 footer{font-size:12px;color:var(--muted);padding-block:0 32px}
+
+/* clubhouse */
+.club{padding-block:14px 0}
+.club .cgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+.club .cgrid>*{min-width:0}
+@media (max-width:780px){.club .cgrid{grid-template-columns:1fr}}
+.cav{display:inline-grid;place-items:center;border-radius:50%;background:var(--uk);color:#fff;font:800 13px var(--display);object-fit:cover;flex:0 0 auto}
+.who{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.who div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--muted);min-width:56px;text-align:center}
+.cbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 14px var(--body);padding:10px 16px;border-radius:8px;background:var(--uk);color:#fff}
+.cbtn.alt{background:var(--chip);color:var(--fg)}
+.cbtn:focus-visible,.pk:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
+.cbtn[disabled]{opacity:.5;cursor:default}
+.cin{font:15px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);width:100%;min-width:0}
+.cform{display:grid;gap:10px;max-width:420px}
+.cform label{font:600 12px var(--body);color:var(--muted);display:grid;gap:4px}
+.crow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cmsg{font-size:13px;color:var(--muted)}
+.cerr{font-size:13px;color:var(--loss)}
+.game{border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.game h3{font:800 18px/1.1 var(--display);text-transform:uppercase;margin:0 0 2px;letter-spacing:.4px}
+.game .gm{font-size:12px;color:var(--muted);margin-bottom:10px}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pk{all:unset;cursor:pointer;border:2px solid var(--line);border-radius:8px;padding:10px;text-align:center;font:800 16px var(--display);text-transform:uppercase;letter-spacing:.4px}
+.pk[aria-pressed="true"]{border-color:var(--uk);background:var(--chip)}
+.pk[disabled]{cursor:default}
+.pk .ppl{display:flex;justify-content:center;gap:2px;flex-wrap:wrap;margin-top:6px;min-height:22px}
+.pk .cnt{display:block;font:600 11px var(--body);color:var(--muted);text-transform:none;letter-spacing:0;margin-top:2px}
+.sg{display:flex;gap:6px;align-items:center;margin-top:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.sg input{width:64px}
+.board{display:grid;gap:6px}
+.board div{display:grid;grid-template-columns:22px 28px 1fr auto;gap:8px;align-items:center;font-size:14px}
+.board b{font:800 16px var(--display);font-variant-numeric:tabular-nums}
+.board .rk{font:700 12px var(--mono);color:var(--muted)}
+.chat{display:flex;flex-direction:column;height:420px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.chat .list{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.chat .m{display:grid;grid-template-columns:28px 1fr;gap:8px}
+.chat .m b{font-size:13px}
+.chat .m time{font-size:11px;color:var(--muted);margin-left:6px}
+.chat .m p{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
+.chat form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.club h4{font:800 16px var(--display);text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px}
 </style>
 
 <header>
@@ -205,8 +253,9 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 
 <div class="hero"><div class="wrap hero-grid" id="hero"></div></div>
 <div class="wrap buzz" id="buzz"></div>
+<div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
-<footer class="wrap">Updated Oct 23, 2026, 1:30 PM ET. Refreshes twice daily; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 23, 2026, 2:00 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -225,13 +274,13 @@ football:{
   odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated (FanDuel has the total at 50.5)",winprob:{uk:85.4,opp:"Vanderbilt",src:"ESPN Matchup Predictor"}},
   picks:[["Iain MacMillan","Sports Illustrated","Kentucky -10.5. \"Lay the points on the Wildcats at home\": UK's run game vs. a weak Vandy run defense.","https://www.si.com/betting/vanderbilt-vs-kentucky-prediction-odds-and-key-players-to-watch-for-college-football-week-8-2026"],["Mark Story","Lexington Herald-Leader","Kentucky 33, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Tristan Pharis","A Sea of Blue","Kentucky 31, Vanderbilt 17","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["TeamRankings","Computer model","Kentucky 31, Vanderbilt 20","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["DRatings","Computer model","Kentucky 31, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Expert pick","Predictem","Kentucky 34, Vanderbilt 21. Likes the Over 51.5.","https://www.predictem.com/college-football/vanderbilt-vs-kentucky-odds-and-expert-pick-for-oct-24/"]],
   outlook:[["Heather Dinich","ESPN","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Andy Staples","On3","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Brad Crawford","CBS Sports","First round: (10) Kentucky at (7) Ole Miss","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Bryan Fischer","Sports Illustrated","No. 10 seed at No. 7 Indiana; winner faces Ohio State in the Rose Bowl","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Scott Dochterman","The Athletic","In the Playoff field, just ahead of Iowa and USC","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"]],
-  buzz:[["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"Because of me, to be honest.\"","Will Stein, on why he can win big at UK · SI","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Fans react","Highlights, MVP and Twitter cheers from the wild win at Oklahoma","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-news/184383/highlights-mvp-twitter-reactions-social-media-uk-oklahoma-football"],["Quote","\"Tough as hell.\"","Bill Connelly · ESPN, even with SP+ skeptical","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-oklahoma-national-media-takes-predictions"],["Quote","\"This was for Big Blue Nation.\"","Will Stein after beating LSU · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-dedicates-kentucky-win-over-lsu-to-the-fans-big-blue-nation/"],["Storyline","Oklahoma's photo stunt fired the Wildcats up all week","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-football/184681/oklahoma-sooners-peed-uk-photo-pissed-off-mikkel-skinner"]],
+  buzz:[["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"Because of me, to be honest.\"","Will Stein, on why he can win big at UK · SI","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Fans react","Highlights, MVP and Twitter cheers from the wild win at Oklahoma","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-news/184383/highlights-mvp-twitter-reactions-social-media-uk-oklahoma-football"],["Quote","\"Tough as hell.\"","Bill Connelly · ESPN, even with SP+ skeptical","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-oklahoma-national-media-takes-predictions"],["Quote","\"This was for Big Blue Nation.\"","Will Stein after beating LSU · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-dedicates-kentucky-win-over-lsu-to-the-fans-big-blue-nation/"],["Storyline","Nic Anderson ruled out vs. Vandy; CJ Baxter off the injury report","A Sea of Blue","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-injury-report-001840765.html"]],
   xsearch:[["#BBN","%23BBN"],["Kentucky football","Kentucky%20football"],["Will Stein","%22Will%20Stein%22"]],
   leaders:[["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
   leadNote:"QB Kenny Minchey: 21-of-28, 2 TD in the 21-13 win at Oklahoma. Season totals on the official stats page.",
-  roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher"],["RB","Jason Patterson","Go-ahead drive at OU"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Oklahoma transfer"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","2 INT at OU"],["DB","Jordan Castell","Pick-six at OU"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["K","Adam Zouagui","Long of 52"]],
+  roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher"],["RB","Jason Patterson","Go-ahead drive at OU"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Out vs. Vanderbilt"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","2 INT at OU"],["DB","Jordan Castell","Pick-six at OU"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["K","Adam Zouagui","Long of 52"]],
   recruiting:[["Football recruiting on 247Sports","Class rankings, commits, visits","https://247sports.com/college/kentucky/"],["KSR football recruiting (On3)","Commit news and offers","https://www.on3.com/teams/kentucky-wildcats/"]],
-  news:[["Big Blue Belief: Inside Will Stein's Kentucky homecoming","SI · Pat Forde · Oct 23","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming","Feature"],["Later, Sooners: No. 15 Kentucky wins at Oklahoma","UK Athletics · Oct 17","https://ukathletics.com/news/2026/10/17/later-sooners-no-15-kentucky-wins-at-oklahoma/","Recap"],["How No. 12 Kentucky and Vanderbilt match up","Yahoo Sports","https://sports.yahoo.com/articles/no-12-kentucky-football-vanderbilt-100000953.html","Preview"],["Kentucky continues to climb in the Coaches Poll","KSR","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-continues-to-climb-in-latest-coaches-poll-top-25-rankings/","Rankings"]],
+  news:[["Big Blue Belief: Inside Will Stein's Kentucky homecoming","SI · Pat Forde · Oct 23","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming","Feature"],["Later, Sooners: No. 15 Kentucky wins at Oklahoma","UK Athletics · Oct 17","https://ukathletics.com/news/2026/10/17/later-sooners-no-15-kentucky-wins-at-oklahoma/","Recap"],["How No. 12 Kentucky and Vanderbilt match up","Yahoo Sports","https://sports.yahoo.com/articles/no-12-kentucky-football-vanderbilt-100000953.html","Preview"],["Kentucky vs. Vanderbilt injury report: Sam Greene and Nic Anderson are out; CJ Baxter will play","A Sea of Blue via Yahoo · Oct 22","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-injury-report-001840765.html","News"]],
   highlights:[["Kentucky at Oklahoma recap","ESPN","https://www.espn.com/college-football/recap/_/gameId/401856722"],["UK Football on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"]],
   socials:[["X","@UKFootball","https://x.com/UKFootball"],["Instagram","@ukfootball","https://www.instagram.com/ukfootball/"],["X","@UKAthletics","https://x.com/UKAthletics"]],
   official:["Official schedule & stats","https://ukathletics.com/sports/football/schedule/"],
@@ -270,7 +319,7 @@ basketball:{
   espn:["ESPN team page","https://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"]
 }};
 
-const TABS=[["all","Overview"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"]];
+const TABS=[["all","Overview"],["club","Clubhouse"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"]];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let sport="football",tab="all";
@@ -323,7 +372,7 @@ function render(){
   const matchup=`<div class="card-h"><div class="eyebrow" style="text-align:center">Next up · ${t.label}</div>
     <div class="mu">${n.home?ukB:opB}<div class="mid"><b>VS</b><span>${esc(n.timeText||"TBA")}</span></div>${n.home?opB:ukB}</div>
     <div class="meta"><span>${esc(n.whenText)}</span><span>${esc(n.venue)}</span><span>TV: ${esc(n.tv)}</span></div>
-    ${n.when?`<div class="clock" id="clock"></div>`:""}
+    ${n.live?`<div class="live"><span>Live · updated ${esc(n.liveAt||"")}</span><b>${esc(n.live)}</b></div>`:(n.when?`<div class="clock" id="clock"></div>`:"")}
     ${wp?`<div class="hwp"><div class="hwp-top"><span>UK ${wp.uk}%</span><span style="opacity:.7">${esc(wp.opp)} ${(100-wp.uk).toFixed(1)}%</span></div><div class="hwp-bar" role="img" aria-label="Win probability Kentucky ${wp.uk}%"><div class="a" style="width:${wp.uk}%"></div></div><div class="hwp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}</div>`;
   const pc=pulseChart(t);
   const right=(pc?`<div class="desk-only">${pc}</div>`:"")+`<div class="${pc?"mob-only":""}"><div class="stats" style="margin-top:0">${t.stats.map(s=>`<div class="stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div></div>`;
@@ -361,6 +410,7 @@ function render(){
     P("all social","",`<h2>Socials</h2><div class="links">${t.socials.map(s=>lk([s[1],s[0],s[2]])).join("")}</div>`),
   ].join("");
   $("#buzz").style.display=(tab==="all"||tab==="news"||tab==="social")?"block":"none";
+  $("#club").style.display=(tab==="all"||tab==="club")?"block":"none";
   document.querySelectorAll("[data-view]").forEach(el=>{const v=el.dataset.view.split(" ");el.style.display=(tab==="all"?v.includes("all"):v.includes(tab))?"block":"none"});
 }
 
@@ -375,7 +425,183 @@ document.querySelector(".switch").addEventListener("click",e=>{const b=e.target.
   sport=b.dataset.sport;try{localStorage.setItem("bbn-sport",sport)}catch(_){} render();});
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tab=b.dataset.tab;render();window.scrollTo({top:0})});
 render();
+/* show the footer's update time in Eastern and Pacific */
+(function(){const f=document.querySelector("footer");if(!f)return;const MS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const m=f.textContent.match(/([A-Z][a-z]{2}) (\d{1,2}), (\d{4}),? (\d{1,2}):(\d{2}) ?(AM|PM) ET/);if(!m)return;const mo=MS.indexOf(m[1]);if(mo<0)return;
+  const d=new Date(Date.UTC(+m[3],mo,+m[2],(+m[4]%12)+(m[6]==="PM"?12:0)-3,+m[5])),h=d.getUTCHours();
+  const pt=`${h%12||12}:${String(d.getUTCMinutes()).padStart(2,"0")} ${h>=12?"PM":"AM"} PT`+(d.getUTCDate()!==+m[2]?` (${MS[d.getUTCMonth()]} ${d.getUTCDate()})`:"");
+  f.innerHTML=f.innerHTML.replace(m[0],m[0]+" / "+pt);})();
 </script>
 
+<script>
+/* ===== Clubhouse: members, pick'em, chat (Firebase; works on the public website) ===== */
+(function(){
+const FB_CFG={apiKey:"AIzaSyBOM-NTZEejVdnafHOn41xVAvUrVI9zH1k",authDomain:"coffeeshopbbn.firebaseapp.com",projectId:"coffeeshopbbn",storageBucket:"coffeeshopbbn.firebasestorage.app",messagingSenderId:"926847528214",appId:"1:926847528214:web:96ad0cea7a61ce4a7bb437"};
+const V="10.12.2",B="https://www.gstatic.com/firebasejs/"+V+"/";
+const C={auth:null,db:null,user:null,member:null,members:{},picks:[],chat:[],unsub:[],editing:false,drafts:{}};
+const root=document.getElementById("club");
+const panel=h=>`<section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2>${h}</section>`;
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const okPhoto=p=>typeof p==="string"&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(p);
+const av=(m,sz)=>m&&okPhoto(m.photo)?`<img class="cav" src="${m.photo}" alt="" style="width:${sz}px;height:${sz}px">`:`<span class="cav" style="width:${sz}px;height:${sz}px;font-size:${Math.round(sz*.45)}px">${esc(((m&&m.name)||"?").trim().charAt(0).toUpperCase()||"?")}</span>`;
+const gid=(sport,row)=>(sport+"-"+row[0]+"-"+row[1]).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+
+function stopAll(){C.unsub.forEach(f=>{try{f()}catch(e){}});C.unsub=[];}
+
+/* ---------- signed out ---------- */
+function drawSignIn(msg,err){
+  root.innerHTML=panel(`<p>Join the group to make picks, chat and see who's here.</p>
+   <div class="cform">
+    <button class="cbtn" id="c-google" type="button">Sign in with Google</button>
+    <div class="cmsg">or get a sign-in link by email</div>
+    <form id="c-emailf" class="crow"><input class="cin" id="c-email" type="email" required placeholder="you@example.com" style="flex:1" autocomplete="email"><button class="cbtn alt" type="submit">Email me a link</button></form>
+    ${msg?`<div class="cmsg">${esc(msg)}</div>`:""}${err?`<div class="cerr">${esc(err)}</div>`:""}
+   </div>`);
+  document.getElementById("c-google").onclick=async()=>{
+    const p=new firebase.auth.GoogleAuthProvider();
+    try{await C.auth.signInWithPopup(p)}catch(e){
+      if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){C.auth.signInWithRedirect(p)}
+      else if(e.code!=="auth/popup-closed-by-user"&&e.code!=="auth/cancelled-popup-request")drawSignIn("",e.message)}};
+  document.getElementById("c-emailf").onsubmit=async ev=>{ev.preventDefault();const em=document.getElementById("c-email").value.trim();
+    try{await C.auth.sendSignInLinkToEmail(em,{url:location.origin+location.pathname,handleCodeInApp:true});ls.set("bbn-email",em);
+      drawSignIn("Check "+em+" for a sign-in link. Open it on this same device.")}catch(e){drawSignIn("",e.message)}};
+}
+function drawConfirmEmail(err){
+  root.innerHTML=panel(`<form class="cform" id="c-conf"><label>Confirm your email to finish signing in<input class="cin" id="c-cem" type="email" required></label><button class="cbtn" type="submit">Finish signing in</button>${err?`<div class="cerr">${esc(err)}</div>`:""}</form>`);
+  document.getElementById("c-conf").onsubmit=ev=>{ev.preventDefault();finishEmail(document.getElementById("c-cem").value.trim())};
+}
+async function finishEmail(em){
+  try{await C.auth.signInWithEmailLink(em,location.href);ls.del("bbn-email");history.replaceState(null,"",location.pathname)}
+  catch(e){drawConfirmEmail(e.message)}
+}
+
+/* ---------- join / edit profile ---------- */
+function drawJoin(err){
+  const m=C.member||{};
+  root.innerHTML=panel(`<form class="cform" id="c-join">
+    <p style="margin:0">${C.member?"Edit your profile.":"Welcome! Set up your profile to join the group."}</p>
+    <label>Your name<input class="cin" id="c-name" maxlength="40" required value="${esc(m.name||(C.user.displayName||""))}"></label>
+    <label>Photo (optional)<input class="cin" id="c-photo" type="file" accept="image/*"></label>
+    <div class="crow" id="c-prev">${av({name:m.name||C.user.displayName,photo:m.photo},48)}</div>
+    ${C.member?"":`<label>Invite code<input class="cin" id="c-code" required autocomplete="off" placeholder="From the group"></label>`}
+    <div class="crow"><button class="cbtn" type="submit" id="c-save">${C.member?"Save":"Join"}</button>
+    ${C.member?`<button class="cbtn alt" type="button" id="c-cancel">Cancel</button>`:`<button class="cbtn alt" type="button" id="c-out">Sign out</button>`}</div>
+    ${err?`<div class="cerr">${esc(err)}</div>`:""}</form>`);
+  let photo=m.photo||null;
+  document.getElementById("c-photo").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{photo=await shrink(f);document.getElementById("c-prev").innerHTML=av({photo},48)}catch(x){}};
+  const out=document.getElementById("c-out");if(out)out.onclick=()=>C.auth.signOut();
+  const cancel=document.getElementById("c-cancel");if(cancel)cancel.onclick=()=>{C.editing=false;drawMember()};
+  document.getElementById("c-join").onsubmit=async ev=>{ev.preventDefault();
+    const btn=document.getElementById("c-save");btn.disabled=true;
+    const data={name:document.getElementById("c-name").value.trim().slice(0,40),photo:photo||null,
+      code:C.member?C.member.code:document.getElementById("c-code").value.trim().toUpperCase().replace(/\s+/g,"")};
+    if(!C.member)data.joinedAt=firebase.firestore.FieldValue.serverTimestamp();
+    try{await C.db.collection("members").doc(C.user.uid).set(data,{merge:true});C.editing=false}
+    catch(e){btn.disabled=false;drawJoin(e.code==="permission-denied"?(C.member?"Couldn't save. Try a smaller photo.":"That invite code didn't work."):e.message)}};
+}
+function shrink(file){return new Promise((res,rej)=>{const img=new Image(),url=URL.createObjectURL(file);
+  img.onload=()=>{const s=160,c=document.createElement("canvas");c.width=s;c.height=s;const x=c.getContext("2d");
+    const r=Math.max(s/img.width,s/img.height),w=img.width*r,h=img.height*r;x.drawImage(img,(s-w)/2,(s-h)/2,w,h);URL.revokeObjectURL(url);res(c.toDataURL("image/jpeg",.8))};
+  img.onerror=rej;img.src=url;});}
+
+/* ---------- member view ---------- */
+function games(){
+  return ["football","basketball"].map(sport=>{const t=D[sport];if(!t)return null;const i=t.schedule.findIndex(r=>!isRes(r));if(i<0)return null;
+    const row=t.schedule[i],n=t.next||{},lock=n.when?new Date(n.when):null;
+    return{sport,row,id:gid(sport,row),opp:n.opp||row[1],abbr:n.oppAbbr||row[5]||"OPP",lock,open:!!lock&&Date.now()<lock.getTime(),whenText:(n.whenText||row[0])+(n.timeText?" · "+n.timeText:"")}}).filter(Boolean);
+}
+function drawMember(){
+  if(C.editing)return drawJoin();
+  const me=C.member;
+  root.innerHTML=panel(`<div class="crow" style="justify-content:space-between;margin-bottom:10px"><div class="crow">${av(me,32)}<b>${esc(me.name)}</b></div>
+     <div class="crow"><button class="cbtn alt" type="button" id="c-edit">Edit profile</button><button class="cbtn alt" type="button" id="c-out">Sign out</button></div></div>
+    <div class="who" id="c-who"></div>
+    <div class="cgrid"><div><h4>Pick'em</h4><div id="c-games"></div><h4 style="margin-top:16px">Leaderboard</h4><div class="board" id="c-board"></div></div>
+    <div><h4>Group chat</h4><div class="chat"><div class="list" id="c-list"></div>
+      <form id="c-chatf"><input class="cin" id="c-text" maxlength="500" placeholder="Say something, BBN" autocomplete="off"><button class="cbtn" type="submit">Send</button></form></div></div></div>`);
+  document.getElementById("c-edit").onclick=()=>{C.editing=true;drawJoin()};
+  document.getElementById("c-out").onclick=()=>C.auth.signOut();
+  document.getElementById("c-chatf").onsubmit=async ev=>{ev.preventDefault();const inp=document.getElementById("c-text"),text=inp.value.trim();if(!text)return;inp.value="";
+    try{await C.db.collection("chat").add({uid:C.user.uid,text:text.slice(0,500),at:firebase.firestore.FieldValue.serverTimestamp()})}catch(e){inp.value=text}};
+  drawWho();drawGames();drawBoard();drawChat();
+}
+function drawWho(){const el=document.getElementById("c-who");if(!el)return;
+  el.innerHTML=Object.entries(C.members).sort((a,b)=>(a[1].name||"").localeCompare(b[1].name||"")).map(([id,m])=>`<div>${av(m,40)}<span>${esc((m.name||"").split(" ")[0])}</span></div>`).join("");}
+function drawGames(){const el=document.getElementById("c-games");if(!el)return;
+  const gs=games();if(!gs.length){el.innerHTML=`<p class="cmsg">No upcoming games on the schedule.</p>`;return}
+  el.innerHTML=gs.map(g=>{const ps=C.picks.filter(p=>p.gameId===g.id),mine=ps.find(p=>p.uid===C.user.uid),d=C.drafts[g.id]||{};
+    const sel=d.pick||(mine&&mine.pick)||"";
+    const side=(k,label)=>{const who=ps.filter(p=>p.pick===k);return `<button class="pk" type="button" data-g="${g.id}" data-k="${k}" aria-pressed="${sel===k}" ${g.open?"":"disabled"}>${esc(label)}<span class="cnt">${who.length} pick${who.length===1?"":"s"}</span><span class="ppl">${who.map(p=>av(C.members[p.uid],22)).join("")}</span></button>`};
+    const status=!g.lock?"Picks open once the game time is announced.":g.open?`Locks at ${g.lock.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"})} your time`:"Picks locked";
+    const us=d.us??(mine&&mine.ukScore!=null?mine.ukScore:""),them=d.them??(mine&&mine.oppScore!=null?mine.oppScore:"");
+    return `<div class="game"><h3>${g.sport==="football"?"Football":"Basketball"}: Kentucky vs ${esc(g.opp)}</h3><div class="gm">${esc(g.whenText)} · ${esc(status)}</div>
+      <div class="sides">${side("UK","Kentucky")}${side("OPP",g.opp)}</div>
+      ${g.open?`<div class="sg">Score guess (tiebreaker): UK <input class="cin" type="number" min="0" max="200" id="us-${g.id}" value="${esc(us)}"> ${esc(g.abbr)} <input class="cin" type="number" min="0" max="200" id="them-${g.id}" value="${esc(them)}">
+        <button class="cbtn" type="button" data-save="${g.id}" ${sel?"":"disabled"}>${mine?"Update pick":"Lock in pick"}</button></div>`:""}
+      ${mine?`<div class="cmsg" style="margin-top:8px">Your pick: ${mine.pick==="UK"?"Kentucky":esc(g.opp)}${mine.ukScore!=null?` (${mine.ukScore}-${mine.oppScore})`:""}</div>`:""}
+      <div class="cerr" id="err-${g.id}"></div></div>`}).join("");
+  el.querySelectorAll(".pk").forEach(b=>b.onclick=()=>{const id=b.dataset.g;C.drafts[id]=Object.assign(C.drafts[id]||{},readScores(id),{pick:b.dataset.k});drawGames()});
+  el.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>savePick(b.dataset.save));
+  el.querySelectorAll("input[id^='us-'],input[id^='them-']").forEach(i=>i.oninput=()=>{const id=i.id.replace(/^(us|them)-/,"");C.drafts[id]=Object.assign(C.drafts[id]||{},readScores(id))});
+}
+function readScores(id){const u=document.getElementById("us-"+id),t=document.getElementById("them-"+id);return{us:u?u.value:"",them:t?t.value:""}}
+async function savePick(id){
+  const g=games().find(x=>x.id===id);if(!g||!g.open)return;
+  const mine=C.picks.find(p=>p.gameId===id&&p.uid===C.user.uid),d=Object.assign({},C.drafts[id]||{},readScores(id));
+  const pick=d.pick||(mine&&mine.pick);if(!pick)return;
+  const num=v=>v===""||v==null||isNaN(+v)?null:Math.max(0,Math.min(200,Math.round(+v)));
+  const us=num(d.us),them=num(d.them);
+  try{await C.db.collection("picks").doc(id+"_"+C.user.uid).set({uid:C.user.uid,gameId:id,sport:g.sport,pick,ukScore:us!=null&&them!=null?us:null,oppScore:us!=null&&them!=null?them:null,
+      lockAt:firebase.firestore.Timestamp.fromDate(g.lock),at:firebase.firestore.FieldValue.serverTimestamp()});delete C.drafts[id]}
+  catch(e){const el=document.getElementById("err-"+id);if(el)el.textContent=e.code==="permission-denied"?"Picks are locked for this game.":e.message}
+}
+function drawBoard(){const el=document.getElementById("c-board");if(!el)return;
+  const finals={};["football","basketball"].forEach(sport=>(D[sport]?D[sport].schedule:[]).forEach(r=>{if(isRes(r)){const m=r[3].match(/^([WL]) (\d+)-(\d+)/);finals[gid(sport,r)]={w:m[1]==="W",a:+m[2],b:+m[3]}}}));
+  const tally={};
+  C.picks.forEach(p=>{const f=finals[p.gameId];if(!f||!C.members[p.uid])return;const t=tally[p.uid]=tally[p.uid]||{w:0,l:0,err:0};
+    if((p.pick==="UK")===f.w)t.w++;else t.l++;
+    if(p.ukScore!=null&&p.oppScore!=null)t.err+=Math.abs(p.ukScore-f.a)+Math.abs(p.oppScore-f.b);else t.err+=999;});
+  const rows=Object.entries(tally).sort((a,b)=>b[1].w-a[1].w||a[1].err-b[1].err);
+  el.innerHTML=rows.length?rows.map(([uid,t],i)=>`<div><span class="rk">${i+1}</span>${av(C.members[uid],28)}<span>${esc(C.members[uid].name)}</span><b>${t.w}-${t.l}</b></div>`).join("")
+    :`<p class="cmsg">Standings appear once a game you picked goes final. Ties are broken by closest score guesses.</p>`;
+}
+function drawChat(){const el=document.getElementById("c-list");if(!el)return;
+  const atBottom=el.scrollHeight-el.scrollTop-el.clientHeight<40;
+  el.innerHTML=C.chat.length?C.chat.map(m=>{const who=C.members[m.uid]||{name:"Former member"},d=m.at&&m.at.toDate?m.at.toDate():null;
+    return `<div class="m">${av(who,28)}<div><b>${esc(who.name)}</b><time>${d?d.toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"}):""}</time><p>${esc(m.text)}</p></div></div>`}).join("")
+    :`<p class="cmsg">No messages yet. Start the trash talk.</p>`;
+  if(atBottom||!el.dataset.init){el.scrollTop=el.scrollHeight;el.dataset.init="1"}
+}
+
+/* ---------- auth flow ---------- */
+function onUser(u){
+  stopAll();C.user=u;C.member=null;C.members={};C.picks=[];C.chat=[];C.editing=false;
+  if(!u){const em=ls.get("bbn-email");if(C.auth.isSignInWithEmailLink(location.href)){em?finishEmail(em):drawConfirmEmail()}else drawSignIn();return}
+  root.innerHTML=panel(`<p class="cmsg">Signing in…</p>`);
+  let started=false;
+  C.unsub.push(C.db.collection("members").doc(u.uid).onSnapshot(s=>{
+    C.member=s.exists?s.data():null;
+    if(!C.member){drawJoin();return}
+    if(!started){started=true;
+      C.unsub.push(C.db.collection("members").onSnapshot(q=>{C.members={};q.forEach(d=>C.members[d.id]=d.data());drawWho();drawGames();drawBoard();drawChat()}));
+      C.unsub.push(C.db.collection("picks").onSnapshot(q=>{C.picks=[];q.forEach(d=>C.picks.push(d.data()));drawGames();drawBoard()}));
+      C.unsub.push(C.db.collection("chat").orderBy("at","desc").limit(100).onSnapshot(q=>{C.chat=[];q.forEach(d=>C.chat.push(d.data()));C.chat.reverse();drawChat()}));
+    }
+    if(!C.editing)drawMember();
+  },e=>{root.innerHTML=panel(`<p class="cerr">Couldn't load the Clubhouse: ${esc(e.message)}</p>`)}));
+}
+
+(async()=>{
+  try{await loadScript(B+"firebase-app-compat.js");await loadScript(B+"firebase-auth-compat.js");await loadScript(B+"firebase-firestore-compat.js");}
+  catch(e){root.innerHTML=panel(`<p class="cmsg">The Clubhouse works on the public website: <a href="https://coffeeshopbbn.github.io/coffeeshopbbn/" target="_blank" rel="noopener">coffeeshopbbn.github.io/coffeeshopbbn</a></p>`);return}
+  firebase.initializeApp(FB_CFG);C.auth=firebase.auth();C.db=firebase.firestore();
+  C.auth.onAuthStateChanged(onUser);
+  setInterval(()=>{if(C.member&&!C.editing)drawGames()},60000);
+})();
+})();
+</script>
+
+</body></html>
 </body>
 </html>
