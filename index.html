@@ -296,9 +296,17 @@ footer{font-size:12px;color:var(--muted);padding-block:0 32px}
 .fs.win{opacity:1}
 .fpill{display:inline-block;margin-top:8px;font:700 11px var(--body);letter-spacing:1px;text-transform:uppercase;padding:2px 9px;border-radius:999px;background:#3ddc84;color:#062b16}
 .fpill.lose{background:#ff453a;color:#fff}
-.rls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
-.rls a{font:700 13px var(--body);color:#0033A0;background:#fff;padding:7px 12px;border-radius:8px;text-decoration:none}
-.rls a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.rh{display:block;text-align:center;text-decoration:none;margin:14px auto 0;max-width:420px}
+.rh b{display:block;font:800 21px/1.15 var(--display);text-wrap:balance}
+.rh span{display:block;font-size:12px;opacity:.75;margin-top:4px}
+.rh:hover b{text-decoration:underline}
+.bxb{display:block;width:max-content;margin:12px auto 0;font:700 13px var(--body);color:#0033A0;background:#fff;padding:7px 14px;border-radius:8px;text-decoration:none}
+.rh:focus-visible,.bxb:focus-visible{outline:2px solid #fff;outline-offset:2px}
+a.bx{text-decoration:none;color:inherit}
+a.bx em{font-style:normal;display:block;width:max-content;margin:3px 0 0 auto;font:700 10px var(--body);letter-spacing:.6px;text-transform:uppercase;color:var(--uk);background:var(--chip);padding:2px 6px;border-radius:4px;vertical-align:1px}
+a.bx:hover em{background:var(--uk);color:#fff}
+a.bx:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
+.bxp{display:inline-block;margin-top:4px;font:700 13px var(--body);color:#fff;background:var(--uk);padding:8px 14px;border-radius:8px;text-decoration:none}
 .upn{margin-top:14px;text-align:center;font-size:13px;opacity:.85;border-top:1px solid rgba(255,255,255,.16);padding-top:12px}
 .club h4{font:800 16px var(--display);text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px}
 </style>
@@ -329,10 +337,10 @@ football:{
   stats:[["6-1","Overall"],["4-1","SEC"],["No. 12","AP / Coaches"],["W3","Streak"]],
   quarters:{uk:[42,72,49,50,16],opp:[34,61,30,42,14],note:"Season totals, all 7 games."},
   schedule:[
-   ["Sep 5","Youngstown State",1,"W 45-13","SECN+","YSU"],["Sep 12","Alabama",1,"L 17-45","ABC","ALA"],
-   ["Sep 19","Texas A&M",0,"W 31-21","ESPN","TAMU"],["Sep 26","South Alabama",1,"W 45-21","SECN","USA"],
-   ["Oct 3","South Carolina",0,"W 35-34 OT","SECN","SC"],["Oct 10","LSU",1,"W 35-34 OT","ESPN","LSU"],
-   ["Oct 17","Oklahoma",0,"W 21-13","SECN","OU"],["Oct 24","Vanderbilt",1,"7:30 PM","SECN","VU"],
+   ["Sep 5","Youngstown State",1,"W 45-13","SECN+","YSU","https://www.espn.com/college-football/boxscore/_/gameId/401856659"],["Sep 12","Alabama",1,"L 17-45","ABC","ALA","https://www.espn.com/college-football/boxscore/_/gameId/401856674"],
+   ["Sep 19","Texas A&M",0,"W 31-21","ESPN","TAMU","https://www.espn.com/college-football/boxscore/_/gameId/401856694"],["Sep 26","South Alabama",1,"W 45-21","SECN","USA","https://www.espn.com/college-football/boxscore/_/gameId/401864576"],
+   ["Oct 3","South Carolina",0,"W 35-34 OT","SECN","SC","https://www.espn.com/college-football/boxscore/_/gameId/401856709"],["Oct 10","LSU",1,"W 35-34 OT","ESPN","LSU","https://www.espn.com/college-football/boxscore/_/gameId/401856715"],
+   ["Oct 17","Oklahoma",0,"W 21-13","SECN","OU","https://www.espn.com/college-football/boxscore/_/gameId/401856722"],["Oct 24","Vanderbilt",1,"7:30 PM","SECN","VU","https://www.espn.com/college-football/boxscore/_/gameId/401856729"],
    ["Nov 7","Tennessee",0,"TBA","TBA","TENN"],["Nov 14","Florida",1,"TBA","TBA","UF"],
    ["Nov 21","Missouri",0,"TBA","TBA","MIZ"],["Nov 28","Louisville",1,"TBA","TBA","LOU"]],
   odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated; FanDuel matches at UK -10.5, -450 and 51.5",winprob:{uk:85.4,opp:"Vanderbilt",src:"ESPN Matchup Predictor"}},
@@ -359,13 +367,13 @@ basketball:{
   label:"Basketball", coach:"Mark Pope (3rd season)",
   next:{opp:"UCF",oppAbbr:"UCF",oppBg:"#000000",oppFg:"#BA9B37",oppRank:"",oppRec:"Preseason",ukRank:"No. 23",ukRec:"Exhibitions 2-0",home:true,when:null,whenText:"Wed, Oct 28 · Exhibition",timeText:"TBA",venue:"Rupp Arena, Lexington",tv:"TBA"},
   last:{opp:"Texas Tech",oppAbbr:"TTU",oppBg:"#CC0000",oppFg:"#FFFFFF",oppRank:"No. 19",home:true,result:"W 76-65",ended:"2026-10-24T01:00:00Z",whenText:"Fri, Oct 23 · Exhibition",venue:"Rupp Arena, Lexington",line:"Halftime: UK 37-33",
-    links:[["Takeaways from the 76-65 win","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/takeaways-from-kentucky-s-76-65-exhibition-win-against-texas-tech"],["Kentucky wins second straight exhibition","WKYT","https://www.wkyt.com/2026/10/24/kentucky-wins-second-straight-exhibition-game/"],["KSR live blog","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-texas-tech-ksr-live-blog-score-updates-highlights/"]]},
+    headline:["Takeaways from Kentucky's 76-65 exhibition win against Texas Tech","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/takeaways-from-kentucky-s-76-65-exhibition-win-against-texas-tech"],box:"https://ukathletics.com/boxscore/texas-tech/"},
   stats:[["No. 23","AP preseason"],["No. 26","KenPom"],["Nov 3","Opener vs Manhattan"],["Nov 10","Kansas · Champions Classic"]],
   pulse:{title:"Exhibitions so far",tiles:[["2-0","Exhibition record"],["+15.5","Avg. margin"],["W2","Streak"]],
     halves:{title:"Points by half",labels:["1st half","2nd half"],uk:[30,39],opp:[19,30],note:"Exhibition vs. Little Rock, 69-49."},
     leaders:"Leaders vs. Little Rock: Milan Momcilovic 16 pts (4 threes) · Malachi Moreno 11 reb · Mason Williams 10 pts. Team: 9 steals, 8 blocks."},
   schedule:[
-   ["Oct 16","Little Rock (exh.)",1,"W 69-49","SECN+","UALR"],["Oct 23","Texas Tech (exh.)",1,"W 76-65","SECN+","TTU"],["Oct 28","UCF (exh.)",1,"",""],
+   ["Oct 16","Little Rock (exh.)",1,"W 69-49","SECN+","UALR","https://ukathletics.com/boxscore/little-rock-3/"],["Oct 23","Texas Tech (exh.)",1,"W 76-65","SECN+","TTU","https://ukathletics.com/boxscore/texas-tech/"],["Oct 28","UCF (exh.)",1,"",""],
    ["Nov 3","Manhattan",1,"",""],["Nov 6","James Madison",1,"",""],["Nov 10","Kansas · Chicago",2,"",""],
    ["Nov 13","Northern Arizona",1,"",""],["Nov 16","Grambling State",1,"",""],["Nov 20","Indiana · Indianapolis",2,"",""],
    ["Nov 27","Wichita State",1,"",""],["Dec 2","Virginia",0,"",""],["Dec 5","Appalachian State",1,"",""],
@@ -463,11 +471,11 @@ function render(){
   const matchup=`<div class="card-h"><div class="eyebrow" style="text-align:center">Next up · ${t.label}</div>
     <div class="mu">${n.home?ukB:opB}<div class="mid"><b>VS</b>${etpt(n.timeText||"TBA").split(" / ").map(x=>`<span>${esc(x)}</span>`).join("")}</div>${n.home?opB:ukB}</div>
     <div class="meta"><span>${esc(n.whenText)}</span><span>${esc(n.venue)}</span><span>TV: ${esc(n.tv)}</span></div>
-    ${n.live?`<div class="live"><span>Live · updated ${esc(etpt(n.liveAt||""))}</span><b>${esc(n.live)}</b></div>`:(n.when?`<div class="clock" id="clock"></div>`:"")}
+    ${n.live?`<div class="live"><span>Live · updated ${esc(etpt(n.liveAt||""))}</span><b>${esc(n.live)}</b>${(()=>{const r=t.schedule.find(r=>!isRes(r));return r&&r[6]?`<a class="bxb" style="margin-top:8px" href="${esc(r[6])}" target="_blank" rel="noopener">Live stats ↗</a>`:""})()}</div>`:(n.when?`<div class="clock" id="clock"></div>`:"")}
     ${wp?`<div class="hwp"><div class="hwp-top"><span>UK ${wp.uk}%</span><span style="opacity:.7">${esc(wp.opp)} ${(100-wp.uk).toFixed(1)}%</span></div><div class="hwp-bar" role="img" aria-label="Win probability Kentucky ${wp.uk}%"><div class="a" style="width:${wp.uk}%"></div></div><div class="hwp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}</div>`;
   const md=mode(t),rec=md==="recap",l=t.last;
   const sp=s=>esc(etpt(s||"TBA"));
-  let recap="";
+  let recap="";const lrow=l&&t.schedule.find(r=>r[1].replace(/ \(exh\.\)$/,"")===l.opp&&r[3]===l.result),bxu=l&&(l.box||(lrow&&lrow[6])),hl=l&&(l.headline||(l.links&&l.links[0]));
   if(rec){const m=l.result.match(/^([WL]) (\d+)-(\d+)(.*)$/),win=m[1]==="W",ext=m[4].trim();
     const ukF=`<div class="team"><div class="badge uk">UK</div><div class="tname">Kentucky</div><div class="fs ${win?"win":""}">${m[2]}</div></div>`;
     const opF=`<div class="team"><div class="badge" style="background:${esc(l.oppBg||"#334")};color:${esc(l.oppFg||"#fff")}">${esc(l.oppAbbr||l.opp.slice(0,3).toUpperCase())}</div><div class="tname">${esc(l.opp)}</div>${l.oppRank?`<span class="rank">${esc(l.oppRank)}</span>`:""}<div class="fs ${win?"":"win"}">${m[3]}</div></div>`;
@@ -475,7 +483,8 @@ function render(){
     <div class="mu">${l.home?ukF+`<div class="mid"><b>FINAL</b>${ext?`<span>${esc(ext)}</span>`:""}</div>`+opF:opF+`<div class="mid"><b>FINAL</b>${ext?`<span>${esc(ext)}</span>`:""}</div>`+ukF}</div>
     <div style="text-align:center;margin:-4px 0 10px"><span class="fpill ${win?"":"lose"}">${win?"Kentucky wins":"Kentucky falls"}</span></div>
     <div class="meta"><span>${esc(l.venue)}</span>${l.line?`<span>${esc(l.line)}</span>`:""}</div>
-    ${l.links&&l.links.length?`<div class="rls">${l.links.map(a=>`<a href="${esc(a[2])}" target="_blank" rel="noopener">${esc(a[0])} ↗</a>`).join("")}</div>`:""}
+    ${hl?`<a class="rh" href="${esc(hl[2])}" target="_blank" rel="noopener"><b>${esc(hl[0])}</b><span>${esc(hl[1])} ↗</span></a>`:""}
+    ${bxu?`<a class="bxb" href="${esc(bxu)}" target="_blank" rel="noopener">Box score ↗</a>`:""}
     <div class="upn">Up next: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${sp(n.timeText)}</div></div>`}
   /* heads-up strip for the other sport when it has a live game, an imminent game or a fresh final */
   const o=Object.keys(D).find(k=>k!==sport);let xs="";
@@ -491,8 +500,9 @@ function render(){
 
   /* game-specific stories (previews, injury reports) live in Game Day; everything else is a Buzz headline */
   /* one featured preview for Game Day; injury-report stories feed the injury panel; everything else is a Buzz headline */
-  const prevs=t.news.filter(a=>(a[3]||"").toLowerCase()===(rec?"recap":"preview")),feat=prevs[0],injNews=t.news.find(a=>(a[3]||"").toLowerCase()==="injuries");
-  const heads=t.news.filter(a=>a!==feat&&a!==injNews&&(a[3]||"").toLowerCase()!=="game day");
+  const prevs=rec?[]:t.news.filter(a=>(a[3]||"").toLowerCase()==="preview"),feat=prevs[0],injNews=t.news.find(a=>(a[3]||"").toLowerCase()==="injuries");
+  /* in recap mode the hero carries the one recap headline, so it isn't repeated below */
+  const heads=t.news.filter(a=>a!==feat&&a!==injNews&&!(rec&&hl&&a[2]===hl[2])&&(a[3]||"").toLowerCase()!=="game day");
   const card=(href,label,body)=>`<a class="bz" href="${esc(href)}" target="_blank" rel="noopener"><div class="band"><span>${esc(label)}</span></div><div class="bd">${body}</div></a>`;
   $("#buzz").innerHTML=`<h2>The Buzz <small>Headlines, takes and trending posts · swipe</small></h2><div class="rail">${
     heads.map(a=>card(a[2],a[3]||"News",`<q>${esc(a[0])}</q><span class="who">${esc(a[1])} ↗</span>`)).join("")}${
@@ -503,7 +513,7 @@ function render(){
   /* schedule is collapsed to the last 2 results + next games unless expanded or on the Schedule tab */
   const ni=nextIdx<0?t.schedule.length:nextIdx,lo=Math.max(0,Math.min(ni-2,t.schedule.length-5)),hi=lo+5,full=schedOpen||tab==="schedule";
   const rows=t.schedule.map((r,i)=>{const pre=r[2]===1?"vs":r[2]===0?"at":"vs";
-    const res=isRes(r)?`<span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}`:/^\d{1,2}(:\d\d)? ?(AM|PM)$/.test(r[3]||"")?etpt(r[3]+" ET").split(" / ").map(esc).join("<br>"):esc(r[3]);
+    const res=isRes(r)?(r[6]?`<a class="bx" href="${esc(r[6])}" target="_blank" rel="noopener" aria-label="${esc(r[3])} vs ${esc(r[1])}, box score"><span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}<em>Box</em></a>`:`<span class="${r[3][0]}">${r[3][0]}</span> ${esc(r[3].slice(2))}`):/^\d{1,2}(:\d\d)? ?(AM|PM)$/.test(r[3]||"")?etpt(r[3]+" ET").split(" / ").map(esc).join("<br>"):esc(r[3]);
     return `<tr class="${i<nextIdx?"past":""} ${i===nextIdx?"nextrow":""}"><td class="d">${esc(r[0])}</td><td class="opp"><em>${pre}</em>${esc(r[1])}</td><td>${r[4]?`<span class="tv">${esc(r[4])}</span>`:""}</td><td class="res">${res}</td></tr>`}).filter((_,i)=>full||(i>=lo&&i<hi)).join("");
 
   const P=(view,cls,html)=>`<section class="panel ${cls}" data-view="${view}">${html}</section>`;
@@ -511,7 +521,7 @@ function render(){
   const tvs=n.tv||"TBA",stream=/SEC Network\+/.test(tvs)?"Streaming only, in the ESPN app":/ESPN|ABC/.test(tvs)?"Cable, any live-TV streamer, or the ESPN app":/SEC Network/.test(tvs)?"YouTube TV, Hulu + Live TV, Fubo, Sling, DirecTV Stream or cable":"Check local listings";
   $("#main").innerHTML=[
     rec?`<div class="sect full" data-view="all"><h2>Postgame · ${l.home?"vs":"at"} ${esc(l.opp)} <small>Final, ${esc(l.result)} · ${esc(l.whenText)}</small></h2></div>`:`<div class="sect full" data-view="all"><h2>Game Day · ${n.home?"vs":"at"} ${esc(n.opp)} <small>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</small></h2></div>`,
-    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Recap &amp; reaction <small>${esc(l.opp)} · Final, ${esc(l.result)}</small></h2><div class="links">${(l.links||[]).map(a=>lk([a[0],a[1],a[2]])).join("")}</div>${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Final <small>${l.home?"vs":"at"} ${esc(l.opp)} · ${esc(l.whenText)}</small></h2><div class="lines"><div class="line"><span>Result</span><b>${esc(l.result)}</b></div>${l.line?`<div class="line"><span>${esc(l.line.split(":")[0])}</span><b>${esc(l.line.split(":").slice(1).join(":").trim())}</b></div>`:""}</div>${bxu?`<a class="bxp" href="${esc(bxu)}" target="_blank" rel="noopener">Full box score &amp; stats ↗</a>`:""}${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
       P("all social","",`<h2>Follow <small>Official Kentucky ${sport==="football"?"football":"men's basketball"} accounts</small></h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
       feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><span class="lab">${rec?"Game recap":"Game preview"}</span><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">${rec?"Read the recap":"Read the preview"} ↗</span></a>`):"",
       (()=>{const J=t.injuries;if(!J||J.game!==n.opp)return "";const grp=(name,rows)=>rows&&rows.length?`<div><h4>${esc(name)}</h4>${rows.map(r=>`<p><b class="${/^out/i.test(r[0])?"out":""}">${esc(r[0])}</b>${esc(r[1])}</p>`).join("")}</div>`:"";
