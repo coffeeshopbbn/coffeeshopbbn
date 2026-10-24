@@ -6,6 +6,8 @@
 </head>
 <body>
 <title>Coffeeshop BBN Hub</title>
+<meta name="theme-color" content="#0033A0">
+<meta name="apple-mobile-web-app-title" content="BBN Hub">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -309,6 +311,60 @@ a.bx:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
 .bxp{display:inline-block;margin-top:4px;font:700 13px var(--body);color:#fff;background:var(--uk);padding:8px 14px;border-radius:8px;text-decoration:none}
 .upn{margin-top:14px;text-align:center;font-size:13px;opacity:.85;border-top:1px solid rgba(255,255,255,.16);padding-top:12px}
 .club h4{font:800 16px var(--display);text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px}
+
+/* iPhone tuning: no font inflation or grey tap flash, 16px inputs (stops Safari zooming on focus), room for the home indicator */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button,[role="button"]{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.cin{font-size:16px}
+.rail,nav,.who,.tbl{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+footer{padding-bottom:max(32px,calc(env(safe-area-inset-bottom,0px) + 20px))}
+.chat{height:min(420px,62svh)}
+.more{display:none}
+@media (max-width:600px){
+  /* compact one-row sticky header so the page isn't hidden behind it */
+  .hd{gap:10px;padding-block:8px;flex-wrap:nowrap}
+  .mark{display:none}
+  .brand{min-width:0}
+  .brand h1{font-size:18px;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand p{display:none}
+  .switch{flex:0 0 auto}
+  .switch button{padding:9px 11px;font-size:13px}
+  nav{padding-bottom:6px}
+  nav button{padding:10px 12px}
+  /* matchup fits a 375px screen without the names running into the kickoff time */
+  .hero{padding-block:14px 20px}
+  .hero-grid{gap:12px}
+  .card-h{padding:14px}
+  .mu{gap:6px;margin:12px 0 10px}
+  .badge{width:60px;height:60px;font-size:23px}
+  .tname{font-size:clamp(14px,4.5vw,18px);letter-spacing:0;max-width:100%}
+  .mid b{font-size:22px}
+  .mid span{font-size:12px}
+  .clock div{min-width:0;flex:1;max-width:72px;padding:6px 4px}
+  .fs{font-size:44px}
+  .stats{grid-template-columns:repeat(4,1fr);gap:6px}
+  .stat{padding:9px 8px;min-width:0}
+  .stat b{font-size:20px}
+  .stat span{font-size:10.5px;line-height:1.25;display:block}
+  .xs{padding:10px 12px}
+  /* tighter panels */
+  main{padding-block:14px 36px}
+  .grid,.duo,.duo>.col{gap:14px}
+  section.panel{padding:16px 14px}
+  .sect h2{font-size:25px}
+  .feat b{font-size:24px}
+  .leader{grid-template-columns:1fr auto;gap:2px 10px}
+  .leader .cat{grid-column:1/-1}
+  .watchline span{min-width:0;flex-basis:100%}
+  .wlink{padding:8px 0}
+  .lk{padding:12px}
+  .sched td{padding:10px 4px}
+  /* long link lists show four, with a button for the rest */
+  .clamp:not(.open)>:nth-child(n+5){display:none}
+  .more{display:block;margin-top:8px}
+  .club{padding-block:0 24px}
+  .pk{padding:12px 8px}
+}
 </style>
 
 <header>
@@ -327,7 +383,7 @@ a.bx:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 24, 2026, 12:20 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 24, 2026, 12:55 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
@@ -344,9 +400,9 @@ football:{
    ["Nov 7","Tennessee",0,"TBA","TBA","TENN"],["Nov 14","Florida",1,"TBA","TBA","UF"],
    ["Nov 21","Missouri",0,"TBA","TBA","MIZ"],["Nov 28","Louisville",1,"TBA","TBA","LOU"]],
   odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated; FanDuel matches at UK -10.5, -450 and 51.5",winprob:{uk:85.4,opp:"Vanderbilt",src:"ESPN Matchup Predictor"}},
-  picks:[["Iain MacMillan","Sports Illustrated","Kentucky -10.5. \"Lay the points on the Wildcats at home\": UK's run game vs. a weak Vandy run defense.","https://www.si.com/betting/vanderbilt-vs-kentucky-prediction-odds-and-key-players-to-watch-for-college-football-week-8-2026"],["Mark Story","Lexington Herald-Leader","Kentucky 33, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Tristan Pharis","A Sea of Blue","Kentucky 31, Vanderbilt 17","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["TeamRankings","Computer model","Kentucky 31, Vanderbilt 20","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["DRatings","Computer model","Kentucky 31, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["KSR staff","KSR / On3","8 of 9 staffers take UK by 13 or more; Nick Roush says 45-17.","https://on3.com/teams/kentucky-wildcats/news/kentucky-vanderbilt-college-football-predictions"],["Expert pick","Predictem","Kentucky 34, Vanderbilt 21. Likes the Over 51.5.","https://www.predictem.com/college-football/vanderbilt-vs-kentucky-odds-and-expert-pick-for-oct-24/"],["Eric Crawford","WDRB","Kentucky 34, Vanderbilt 17. \"Not a true trap game\": UK remembers last year's 45-17 loss.","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["numberFire","FanDuel Research","Kentucky to win; 85.8% win probability","https://www.fanduel.com/research/kentucky-vs-vanderbilt-college-football-odds-picks-best-bets-for-10-24-2026"]],
+  picks:[["Iain MacMillan","Sports Illustrated","Kentucky -10.5. \"Lay the points on the Wildcats at home\": UK's run game vs. a weak Vandy run defense.","https://www.si.com/betting/vanderbilt-vs-kentucky-prediction-odds-and-key-players-to-watch-for-college-football-week-8-2026"],["Mark Story","Lexington Herald-Leader","Kentucky 33, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["Tristan Pharis","A Sea of Blue","Kentucky 31, Vanderbilt 17","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["TeamRankings","Computer model","Kentucky 31, Vanderbilt 20","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["DRatings","Computer model","Kentucky 31, Vanderbilt 24","https://sports.yahoo.com/articles/kentucky-vs-vanderbilt-viewing-watch-103000731.html"],["KSR staff","KSR / On3","8 of 9 staffers take UK by 13 or more; Nick Roush says 45-17.","https://on3.com/teams/kentucky-wildcats/news/kentucky-vanderbilt-college-football-predictions"],["Expert pick","Predictem","Kentucky 34, Vanderbilt 21. Likes the Over 51.5.","https://www.predictem.com/college-football/vanderbilt-vs-kentucky-odds-and-expert-pick-for-oct-24/"],["Eric Crawford","WDRB","Kentucky 34, Vanderbilt 17. \"Not a true trap game\": UK remembers last year's 45-17 loss.","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["numberFire","FanDuel Research","Kentucky to win; 85.8% win probability","https://www.fanduel.com/research/kentucky-vs-vanderbilt-college-football-odds-picks-best-bets-for-10-24-2026"],["Ryan Minion","Action Network","Prop pick: Vandy WR Junior Sherrill over 5.5 receptions","https://sports.yahoo.com/articles/vanderbilt-vs-kentucky-prediction-pick-102058582.html"]],
   outlook:[["Heather Dinich","ESPN","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Andy Staples","On3","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Brad Crawford","CBS Sports","First round: (10) Kentucky at (7) Ole Miss","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Bryan Fischer","Sports Illustrated","No. 10 seed at No. 7 Indiana; winner faces Ohio State in the Rose Bowl","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Scott Dochterman","The Athletic","In the Playoff field, just ahead of Iowa and USC","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"]],
-  buzz:[["Post","Saturday is calling 📞","@UKFootball","https://www.saturdaydownsouth.com/news/college-football/kentucky-drops-intense-hype-video-on-eve-of-sec-showdown-with-vanderbilt/"],["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"He is a freak show.\"","Will Stein on Vandy freshman QB Jared Curtis · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["Quote","\"The place is on fire.\"","Mark Pope on Kroger Field and Will Stein's run · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-mark-pope-kentucky-football-success"],["Post","WEAR BLUE. BRING THE JUICE.","@UKFootball","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-unveils-uniform-combination-against-vanderbilt"],["Storyline","Final availability report: Kentucky will be without six players vs. Vandy","KSR · SEC availability report","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-kentucky-vanderbilt-friday"],["Quote","\"We've dropped four in a row, and like I told the team on Sunday, we only lost one on Saturday.\"","Clark Lea, Vanderbilt coach · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["Recruiting","QB commit Jake Nawrot and 2028 WR Lorenzo McMullen Jr. visit for Vandy","Nick Roush · KSR","https://www.on3.com/teams/kentucky-wildcats/news/top-10-wr-headlines-kentucky-football-recruiting-guest-list-mcmullen/"]],
+  buzz:[["Post","Saturday is calling 📞","@UKFootball","https://www.saturdaydownsouth.com/news/college-football/kentucky-drops-intense-hype-video-on-eve-of-sec-showdown-with-vanderbilt/"],["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"He is a freak show.\"","Will Stein on Vandy freshman QB Jared Curtis · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["Quote","\"The place is on fire.\"","Mark Pope on Kroger Field and Will Stein's run · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-mark-pope-kentucky-football-success"],["Post","WEAR BLUE. BRING THE JUICE.","@UKFootball","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-unveils-uniform-combination-against-vanderbilt"],["Storyline","Sold out: 70% of FanDuel bettors are taking UK to cover -10.5","WKYT · Jackson Plank","https://www.wkyt.com/2026/10/23/sold-out-kentucky-vanderbilt-game-drives-ticket-demand-betting-interest/"],["Storyline","Final availability report: Kentucky will be without six players vs. Vandy","KSR · SEC availability report","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-kentucky-vanderbilt-friday"],["Quote","\"We've dropped four in a row, and like I told the team on Sunday, we only lost one on Saturday.\"","Clark Lea, Vanderbilt coach · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"]],
   xsearch:[["#BBN","%23BBN"],["Kentucky football","Kentucky%20football"],["Will Stein","%22Will%20Stein%22"]],
   leaders:[["Passing","Kenny Minchey","1,552 yds · 13 TD"],["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
   leadNote:"Season totals on the official stats page.",
@@ -418,7 +474,7 @@ function mode(t){const n=t.next||{},l=t.last,now=Date.now();if(n.live)return "li
   return "preview"}
 /* which sport leads the page: live game, then a game within 36h, then a fresh recap */
 function rank(s){const t=D[s],m=mode(t);if(m==="live")return 0;const n=t.next||{},d=n.when?new Date(n.when)-Date.now():Infinity;if(d<36*HR&&d>-6*HR)return 1;return m==="recap"?2:3}
-let sport="football",tab="all",schedOpen=false,pref=null;
+let sport="football",tab="all",schedOpen=false,pref=null,openL={};
 try{const s=localStorage.getItem("bbn-sport");if(s&&D[s])pref=s;}catch(e){}
 {const r=Object.keys(D).map(s=>[rank(s),s]).sort((a,b)=>a[0]-b[0]);sport=r[0][0]<3?(r[1]&&r[1][0]===r[0][0]&&pref?pref:r[0][1]):(pref||"football");}
 const h=(location.hash||"").slice(1); if(D[h])sport=h;
@@ -518,10 +574,12 @@ function render(){
 
   const P=(view,cls,html)=>`<section class="panel ${cls}" data-view="${view}">${html}</section>`;
   const pk=p=>lk([p[0]+" · "+p[1],p[2],p[3]]);
+  /* on phones a list longer than four shows four plus a "Show all" button (CSS hides the rest) */
+  const clampL=(key,html,n)=>{const o=!!openL[sport+key];return `<div class="links${n>4?" clamp"+(o?" open":""):""}">${html}</div>${n>4?`<button type="button" class="stog more" data-more="${key}" aria-expanded="${o}">${o?"Show fewer":`Show all ${n}`}</button>`:""}`};
   const tvs=n.tv||"TBA",stream=/SEC Network\+/.test(tvs)?"Streaming only, in the ESPN app":/ESPN|ABC/.test(tvs)?"Cable, any live-TV streamer, or the ESPN app":/SEC Network/.test(tvs)?"YouTube TV, Hulu + Live TV, Fubo, Sling, DirecTV Stream or cable":"Check local listings";
   $("#main").innerHTML=[
     rec?`<div class="sect full" data-view="all"><h2>Postgame · ${l.home?"vs":"at"} ${esc(l.opp)} <small>Final, ${esc(l.result)} · ${esc(l.whenText)}</small></h2></div>`:`<div class="sect full" data-view="all"><h2>Game Day · ${n.home?"vs":"at"} ${esc(n.opp)} <small>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</small></h2></div>`,
-    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Final <small>${l.home?"vs":"at"} ${esc(l.opp)} · ${esc(l.whenText)}</small></h2><div class="lines"><div class="line"><span>Result</span><b>${esc(l.result)}</b></div>${l.line?`<div class="line"><span>${esc(l.line.split(":")[0])}</span><b>${esc(l.line.split(":").slice(1).join(":").trim())}</b></div>`:""}</div>${bxu?`<a class="bxp" href="${esc(bxu)}" target="_blank" rel="noopener">Full box score &amp; stats ↗</a>`:""}${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div><div class="links">${t.picks.map(pk).join("")}</div><p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
+    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Final <small>${l.home?"vs":"at"} ${esc(l.opp)} · ${esc(l.whenText)}</small></h2><div class="lines"><div class="line"><span>Result</span><b>${esc(l.result)}</b></div>${l.line?`<div class="line"><span>${esc(l.line.split(":")[0])}</span><b>${esc(l.line.split(":").slice(1).join(":").trim())}</b></div>`:""}</div>${bxu?`<a class="bxp" href="${esc(bxu)}" target="_blank" rel="noopener">Full box score &amp; stats ↗</a>`:""}${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div>${clampL("picks",t.picks.map(pk).join(""),t.picks.length)}<p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
       P("all social","",`<h2>Follow <small>Official Kentucky ${sport==="football"?"football":"men's basketball"} accounts</small></h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
       feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><span class="lab">${rec?"Game recap":"Game preview"}</span><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">${rec?"Read the recap":"Read the preview"} ↗</span></a>`):"",
       (()=>{const J=t.injuries;if(!J||J.game!==n.opp)return "";const grp=(name,rows)=>rows&&rows.length?`<div><h4>${esc(name)}</h4>${rows.map(r=>`<p><b class="${/^out/i.test(r[0])?"out":""}">${esc(r[0])}</b>${esc(r[1])}</p>`).join("")}</div>`:"";
@@ -530,7 +588,7 @@ function render(){
       P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${/official stats/i.test(t.leadNote)?`<a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.leadNote)} ↗</a>`:esc(t.leadNote)}</p>`)].join("")}</div>`,
     P("all","full watchline",`<div class="wl"><b>${rec?`Up next · ${n.home?"vs":"at"} ${esc(n.opp)}`:"How to watch"}</b><span>${rec?`${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))} · `:""}TV: ${esc(tvs)} · ${esc(stream)}</span><button type="button" class="wlink" data-go="watch">Full guide ›</button></div>`),
     `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook, recruiting and the transfer portal</small></h2></div>`,
-    `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2><div class="links">${t.outlook.map(pk).join("")}</div>`),
+    `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2>${clampL("outlook",t.outlook.map(pk).join(""),t.outlook.length)}`),
       P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`),
       P("all recruiting","",`<h2>Transfer portal</h2>${(()=>{const tr=t.roster.filter(p=>/^Transfer/.test(p[2]||""));return tr.length?`<div class="cat" style="margin-bottom:6px">Added from the portal</div><div class="padd">${tr.map(p=>`<div><b>${esc(p[1])}${p[0]?` <em>${esc(p[0])}</em>`:""}</b><span>${esc(p[2].replace(/^Transfer · /,"from "))}</span></div>`).join("")}</div>`:""})()}<div class="links">${(t.portal||[]).map(lk).join("")}</div>`)].join("")}</div>`,
     `<div class="duo full">${[P("news","",`<h2>Highlights</h2><div class="links">${t.highlights.map(lk).join("")}</div>`),
@@ -591,6 +649,7 @@ $("#hero").addEventListener("click",e=>{const b=e.target.closest("[data-switch]"
   sport=b.dataset.switch;try{localStorage.setItem("bbn-sport",sport)}catch(_){} render();window.dispatchEvent(new Event("bbn-sport"));window.scrollTo({top:0})});
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tab=b.dataset.tab;render();window.scrollTo({top:0})});
 $("#main").addEventListener("click",e=>{if(e.target.closest("#stog")){schedOpen=!schedOpen;render()}
+  const mo=e.target.closest("[data-more]");if(mo){const k=sport+mo.dataset.more;openL[k]=!openL[k];const l=mo.previousElementSibling;l.classList.toggle("open",openL[k]);mo.setAttribute("aria-expanded",openL[k]);mo.textContent=openL[k]?"Show fewer":`Show all ${l.children.length}`;if(!openL[k])l.closest("section").scrollIntoView({block:"nearest"})}
   const g=e.target.closest("[data-go]");if(g){tab=g.dataset.go;render();window.scrollTo({top:0})}});
 render();
 /* show the footer's update time in Eastern and Pacific */
@@ -798,6 +857,5 @@ function onUser(u){
 })();
 })();
 </script>
-
 </body>
 </html>
