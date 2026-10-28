@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: sticky blue header + sport switch; blue matchup hero (matchup | season pulse); buzz rail; panels in a 2-col grid that stacks on phones */
+/* Layout: sticky blue header + three-sport switch; blue matchup hero (matchup | season pulse); buzz rail; panels in a 2-col grid that stacks on phones */
 :root{
   --uk:#0033A0; --bg:#f3f6fb; --surface:#ffffff; --fg:#0b1b3f; --muted:#5a6889; --line:#dbe2ef;
   --chip:#e7edf9; --win:#1a7f4b; --loss:#b4332a;
@@ -52,6 +52,17 @@ nav button[aria-current="true"]{color:#fff;background:rgba(255,255,255,.16)}
 
 /* hero */
 .hero{background:linear-gradient(#0033A0,#001a5c);color:#fff;padding-block:22px 28px}
+.hero.compact{padding-block:10px 12px}
+.hstrip{grid-column:1/-1;display:flex;align-items:center;gap:8px;min-width:0}
+.hstrip .sb{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:900 12px/1 var(--display);box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.hstrip .sb+.sb{margin-left:-12px}
+.hstrip .ht{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;font-size:13px}
+.hstrip em{font-style:normal;font:700 10px var(--body);letter-spacing:1.2px;text-transform:uppercase;opacity:.75}
+.hstrip em.lv{color:#ff6b6b;opacity:1}
+.hstrip b{font:800 17px/1.1 var(--display);text-transform:uppercase;letter-spacing:.4px}
+.hstrip .ht span{opacity:.85}
+.hgo{all:unset;cursor:pointer;flex:0 0 auto;font:700 12px var(--body);padding:7px 10px;border-radius:8px;background:rgba(255,255,255,.14)}
+.hgo:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
 .hero-grid>.card-h{display:flex;flex-direction:column;justify-content:center}
 .desk-only{display:flex;flex-direction:column}
@@ -336,7 +347,7 @@ footer{padding-bottom:max(32px,calc(env(safe-area-inset-bottom,0px) + 20px))}
   .brand h1{font-size:18px;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .brand p{display:none}
   .switch{flex:0 0 auto}
-  .switch button{padding:9px 11px;font-size:13px}
+  .switch button{padding:9px 8px;font-size:12px}
   nav{padding-bottom:6px}
   nav button{padding:10px 12px}
   /* matchup fits a 375px screen without the names running into the kickoff time */
@@ -378,10 +389,11 @@ footer{padding-bottom:max(32px,calc(env(safe-area-inset-bottom,0px) + 20px))}
 <header>
   <div class="wrap hd">
     <div class="mark" aria-hidden="true">UK</div>
-    <div class="brand"><h1>Coffeeshop BBN Hub</h1><p>Football <i>+</i> Men's Basketball</p></div>
+    <div class="brand"><h1>Coffeeshop BBN Hub</h1><p>Football <i>+</i> Men's Basketball <i>+</i> Volleyball</p></div>
     <div class="switch" role="group" aria-label="Sport">
       <button id="sw-fb" aria-pressed="true" data-sport="football">Football</button>
       <button id="sw-bb" aria-pressed="false" data-sport="basketball">Basketball</button>
+      <button id="sw-vb" aria-pressed="false" data-sport="volleyball">Volleyball</button>
     </div>
   </div>
   <div class="wrap"><nav id="tabs" aria-label="Sections"></nav></div>
@@ -391,47 +403,47 @@ footer{padding-bottom:max(32px,calc(env(safe-area-inset-bottom,0px) + 20px))}
 <div class="wrap buzz" id="buzz"></div>
 <main class="wrap"><div class="grid" id="main"></div></main>
 <div class="wrap club" id="club"><section class="panel"><h2>Clubhouse <small>Members, pick'em and chat</small></h2><p class="note">Loading…</p></section></div>
-<footer class="wrap">Updated Oct 24, 2026, 11:20 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
+<footer class="wrap">Updated Oct 28, 2026, 12:55 PM ET. Refreshes four times a day and hourly during games; tap any link for live scores from UK Athletics and ESPN.</footer>
 
 <script>
 const D = {
 football:{
   label:"Football", coach:"Will Stein (1st season)",
-  next:{opp:"Tennessee",oppAbbr:"TENN",oppBg:"#FF8200",oppFg:"#FFFFFF",oppRank:"",oppRec:"",ukRank:"No. 12",ukRec:"7-1 · 5-1 SEC",home:false,when:null,whenText:"Sat, Nov 7",timeText:"TBA",venue:"Neyland Stadium, Knoxville",tv:"TBA"},
-  last:{opp:"Vanderbilt",oppAbbr:"VU",oppBg:"#000000",oppFg:"#CFAE70",oppRank:"",home:true,result:"W 34-17",ended:"2026-10-25T03:17:00Z",whenText:"Sat, Oct 24",venue:"Kroger Field, Lexington",
+  next:{opp:"Tennessee",oppAbbr:"TENN",oppBg:"#FF8200",oppFg:"#FFFFFF",oppRank:"No. 16",oppRec:"6-2 · 3-2 SEC",ukRank:"No. 9",ukRec:"7-1 · 5-1 SEC",home:false,when:"2026-11-07T23:15:00Z",whenText:"Sat, Nov 7 · UT Homecoming",timeText:"6:15 PM ET",venue:"Neyland Stadium, Knoxville",tv:"ESPN"},
+  last:{opp:"Vanderbilt",oppAbbr:"VU",oppBg:"#000000",oppFg:"#CFAE70",oppRank:"",home:true,result:"W 34-17",ended:"2026-10-25T03:17:00Z",whenText:"Sat, Oct 24",venue:"Kroger Field, Lexington",line:"Halftime: UK 14-10",
     headline:["Kentucky Shakes Off Slow Start in 34-17 Victory over Vanderbilt","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-football-vanderbilt-game-recap"],box:"https://www.espn.com/college-football/boxscore/_/gameId/401856729"},
-  stats:[["7-1","Overall"],["5-1","SEC"],["No. 12","AP / Coaches"],["W6","Streak"]],
-  quarters:{uk:[42,72,49,50,16],opp:[34,61,30,42,14],note:"Season totals, all 7 games."},
+  stats:[["7-1","Overall"],["5-1","SEC"],["No. 9 / 8","AP / Coaches"],["W6","Streak"]],
+  quarters:{uk:[42,86,59,60,16],opp:[37,68,37,42,14],note:"Season totals, all 8 games."},
   schedule:[
    ["Sep 5","Youngstown State",1,"W 45-13","SECN+","YSU","https://www.espn.com/college-football/boxscore/_/gameId/401856659"],["Sep 12","Alabama",1,"L 17-45","ABC","ALA","https://www.espn.com/college-football/boxscore/_/gameId/401856674"],
    ["Sep 19","Texas A&M",0,"W 31-21","ESPN","TAMU","https://www.espn.com/college-football/boxscore/_/gameId/401856694"],["Sep 26","South Alabama",1,"W 45-21","SECN","USA","https://www.espn.com/college-football/boxscore/_/gameId/401864576"],
    ["Oct 3","South Carolina",0,"W 35-34 OT","SECN","SC","https://www.espn.com/college-football/boxscore/_/gameId/401856709"],["Oct 10","LSU",1,"W 35-34 OT","ESPN","LSU","https://www.espn.com/college-football/boxscore/_/gameId/401856715"],
    ["Oct 17","Oklahoma",0,"W 21-13","SECN","OU","https://www.espn.com/college-football/boxscore/_/gameId/401856722"],["Oct 24","Vanderbilt",1,"W 34-17","SECN","VU","https://www.espn.com/college-football/boxscore/_/gameId/401856729"],
-   ["Nov 7","Tennessee",0,"TBA","TBA","TENN"],["Nov 14","Florida",1,"TBA","TBA","UF"],
+   ["Nov 7","Tennessee",0,"6:15 PM","ESPN","TENN","https://www.espn.com/college-football/boxscore/_/gameId/401856745"],["Nov 14","Florida",1,"TBA","TBA","UF"],
    ["Nov 21","Missouri",0,"TBA","TBA","MIZ"],["Nov 28","Louisville",1,"TBA","TBA","LOU"]],
-  odds:{game:"Vanderbilt at No. 12 Kentucky · Sat 7:30 PM ET",lines:[["Spread","UK -10.5"],["Moneyline","UK -450 · VU +340"],["Over/Under","51.5"]],src:"BetMGM, via Sports Illustrated; FanDuel matches at UK -10.5, -450 and 51.5",winprob:null},
+  odds:{game:"No. 9 Kentucky at No. 16 Tennessee · Sat, Nov 7",lines:[["Spread","UK +5.5 (UT -5.5)"],["Moneyline","UK +172 · UT -210"],["Over/Under","49.5"]],src:"FanDuel Sportsbook opening line, Oct 27, per Rocky Top Insider. Kickoff 6:15 PM ET on ESPN, per Tennessee Athletics",winprob:null},
   picks:[],
-  outlook:[["Heather Dinich","ESPN","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Andy Staples","On3","In the Playoff: No. 9 overall","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Brad Crawford","CBS Sports","First round: (10) Kentucky at (7) Ole Miss","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Bryan Fischer","Sports Illustrated","No. 10 seed at No. 7 Indiana; winner faces Ohio State in the Rose Bowl","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"],["Scott Dochterman","The Athletic","In the Playoff field, just ahead of Iowa and USC","https://www.on3.com/teams/kentucky-wildcats/news/kentuckys-cfp-projections-on3-espn-and-cbs-sports-have-the-cats-in/"]],
-  buzz:[["Post","Saturday is calling 📞","@UKFootball","https://www.saturdaydownsouth.com/news/college-football/kentucky-drops-intense-hype-video-on-eve-of-sec-showdown-with-vanderbilt/"],["Feature","A 6-1 start has sparked a football frenzy in a basketball-first state.","Pat Forde · Sports Illustrated","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming"],["Quote","\"He is a freak show.\"","Will Stein on Vandy freshman QB Jared Curtis · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"],["Quote","\"The place is on fire.\"","Mark Pope on Kroger Field and Will Stein's run · KSR","https://www.on3.com/teams/kentucky-wildcats/news/will-stein-mark-pope-kentucky-football-success"],["Post","WEAR BLUE. BRING THE JUICE.","@UKFootball","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-unveils-uniform-combination-against-vanderbilt"],["Storyline","Sold out: 70% of FanDuel bettors are taking UK to cover -10.5","WKYT · Jackson Plank","https://www.wkyt.com/2026/10/23/sold-out-kentucky-vanderbilt-game-drives-ticket-demand-betting-interest/"],["Storyline","Final availability report: Kentucky will be without six players vs. Vandy","KSR · SEC availability report","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-kentucky-vanderbilt-friday"],["Quote","\"We've dropped four in a row, and like I told the team on Sunday, we only lost one on Saturday.\"","Clark Lea, Vanderbilt coach · WDRB","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/"]],
+  outlook:[["Bryan Fischer","Sports Illustrated","No. 6 seed, hosting No. 11 Florida in the first round","https://www.on3.com/teams/kentucky-wildcats/news/cfp-projections-kentucky-now-a-unanimous-pick-to-make-field-of-12"],["Brad Crawford","CBS Sports","No. 6 seed, hosting No. 11 Notre Dame in the first round","https://www.on3.com/teams/kentucky-wildcats/news/cfp-projections-kentucky-now-a-unanimous-pick-to-make-field-of-12"],["Andy Staples","On3","No. 7 seed vs. No. 10 Florida; winner to the Rose Bowl quarterfinal","https://www.on3.com/teams/kentucky-wildcats/news/cfp-projections-kentucky-now-a-unanimous-pick-to-make-field-of-12"],["Bill Bender","Sporting News","No. 8 seed, hosting No. 9 BYU in the first round","https://sports.yahoo.com/articles/college-football-playoff-projections-roundup-002428856.html"],["Heather Dinich","ESPN","No. 9 seed, at No. 8 UCLA in the first round","https://www.espn.com/college-football/story/_/id/50268049/projecting-2026-playoff-top-12-week-8-cfp"],["Ari Wasserman","On3","No. 8 in his Playoff field","https://www.on3.com/teams/kentucky-wildcats/news/cfp-projections-kentucky-now-a-unanimous-pick-to-make-field-of-12"],["Josh Pate","On3 / KSR Show, Oct 27","Picks Kentucky to make the College Football Playoff","https://www.on3.com/teams/kentucky-wildcats/news/josh-pate-picks-kentucky-to-make-the-college-football-playoff-on-ksr/"],["ESPN staff","CFP predictions","Unanimous: every ESPN voter has UK in, from No. 6 (Rittenberg) to No. 9","https://www.espn.com/college-football/story/_/page/playoffpredictions102426/cfp-predictions-week-8"]],
+  buzz:[["Quote","\"These guys are hungry, and they're not satisfied.\"","Will Stein, calling for a \"November to remember\" · Saturday Down South","https://www.saturdaydownsouth.com/news/college-football/will-stein-says-kentucky-is-not-satisfied-with-7-1-start-calls-for-november-to-remember/"],["Quote","\"I love UK, I really do.\"","Will Stein · NKyTribune / Kentucky Today, Oct 28","https://nkytribune.com/2026/10/homegrown-guy-from-kentucky-will-stein-loving-everything-about-coaching-the-wildcats/"],["Quote","\"I love everything about this job.\"","Will Stein on his radio show · Saturday Down South","https://www.saturdaydownsouth.com/news/college-football/will-stein-raves-about-coaching-at-kentucky-i-love-everything-about-this-job/"],["Storyline","Top 10 in both polls: No. 9 AP, No. 8 Coaches. UK's first AP top 10 since 2022","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-football-now-top-10-team-both-major-polls/"],["Storyline","Kentucky alone atop the SEC this late in a season for the first time since 1950","Ryan Black · Courier Journal via Yahoo","https://sports.yahoo.com/articles/sec-leader-kentucky-football-vanquishes-090813922.html"],["Take","Now a unanimous Playoff pick: every major projection has Kentucky in the 12","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/cfp-projections-kentucky-now-a-unanimous-pick-to-make-field-of-12"],["Post","Make that his FOURTH INTERCEPTION in THREE GAMES 😮‍💨","@UKFootball","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-vanderbilt-game-recap-takeaways-3"],["Post","Heading to the Bye Week 7-1 and making program history","@SECNetwork","https://www.saturdaydownsouth.com/news/college-football/kentucky-makes-history-with-5th-straight-sec-win-under-will-stein/"],["Storyline","Sold out: UK-UT at Neyland is Tennessee's 33rd straight sellout","Saturday Down South","https://www.saturdaydownsouth.com/news/college-football/tennessee-announces-sell-out-crowd-for-kentucky-game-extending-streak/"]],
   xsearch:[["#BBN","%23BBN"],["Kentucky football","Kentucky%20football"],["Will Stein","%22Will%20Stein%22"]],
-  leaders:[["Passing","Kenny Minchey","1,552 yds · 13 TD"],["Rushing","CJ Baxter","484 yds · 8 TD"],["Receiving","Kenny Darby","34 rec · 436 yds"],["Receiving","Willie Rodriguez (TE)","33 rec · 3 TD"],["Kicking","Adam Zouagui","8/11 FG · long 52"],["Defense","Ty Bryant & Jordan Castell","2 INT each at OU"]],
+  leaders:[["Passing","Kenny Minchey","1,755 yds · 14 TD"],["Rushing","CJ Baxter","487 yds · 8 TD"],["Receiving","Kenny Darby","38 rec · 507 yds"],["Receiving","Willie Rodriguez (TE)","39 rec · 3 TD"],["Kicking","Adam Zouagui","10/13 FG · long 52"],["Defense","Ty Bryant","4 INT in last 3 games"]],
   leadNote:"Season totals on the official stats page.",
-  roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher"],["RB","Jason Patterson","Go-ahead drive at OU"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Out vs. Vanderbilt"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","2 INT at OU"],["DB","Jordan Castell","Pick-six at OU"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["K","Adam Zouagui","Long of 52"]],
-  injuries:{game:"Vanderbilt",asof:"SEC availability reports · Thu, Oct 22 and Fri, Oct 23",
-    uk:[["Out","Sam Greene (EDGE), Nic Anderson (WR), Grant Grayton (CB), Antwan Smith (LB), Jaden Smith (nickel)"],["Questionable","Cole Marszalek (LS), Tyler Thomas (DL)"],["Cleared","CJ Baxter (RB), Tavion Wallace (LB), Kalen Edwards (DT)"],["Friday","Final report: six Kentucky players out (full list at KSR)"]],
-    opp:[["Out","Blaze Berlowitz (QB), Jaylin Lackey (CB), Brian Allen Jr. (EDGE), Josiah Broxton (LB), Jamison Curtis (LB), Gunner Givens (OL), Aaron Bryant (DT), Kahden Smith (WR), Nikhil Jefferson (DT)"]],
-    src:["SEC availability report","Friday's final report on KSR","https://www.on3.com/teams/kentucky-wildcats/news/sec-availability-report-kentucky-vanderbilt-friday"]},
+  roster:[["QB","Kenny Minchey","Starting QB"],["RB","CJ Baxter","Leading rusher · shoulder vs. VU"],["RB","Jovantae Barnes","68 yds vs. Vanderbilt"],["WR","Kenny Darby","Top receiver"],["TE","Willie Rodriguez","2 TD at OU"],["WR","Nic Anderson","Out vs. Vanderbilt"],["WR","DJ Miller","96 yds at A&M"],["LB","Grant Godfrey","15 tackles at OU"],["DB","Ty Bryant","INT vs. Vanderbilt"],["DB","Jordan Castell","8 tackles vs. Vanderbilt"],["DL","Mi'Quise Humphrey-Grace","Pass rusher"],["EDGE","Sam Greene","Captain · expected back for UT"],["K","Adam Zouagui","Long of 52"]],
+  injuries:{game:"Tennessee",asof:"Stein radio show Oct 26 · postgame Oct 24",
+    uk:[["Hurt vs. VU","CJ Baxter (RB, shoulder), Malachi Wood (ankle), Isaiah McMillian (calf). Stein isn't expecting anything long-term."],["Expected back","Edge rusher Sam Greene (knee) missed Vanderbilt; Stein: \"We're expecting him back\" and hopes he is full-go for Tennessee."],["Missed VU","WR Nic Anderson also sat out vs. Vanderbilt."],["Depth","Grant Grayton, Jaden Smith and Antwan Smith have each missed multiple games."]],
+    opp:[],
+    src:["A Sea of Blue via Yahoo","Kentucky gets good injury news on Sam Greene","https://sports.yahoo.com/articles/kentucky-gets-good-injury-news-235257520.html"]},
   portal:[["Stein, Cats adding through the portal","Messenger-Inquirer","https://www.messenger-inquirer.com/sports/local/stein-cats-adding-through-portal/article_47daf55b-5688-5590-a10a-398403cb5040.html"],["Kentucky football transfer portal big board","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-football-transfer-portal-big-board-jan-6-update"]],
-  recruiting:[["Top 2028 WR Lorenzo McMullen Jr. headlines the Vandy guest list","KSR · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/top-10-wr-headlines-kentucky-football-recruiting-guest-list-mcmullen/"],["Football recruiting on 247Sports","Class rankings, commits, visits","https://247sports.com/college/kentucky/"],["KSR football recruiting (On3)","Commit news and offers","https://www.on3.com/teams/kentucky-wildcats/"]],
-  news:[["Kentucky Shakes Off Slow Start in 34-17 Victory over Vanderbilt","KSR / On3 · Oct 24","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-football-vanderbilt-game-recap","Recap"],["Kickoff: No. 12 Kentucky vs. Vanderbilt, how to watch and what to watch","WDRB · Eric Crawford · Oct 23","https://www.wdrbwave.com/2026/10/23/kickoff-no-12-kentucky-vs-vanderbilt-how-watch-what-watch/","Preview"],["KSR GAMEDAY: No. 12 Kentucky seeks payback vs. Vanderbilt","KSR / On3 · Oct 24","https://www.on3.com/teams/kentucky-wildcats/news/college-football-gameday-kentucky-football-payback-vs-vanderbilt-commodores","Preview"],["Big Blue Belief: Inside Will Stein's Kentucky homecoming","SI · Pat Forde · Oct 23","https://www.si.com/college-football/big-blue-belief-inside-will-stein-remarkable-kentucky-homecoming","Feature"]],
-  highlights:[["Kentucky at Oklahoma recap","ESPN","https://www.espn.com/college-football/recap/_/gameId/401856722"],["UK Football on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"]],
+  recruiting:[["Kentucky reported as the favorite for No. 1 overall recruit Kellan Hall","KSR Today · 5-star DL from Louisville · Oct 26","https://www.on3.com/teams/kentucky-wildcats/news/ksr-today-its-a-work-week-for-the-top-10-wildcats"],["Kentucky's 7-1 start has recruits sold","Rivals · Steve Wiltfong · Oct 25","https://www.on3.com/rivals/news/kentuckys-7-1-start-has-recruits-sold-i-love-this-place-and-am-so-pumped-to-play-here"],["Top 2028 WR Lorenzo McMullen Jr. headlines the Vandy guest list","KSR · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/top-10-wr-headlines-kentucky-football-recruiting-guest-list-mcmullen/"],["Football recruiting on 247Sports","Class rankings, commits, visits","https://247sports.com/college/kentucky/"],["KSR football recruiting (On3)","Commit news and offers","https://www.on3.com/teams/kentucky-wildcats/"]],
+  news:[["'Homegrown guy from Kentucky' Will Stein loving everything about coaching the Wildcats","NKyTribune / Kentucky Today · Keith Taylor · Oct 28","https://nkytribune.com/2026/10/homegrown-guy-from-kentucky-will-stein-loving-everything-about-coaching-the-wildcats/","Feature"],["Kentucky vs. Tennessee opening odds have Vols favored over Wildcats","A Sea of Blue via Yahoo · Oct 26","https://sports.yahoo.com/articles/kentucky-vs-tennessee-opening-odds-030035443.html","Preview"],["Josh Pate picks Kentucky to make the College Football Playoff on KSR","KSR / On3 · Oct 27","https://www.on3.com/teams/kentucky-wildcats/news/josh-pate-picks-kentucky-to-make-the-college-football-playoff-on-ksr/","Rankings"],["Kentucky gets good injury news on star edge rusher Sam Greene","A Sea of Blue via Yahoo · Jason Marcum · Oct 26","https://sports.yahoo.com/articles/kentucky-gets-good-injury-news-235257520.html","News"]],
+  highlights:[["Vanderbilt at Kentucky game page","ESPN","https://www.espn.com/college-football/game/_/gameId/401856729/vanderbilt-kentucky"],["Kentucky-Vanderbilt postgame quotes","UK Athletics","https://ukathletics.com/news/2026/10/24/kentucky-vanderbilt-postgame-quotes-7/"],["Kentucky-Vanderbilt postgame notes","UK Athletics","https://ukathletics.com/news/2026/10/25/kentucky-vanderbilt-postgame-notes-16/"],["UK Football on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"]],
   socials:[["X","@UKFootball","https://x.com/UKFootball"],["Instagram","@ukfootball","https://www.instagram.com/ukfootball/"],["X","@UKAthletics","https://x.com/UKAthletics"]],
   official:["Official schedule & stats","https://ukathletics.com/sports/football/schedule/"],
   espn:["ESPN team page","https://www.espn.com/college-football/team/_/id/96/kentucky-wildcats"]
 },
 basketball:{
   label:"Basketball", coach:"Mark Pope (3rd season)",
-  next:{opp:"UCF",oppAbbr:"UCF",oppBg:"#000000",oppFg:"#BA9B37",oppRank:"",oppRec:"Preseason",ukRank:"No. 23",ukRec:"Exhibitions 2-0",home:true,when:"2026-10-28T22:00:00Z",whenText:"Wed, Oct 28 · Exhibition",timeText:"6:00 PM ET",venue:"Rupp Arena, Lexington",tv:"SEC Network"},
+  next:{opp:"UCF",oppAbbr:"UCF",oppBg:"#000000",oppFg:"#BA9B37",oppRank:"",oppRec:"Exhibitions 1-1",ukRank:"No. 23",ukRec:"Exhibitions 2-0",home:true,when:"2026-10-28T22:00:00Z",whenText:"Wed, Oct 28 · Exhibition",timeText:"6:00 PM ET",venue:"Rupp Arena, Lexington",tv:"SEC Network"},
   last:{opp:"Texas Tech",oppAbbr:"TTU",oppBg:"#CC0000",oppFg:"#FFFFFF",oppRank:"No. 19",home:true,result:"W 76-65",ended:"2026-10-24T01:00:00Z",whenText:"Fri, Oct 23 · Exhibition",venue:"Rupp Arena, Lexington",line:"Halftime: UK 37-33",
     headline:["Takeaways from Kentucky's 76-65 exhibition win against Texas Tech","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/takeaways-from-kentucky-s-76-65-exhibition-win-against-texas-tech"],box:"https://storage.googleapis.com/ukathletics-com/2026/10/ac42b0ec-uk_ttu_book_102326.pdf"},
   stats:[["No. 23","AP preseason"],["No. 26","KenPom"],["Nov 3","Opener vs Manhattan"],["Nov 10","Kansas · Champions Classic"]],
@@ -440,36 +452,72 @@ basketball:{
     leaders:"Leaders vs. Texas Tech: Milan Momcilovic 15 pts (7-7 FT) · Malachi Moreno 15 pts · Mason Williams 14 pts · Alex Wilkins 13 pts, 7 ast."},
   schedule:[
    ["Oct 16","Little Rock (exh.)",1,"W 69-49","SECN+","UALR","https://storage.googleapis.com/ukathletics-com/2026/10/12389d28-uk_lr_book_101626.pdf"],["Oct 23","Texas Tech (exh.)",1,"W 76-65","SECN+","TTU","https://storage.googleapis.com/ukathletics-com/2026/10/ac42b0ec-uk_ttu_book_102326.pdf"],["Oct 28","UCF (exh.)",1,"6:00 PM","SECN","UCF"],
-   ["Nov 3","Manhattan",1,"",""],["Nov 6","James Madison",1,"",""],["Nov 10","Kansas · Chicago",2,"",""],
-   ["Nov 13","Northern Arizona",1,"",""],["Nov 16","Grambling State",1,"",""],["Nov 20","Indiana · Indianapolis",2,"",""],
-   ["Nov 27","Wichita State",1,"",""],["Dec 2","Virginia",0,"",""],["Dec 5","Appalachian State",1,"",""],
-   ["Dec 8","Bryant",1,"",""],["Dec 12","Louisville",1,"",""],["Dec 19","North Carolina · MSG",2,"",""],
-   ["Dec 22","Sacred Heart",1,"",""],["Dec 28","Gardner-Webb",1,"",""],["Jan 2","Oklahoma",0,"",""],
-   ["Jan 5/6","Ole Miss",1,"",""],["Jan 9","Missouri",0,"",""],["Jan 12/13","LSU",1,"",""],
-   ["Jan 16","Vanderbilt",1,"",""],["Jan 19/20","Mississippi State",0,"",""],["Jan 23","Tennessee",1,"",""],
-   ["Jan 30","Texas",0,"",""],["Feb 2/3","Ole Miss",0,"",""],["Feb 6","Alabama",1,"",""],
-   ["Feb 9/10","South Carolina",1,"",""],["Feb 13","Tennessee",0,"",""],["Feb 16/17","Georgia",0,"",""],
-   ["Feb 20","Arkansas",1,"",""],["Feb 23/24","Vanderbilt",0,"",""],["Feb 27","Auburn",1,"",""],
-   ["Mar 2/3","Texas A&M",1,"",""],["Mar 6","Florida",0,"",""]],
-  odds:{game:"UCF at No. 23 Kentucky · Exhibition, Wed 6 PM ET",lines:[["Betting line","None (exhibition)"],["TV","SEC Network"],["Out vs. TTU","K. Williams, Noah, Morton"]],src:"UK Athletics; availability from KSR's Texas Tech preview",winprob:null},
+   ["Nov 3","Manhattan",1,"7:00 PM","SECN+","MAN"],["Nov 6","James Madison",1,"7:00 PM","SECN","JMU"],["Nov 10","Kansas · Chicago",2,"9:30 PM","ESPN","KU"],
+   ["Nov 13","Northern Arizona",1,"7:00 PM","SECN+","NAU"],["Nov 16","Grambling State",1,"7:00 PM","SECN+","GRAM"],["Nov 20","Indiana · Indianapolis",2,"8:00 PM","CBS","IU"],
+   ["Nov 27","Wichita State",1,"9:00 PM","ESPN2","WSU"],["Dec 2","Virginia",0,"7:15 PM","ESPN","UVA"],["Dec 5","Appalachian State",1,"1:00 PM","SECN+","APP"],
+   ["Dec 8","Bryant",1,"7:30 PM","ESPN2","BRY"],["Dec 12","Louisville",1,"4:00 PM","ABC","LOU"],["Dec 19","North Carolina · MSG",2,"2:30 PM","CBS","UNC"],
+   ["Dec 22","Sacred Heart",1,"1:00 PM","SECN","SHU"],["Dec 28","Gardner-Webb",1,"7:00 PM","SECN","GWU"],["Jan 2","Oklahoma",0,"12:00 PM","ESPN/ESPN2","OU"],
+   ["Jan 5/6","Ole Miss",1,"7:00 PM","ESPN/ESPN2","MISS"],["Jan 9","Missouri",0,"4:00 PM","ESPN2","MIZ"],["Jan 12/13","LSU",1,"7:00 PM","SECN","LSU"],
+   ["Jan 16","Vanderbilt",1,"4:00 PM","ESPN/ESPN2","VU"],["Jan 19/20","Mississippi State",0,"8:30 PM","SECN","MSST"],["Jan 23","Tennessee",1,"2:00 PM","ESPN/ESPN2/ESPNU","TENN"],
+   ["Jan 30","Texas",0,"12:00 PM","ESPN/ESPN2","TEX"],["Feb 2/3","Ole Miss",0,"9:00 PM","ESPN/ESPN2","MISS"],["Feb 6","Alabama",1,"2:00 PM","ESPN/ESPN2","ALA"],
+   ["Feb 9/10","South Carolina",1,"8:00 PM","SECN","SC"],["Feb 13","Tennessee",0,"4:00 PM","ESPN","TENN"],["Feb 16/17","Georgia",0,"7:00 PM","ESPN/ESPN2","UGA"],
+   ["Feb 20","Arkansas",1,"6 or 6:30 PM","ESPN","ARK"],["Feb 23/24","Vanderbilt",0,"9:00 PM","ESPN/ESPN2","VU"],["Feb 27","Auburn",1,"4 or 4:30 PM","ESPN/ESPN2","AUB"],
+   ["Mar 2/3","Texas A&M",1,"7:00 PM","ESPN2/ESPNU","TAMU"],["Mar 6","Florida",0,"4 or 4:30 PM","ESPN","UF"]],
+  odds:{game:"UCF at No. 23 Kentucky · Exhibition, Wed 6 PM ET",lines:[["Betting line","None (exhibition)"],["TV","SEC Network"],["Out vs. UCF","K. Williams, Noah, Morton"]],src:"UK Athletics; availability from UK's Oct 22 injury update",winprob:null},
   picks:[],
-  outlook:[["AP Top 25","Preseason poll","No. 23 nationally, 6th among SEC teams","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/"],["KenPom","Preseason ratings","No. 26 (Duke No. 1, Florida No. 2)","https://www.saturdaydownsouth.com/news/college-basketball/kenpom-college-basketball-rankings-2026-27-8-sec-teams-land-in-initial-top-25/"],["SEC media poll","Predicted finish","7th. Momcilovic 2nd-team All-SEC, Moreno 3rd team.","https://www.si.com/college/kentucky/men-s-basketball/where-is-kentucky-basketball-ranked-in-the-sec-preseason-poll"],["Cameron Salerno","CBS Sports","Had UK higher than the media poll (top four on his ballot). Moreno \"has a very high ceiling.\"","https://www.cbssports.com/college-basketball/news/sec-basketball-preseason-poll-predictions-2026-27-overrated-underrated-alabama-lsu/"]],
-  buzz:[["Quote","\"I thought Kentucky's length really bothered us. They did it without fouling.\"","Grant McCasland, Texas Tech coach · KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-kentuckys-double-digit-exhibition-win-over-no-19-texas-tech"],["Quote","\"He's gonna have to play 24 minutes a game, 26 minutes a game.\"","Mark Pope on freshman Mason Williams · KSR","https://www.on3.com/teams/kentucky-wildcats/news/mason-williams-already-earning-himself-more-minutes"],["Quote","\"Louisville?!\"","Alex Wilkins, when a Courier-Journal reporter introduced himself · KSR","https://www.on3.com/teams/kentucky-wildcats/news/alex-wilkins-reaction-to-louisville-proves-hes-one-of-us"],["Storyline","Freshman Mason Williams, the MVP pick, scored 14 off the bench vs. Texas Tech","A Sea of Blue via Yahoo","https://sports.yahoo.com/articles/highlights-mvp-twitter-reactions-kentucky-013136576.html"],["Storyline","Turnovers fixed: 19 vs. Little Rock, 11 vs. Texas Tech, with 18 assists","Drew Franklin · KSR","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-cleaned-up-its-turnover-problem-against-texas-tech"],["Quote","\"I'll never take it for granted that 20K people find their way into Rupp Arena for an exhibition game.\"","Mark Pope · KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-kentuckys-double-digit-exhibition-win-over-no-19-texas-tech"],["Fans react","Best social media reactions to Kentucky's win over Texas Tech","Wildcats Wire via Yahoo","https://sports.yahoo.com/articles/best-social-media-reactions-kentucky-020307344.html"],["Recruiting","Five-star Ryan Hampton, No. 6 in the 2027 class, is a Wildcat","KSR","https://www.on3.com/teams/kentucky-wildcats/news/top-10-2027-recruit-ryan-hampton-commits-to-kentucky/"]],
+  outlook:[["AP Top 25","Preseason poll","No. 23 nationally, 6th among SEC teams","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/"],["KenPom","Preseason ratings","No. 26 (Duke No. 1, Florida No. 2)","https://www.saturdaydownsouth.com/news/college-basketball/kenpom-college-basketball-rankings-2026-27-8-sec-teams-land-in-initial-top-25/"],["Preseason SEC power rankings","A Sea of Blue roundup, Oct 28","No. 7 in the SEC in rankings by Tristan Freeman and On3's James Fletcher III","https://sports.yahoo.com/articles/where-kentucky-wildcats-stand-preseason-004309464.html"],["SEC media poll","Predicted finish","7th. Momcilovic 2nd-team All-SEC, Moreno 3rd team.","https://www.si.com/college/kentucky/men-s-basketball/where-is-kentucky-basketball-ranked-in-the-sec-preseason-poll"],["Cameron Salerno","CBS Sports","Had UK higher than the media poll (top four on his ballot). Moreno \"has a very high ceiling.\"","https://www.cbssports.com/college-basketball/news/sec-basketball-preseason-poll-predictions-2026-27-overrated-underrated-alabama-lsu/"]],
+  buzz:[["Take","\"Size and shooting describes this UCF team well\"","Wyatt Huff · Sports Illustrated, on 7-2 John Bol and an eight-senior roster","https://www.si.com/college/kentucky/men-s-basketball/what-to-know-about-ucf-before-wednesday-exhibition-matchup"],["Storyline","Only the second UK-UCF meeting ever; the Cats won the first 59-57 in Lexington in 2006","Ryan Black · Courier Journal via Yahoo","https://sports.yahoo.com/articles/channel-kentucky-basketball-exhibition-vs-091126038.html"],["Storyline","UCF arrives 1-1 in exhibitions; Dior Johnson led the Knights in both games","UK Athletics","https://ukathletics.com/news/2026/10/27/no-23-kentucky-hosts-ucf-in-final-exhibition-game-this-season/"],["Recruiting","No. 3 overall 2027 recruit DeMarcus Henry picks Friday; UK is a finalist","KSR / On3","https://on3.com/teams/kentucky-wildcats/news/5-star-sf-demarcus-henry-set-announce-week-kentucky-among-finalists"],["Quote","\"I thought Kentucky's length really bothered us. They did it without fouling.\"","Grant McCasland, Texas Tech coach · KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-kentuckys-double-digit-exhibition-win-over-no-19-texas-tech"],["Quote","\"He's gonna have to play 24 minutes a game, 26 minutes a game.\"","Mark Pope on freshman Mason Williams · KSR","https://www.on3.com/teams/kentucky-wildcats/news/mason-williams-already-earning-himself-more-minutes"],["Quote","\"I think we are barely seeing the beginnings of what he can be\"","Mark Pope on Ousmane N'Diaye · KSR","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-only-seeing-beginning-what-ousmane-ndiaye-can-be"],["Quote","\"Louisville?!\"","Alex Wilkins, when a Courier-Journal reporter introduced himself · KSR","https://www.on3.com/teams/kentucky-wildcats/news/alex-wilkins-reaction-to-louisville-proves-hes-one-of-us"]],
   xsearch:[["Kentucky basketball","Kentucky%20basketball"],["Mark Pope","%22Mark%20Pope%22"],["#BBN","%23BBN"]],
   leaders:[["Returning","Malachi Moreno","7.8 ppg · 6.3 rpg"],["Returning","Kam Williams","6.0 ppg"],["Transfer","Milan Momcilovic","from Iowa State"],["Transfer","Zoom Diallo","from Washington"]],
   leadNote:"Stats reset when the season tips Nov 3. Figures above are last season's.",
   roster:[["C","Malachi Moreno","So. · returning"],["G","Kam Williams","Returning"],["F","Trent Noah","Returning"],["F","Braydon Hawthorne","Returning"],["C","Reece Potter","Returning"],["G","Zoom Diallo","Transfer · Washington"],["F","Milan Momcilovic","Transfer · Iowa State"],["C","Franck Kepnang","Transfer · Washington"],["F","Justin McBride","Transfer · James Madison"],["G","Jerone Morton","Transfer · Washington St."],["G","Alex Wilkins","Transfer · Furman"],["PG","Mason Williams","Freshman"],["","Zyon Hawthorne","Freshman"],["","Ousmane N'Diaye","Freshman · international"]],
-  injuries:{game:"Texas Tech",asof:"KSR game-day preview · Oct 23",
-    uk:[["Out","Kam Williams, Trent Noah, Jerone Morton"]],
-    opp:[["Out","J.T. Toppin (ACL)"]],
-    src:["KSR Gameday","Full preview on KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksr-gameday-no-23-kentucky-hosts-no-19-texas-tech-in-exhibition-battle"]},
+  injuries:{game:"UCF",asof:"UK injury update · Oct 22",
+    uk:[["Out","Kam Williams (week-to-week, back at practice), Trent Noah (hamstring, week-to-week), Jerone Morton (knee). All three miss the exhibition season; Nov 3 opener uncertain."]],
+    opp:[],
+    src:["A Sea of Blue via Yahoo","UK's injury update on Williams, Noah and Morton","https://sports.yahoo.com/articles/kentucky-basketball-gives-injury-updates-175018825.html"]},
   portal:[["Offseason tracker: who's back, who's gone","Kentucky Kernel","https://kykernel.com/125102/sports/kentucky-basketball-offseason-tracker-whos-back-whos-gone-and-whats-changing-for-the-2026-27-season/"],["2026-27 roster tracker: transfers and recruits","A Sea of Blue","https://www.aseaofblue.com/kentucky-wildcats-basketball/168005/roster-tracker-2026-27-transfer-targets-recruits"]],
-  recruiting:[["Ryan Hampton commits to Kentucky","5-star, No. 6 in the 2027 class","https://www.on3.com/teams/kentucky-wildcats/news/top-10-2027-recruit-ryan-hampton-commits-to-kentucky/"],["UK ramps up 2027 recruiting","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/the-kentucky-staff-is-ramping-up-recruiting-efforts-with-the-2027-class"],["Basketball recruiting on 247Sports","Commits, targets, rankings","https://247sports.com/college/kentucky/"]],
-  news:[["No. 23 Kentucky tops No. 19 Texas Tech, 76-65","UK Athletics · Oct 23","https://ukathletics.com/news/2026/10/23/no-23-kentucky-tops-no-19-texas-tech-on-friday/","Recap"],["Takeaways from Kentucky's 76-65 exhibition win against Texas Tech","Sports Illustrated · Oct 23","https://www.si.com/college/kentucky/men-s-basketball/takeaways-from-kentucky-s-76-65-exhibition-win-against-texas-tech","Recap"],["Beyond the Buzzer: Kentucky found its footing, and something more","WDRB · Oct 24","https://www.wdrbwave.com/2026/10/24/beyond-buzzer-kentucky-found-its-footing-something-more-76-65-exhibition-win-over-texas-tech/","Feature"],["Mason Williams is already earning himself more minutes","KSR · Zack Geoghegan · Oct 23","https://www.on3.com/teams/kentucky-wildcats/news/mason-williams-already-earning-himself-more-minutes","Feature"]],
+  recruiting:[["5-star SF DeMarcus Henry set to announce Friday, Kentucky among finalists","KSR / On3 · No. 3 in 2027 · UK, UNC, Arkansas, Louisville · Oct 26","https://on3.com/teams/kentucky-wildcats/news/5-star-sf-demarcus-henry-set-announce-week-kentucky-among-finalists"],["Top-5 2027 recruit Adan Diggs includes Kentucky in final list cut, confirms decision timeline","KSR / On3 · in A Sea of Blue's Oct 28 roundup","https://www.on3.com/sites/kentucky-wildcats/news/top-5-recruit-adan-diggs-includes-kentucky-in-final-list-cut-confirms-decision-timeline/"],["Recruiting expert picks Kentucky to land 7-5 center Cherif Millogo","A Sea of Blue via Yahoo · 2027, ESPN as high as No. 8 · Oct 26","https://sports.yahoo.com/articles/recruiting-expert-picks-kentucky-land-172956334.html"],["Top 10 recruit Brady Pettigrew will visit Kentucky for the Louisville game","A Sea of Blue","https://aseaofblue.com/kentucky-wildcats-basketball/185674/brady-pettigrew-uk-recruiting-visits-louisville-cardinals-game"],["Ryan Hampton commits to Kentucky","5-star, No. 6 in the 2027 class","https://www.on3.com/teams/kentucky-wildcats/news/top-10-2027-recruit-ryan-hampton-commits-to-kentucky/"],["UK ramps up 2027 recruiting","Sports Illustrated","https://www.si.com/college/kentucky/men-s-basketball/the-kentucky-staff-is-ramping-up-recruiting-efforts-with-the-2027-class"],["Basketball recruiting on 247Sports","Commits, targets, rankings","https://247sports.com/college/kentucky/"]],
+  news:[["No. 23 Kentucky Hosts UCF in Final Exhibition Game This Season","UK Athletics · Oct 27","https://ukathletics.com/news/2026/10/27/no-23-kentucky-hosts-ucf-in-final-exhibition-game-this-season/","Preview"],["What channel is Kentucky basketball exhibition vs. UCF on today?","Courier Journal via Yahoo · Ryan Black · Oct 28","https://sports.yahoo.com/articles/channel-kentucky-basketball-exhibition-vs-091126038.html","Preview"],["Kentucky Wildcats News: UCF Gameday for UK Basketball","A Sea of Blue via Yahoo · Oct 28","https://sports.yahoo.com/articles/kentucky-wildcats-news-ucf-gameday-104500190.html","Preview"],["Where the Kentucky Wildcats stand in the preseason SEC power rankings: No. 7","A Sea of Blue via Yahoo · Oct 28","https://sports.yahoo.com/articles/where-kentucky-wildcats-stand-preseason-004309464.html","Rankings"]],
   highlights:[["Mark Pope postgame: Texas Tech exhibition","KSR video","https://www.on3.com/sites/kentucky-wildcats/news/video-kentucky-hc-mark-pope-texas-tech-exhibition-postgame"],["Kentucky Basketball on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"],["ESPN Kentucky videos","Game highlights","https://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"]],
   socials:[["X","@KentuckyMBB","https://x.com/KentuckyMBB"],["Instagram","@kentuckymbb","https://www.instagram.com/kentuckymbb/"],["X","@UKAthletics","https://x.com/UKAthletics"]],
   official:["Official schedule & stats","https://ukathletics.com/sports/mbball/schedule/"],
   espn:["ESPN team page","https://www.espn.com/mens-college-basketball/team/_/id/96/kentucky-wildcats"]
+},
+volleyball:{
+  label:"Volleyball", coach:"Craig Skinner (22nd season)",
+  next:{opp:"Missouri",oppAbbr:"MIZ",oppBg:"#F1B82D",oppFg:"#000000",oppRank:"",oppRec:"13-8 · 6-3 SEC",ukRank:"No. 7",ukRec:"15-5 · 7-3 SEC",home:true,when:"2026-10-30T23:00:00Z",whenText:"Fri, Oct 30",timeText:"7:00 PM ET",venue:"Memorial Coliseum, Lexington",tv:"SEC Network+"},
+  last:{opp:"Texas A&M",oppAbbr:"TAMU",oppBg:"#500000",oppFg:"#FFFFFF",oppRank:"No. 19",home:true,result:"L 0-3",ended:"2026-10-25T21:00:00Z",whenText:"Sun, Oct 25",venue:"Memorial Coliseum, Lexington",line:"Sets: 20-25, 23-25, 21-25",
+    headline:["No. 19 Texas A&M snaps No. 4 Kentucky's home court winning streak","UK Athletics","https://ukathletics.com/news/2026/10/25/no-19-texas-am-snaps-no-4-kentuckys-home-court-winning-streak/"]},
+  stats:[["15-5","Overall"],["7-3","SEC"],["No. 7","AVCA"],["L2","Streak"]],
+  schedule:[
+   ["Aug 21","Wisconsin · Milwaukee",2,"W 3-0","ESPN","WIS"],["Aug 23","Pittsburgh · Milwaukee",2,"L 1-3","ESPN","PITT"],
+   ["Aug 28","Utah State",1,"W 3-0","","USU"],["Aug 29","South Florida",1,"W 3-0","","USF"],
+   ["Sep 2","UCLA",1,"W 3-0","ESPN2","UCLA"],["Sep 6","Penn State · Wrigley Field",2,"W 3-1","FOX","PSU"],
+   ["Sep 9","North Carolina",1,"W 3-0","SECN","UNC"],["Sep 12","SMU · Bahamas",2,"L 1-3","","SMU"],
+   ["Sep 13","Houston · Bahamas",2,"W 3-0","","HOU"],["Sep 20","Louisville",1,"W 3-1","ABC","LOU"],
+   ["Sep 23","Vanderbilt",0,"W 3-1","SECN","VU"],["Sep 27","Texas",1,"W 3-0","ESPN","TEX"],
+   ["Oct 2","Auburn",0,"W 3-1","","AUB"],["Oct 4","Florida",0,"L 2-3","ESPN","UF"],
+   ["Oct 9","LSU",1,"W 3-0","","LSU"],["Oct 11","Ole Miss",1,"W 3-1","","MISS"],
+   ["Oct 16","Oklahoma",0,"W 3-1","","OU"],["Oct 18","Arkansas",0,"W 3-0","","ARK"],
+   ["Oct 21","Tennessee",0,"L 2-3","SECN","TENN"],["Oct 25","Texas A&M",1,"L 0-3","ESPN","TAMU"],
+   ["Oct 30","Missouri",1,"7:00 PM","SECN+","MIZ"],["Nov 6","Alabama",1,"7:00 PM","TBA","ALA"],
+   ["Nov 8","Mississippi State",1,"1:00 PM","TBA","MSST"],["Nov 13","South Carolina",0,"7:00 PM","TBA","SC"],
+   ["Nov 15","Georgia",0,"2:00 PM","TBA","UGA"],["Nov 20-24","SEC Tournament · Savannah",2,"TBA","SECN/SECN+","SEC"]],
+  odds:{game:"Missouri at No. 7 Kentucky · Fri, Oct 30",lines:[["AVCA rank","UK No. 7 · MIZ unranked"],["Records","UK 15-5 · MIZ 13-8"],["Streaks","UK L2 · MIZ W5"]],src:"AVCA poll, Oct 26; records from UK and Missouri Athletics. Betting lines are rarely posted for volleyball",winprob:null},
+  picks:[],
+  outlook:[["collegevolleyball.app","Bracket projection · Oct 28","Projected No. 2 seed, hosting the first two rounds; 32% chance at the Final Four","https://collegevolleyball.app/bracket"],["AVCA Top 25","Poll · Oct 26","No. 7 at 15-5; SEC rivals Florida (No. 4) and Tennessee (No. 6) are ahead","https://12thman.com/news/2026/10/26/volleyball-in-the-polls-october-26"],["AVCA preseason","Poll · August","Started the season No. 3 nationally","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-vb-will-start-2026-season-no-3-rankings/"]],
+  buzz:[["Storyline","Texas A&M ended UK's nation-leading 30-match home win streak in a rematch of the 2025 national final","UK Athletics · Oct 25","https://ukathletics.com/news/2026/10/25/no-19-texas-am-snaps-no-4-kentuckys-home-court-winning-streak/"],["Quote","\"Coach Skinner represents the type of excellence we want Kentucky Athletics to stand for.\"","AD J Batt on Craig Skinner's extension through 2031 · SI","https://www.si.com/onsi/volleyball/college/longtime-kentucky-volleyball-coach-craig-skinner-earns-contract-extension-2026"],["Storyline","Skinner's 22nd season: 513 wins, a 2020 national title and nine straight SEC crowns","Sports Illustrated","https://www.si.com/onsi/volleyball/college/longtime-kentucky-volleyball-coach-craig-skinner-earns-contract-extension-2026"],["Storyline","Brooklyn DeLeye's 22 kills beat No. 3 Louisville in the first top-five match in Memorial Coliseum history","Volleyballmag.com","https://volleyballmag.com/brooklyn-deleye-s-22-kills-power-kentucky-past-louisville-in-top-five-rivalry/"],["Take","Projected No. 2 NCAA seed with a 32% shot at the Final Four","collegevolleyball.app · Oct 28","https://collegevolleyball.app/bracket"],["Storyline","Missouri comes to Lexington on a five-match win streak","Missouri Athletics","https://mutigers.com/sports/womens-volleyball/schedule"]],
+  xsearch:[["Kentucky volleyball","Kentucky%20volleyball"],["Brooklyn DeLeye","%22Brooklyn%20DeLeye%22"],["#BBN","%23BBN"]],
+  leaders:[["Kills","Brooklyn DeLeye","22 vs. Louisville · .583 vs. Arkansas"],["Kills","Morgan Gaerte","20 kills, 4 blocks vs. Louisville"],["Assists","Kassie O'Brien","59 vs. Louisville"],["Digs","Molly Tuozzo","21 vs. Louisville"],["Blocks","Lizzie Carr","3 stuffs vs. Louisville"]],
+  leadNote:"Season totals on the official stats page.",
+  roster:[["OH","Brooklyn DeLeye","Leading attacker"],["","Morgan Gaerte","20 kills vs. Louisville"],["S","Kassie O'Brien","Setter · 59 assists vs. Louisville"],["L","Molly Tuozzo","Libero · 21 digs vs. Louisville"],["L","Molly Berezowitz","11 digs filling in at Arkansas"],["MB","Kennedy Washington","Blocks and slide kills"],["","Lizzie Carr","3 stuffs vs. Louisville"],["","Trinity Ward","7-serve run vs. Louisville"]],
+  portal:[["Kentucky volleyball roster","UK Athletics","https://ukathletics.com/sports/wvball/roster/"]],
+  recruiting:[["Kentucky volleyball roster and signees","UK Athletics","https://ukathletics.com/sports/wvball/roster/"]],
+  news:[["No. 19 Texas A&M snaps No. 4 Kentucky's home court winning streak","UK Athletics · Oct 25","https://ukathletics.com/news/2026/10/25/no-19-texas-am-snaps-no-4-kentuckys-home-court-winning-streak/","Recap"],["Kentucky volleyball coach Craig Skinner agrees to contract extension through 2031","Kentucky Kernel · Oct 20","https://kykernel.com/129720/sports/volleyball/kentucky-volleyball-coach-craig-skinner-agrees-to-contract-extension-through-2031/","News"],["No. 19 Aggies sweep No. 4 Kentucky in NCAA title rematch","Texas A&M Athletics · Oct 25","https://12thman.com/news/2026/10/25/no-19-aggies-sweep-no-4-kentucky-in-ncaa-title-rematch","Recap"],["DeLeye's monster weekend capped by sweep of Arkansas","UK Athletics · Oct 18","https://ukathletics.com/news/2026/10/18/deleyes-monster-weekend-capped-by-sweep-of-arkansas/","Recap"]],
+  highlights:[["Texas A&M at Kentucky photo gallery","Kentucky Kernel","https://kykernel.com/130042/digital/photos-no-4-kentucky-volleyball-sweeps-no-10-texas-am-3-0/"],["Kentucky Volleyball on YouTube","Kentucky Wildcats TV","https://www.youtube.com/@KentuckyWildcatsTV"]],
+  socials:[["X","@KentuckyVB","https://x.com/KentuckyVB"],["X","@UKAthletics","https://x.com/UKAthletics"]],
+  official:["Official schedule & stats","https://ukathletics.com/sports/wvball/schedule/"],
+  espn:["Full roster on UK Athletics","https://ukathletics.com/sports/wvball/roster/"]
 }};
 
 const TABS=[["all","Overview"],["odds","Odds & Picks"],["schedule","Schedule"],["team","Team & Stats"],["recruiting","Recruiting"],["news","News & Highlights"],["watch","How to Watch"],["social","Socials"],["club","Clubhouse"]];
@@ -477,7 +525,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 /* story mode per sport: "live" while a game is on; "recap" keeps the last game as the main topic for up to 48h
    (at least 12h, and it gives way when the next game is within 48h of tip/kickoff); otherwise "preview" of the next game */
-const HR=36e5,SPN={football:"Football",basketball:"Men's basketball"};
+const HR=36e5,SPN={football:"Football",basketball:"Men's basketball",volleyball:"Volleyball"};
 function mode(t){const n=t.next||{},l=t.last,now=Date.now();if(n.live)return "live";
   const nx=n.when?new Date(n.when).getTime():Infinity;
   if(l&&l.ended&&/^[WL] \d/.test(l.result||"")){const e=new Date(l.ended).getTime(),end=Math.min(e+48*HR,Math.max(e+12*HR,nx-48*HR));if(now<end&&nx-now>12*HR)return "recap"}
@@ -498,13 +546,13 @@ function pulseChart(t){
   const games=t.schedule.filter(isRes).map(r=>{const m=r[3].match(/^([WL]) (\d+)-(\d+)/);const a=+m[2],b=+m[3];return{abbr:r[5]||r[1].slice(0,3).toUpperCase(),w:m[1]==="W",margin:a-b,score:`${a}-${b}`}});
   const pu=t.pulse;if(games.length<(pu?1:3))return "";
   const GREEN="#3ddc84",RED="#ff453a";
-  const W=320,H=118,base=54,maxM=Math.max(20,...games.map(g=>Math.abs(g.margin))),sc=40/maxM;
-  const slot=(W-20)/games.length,bw=Math.min(18,slot*.5);
+  const W=320,H=118,base=54,maxM=Math.max(sport==="volleyball"?3:20,...games.map(g=>Math.abs(g.margin))),sc=40/maxM;
+  const slot=(W-20)/games.length,bw=Math.min(18,slot*.5),showAbbr=slot>=24;
   const bars=games.map((g,i)=>{const x=10+slot*i+(slot-bw)/2,hgt=Math.max(2,Math.abs(g.margin)*sc),y=g.margin>=0?base-hgt:base;
     const vy=g.margin>=0?y-4:y+hgt+10,c=g.w?GREEN:RED;
     return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${hgt.toFixed(1)}" fill="${c}"/>
       <text x="${(x+bw/2).toFixed(1)}" y="${vy.toFixed(1)}" text-anchor="middle" font-size="9" font-weight="600" fill="${c}">${g.margin>0?"+":""}${g.margin}</text>
-      <text x="${(x+bw/2).toFixed(1)}" y="114" text-anchor="middle" font-size="8.5" font-weight="500" letter-spacing=".5" fill="rgba(255,255,255,.6)">${esc(g.abbr)}</text>`}).join("");
+      ${showAbbr?`<text x="${(x+bw/2).toFixed(1)}" y="114" text-anchor="middle" font-size="8.5" font-weight="500" letter-spacing=".5" fill="rgba(255,255,255,.6)">${esc(g.abbr)}</text>`:""}`}).join("");
   let qchart="";
   const q=t.quarters||(pu&&pu.halves);
   if(q&&q.uk&&q.uk.length){
@@ -522,9 +570,9 @@ function pulseChart(t){
   const tiles=(pu&&pu.tiles)||[t.stats[0],t.stats[2],t.stats[3]].filter(Boolean);
   return `<div class="card-h pulse"><div class="eyebrow">${esc((pu&&pu.title)||"Season so far")}</div>
    <div class="mini">${tiles.map(s=>`<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div>
-   <h4><span>Point margin by game</span><span class="lg"><i style="background:${GREEN}"></i>Win<i style="background:${RED}"></i>Loss</span></h4>
+   <h4><span>${sport==="volleyball"?"Set margin by match":"Point margin by game"}</span><span class="lg"><i style="background:${GREEN}"></i>Win<i style="background:${RED}"></i>Loss</span></h4>
    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Margin of each game: ${games.map(g=>g.abbr+" "+(g.margin>0?"+":"")+g.margin).join(", ")}">
-   <line x1="6" x2="${W-6}" y1="${base}" y2="${base}" stroke="rgba(255,255,255,.25)" stroke-width="1"/>${bars}</svg>${qchart}${pu&&pu.leaders?`<div class="qnote" style="margin-top:8px;opacity:.8">${esc(pu.leaders)}</div>`:""}</div>`;
+   <line x1="6" x2="${W-6}" y1="${base}" y2="${base}" stroke="rgba(255,255,255,.25)" stroke-width="1"/>${bars}</svg>${showAbbr?"":`<div class="qnote">${games.length} matches, oldest to newest: ${esc(games[0].abbr)} → ${esc(games[games.length-1].abbr)}</div>`}${qchart}${pu&&pu.leaders?`<div class="qnote" style="margin-top:8px;opacity:.8">${esc(pu.leaders)}</div>`:""}</div>`;
 }
 
 /* "Best bet": built only from the page's own data, i.e. the posted spread/total and the expert picks' projected scores.
@@ -584,7 +632,7 @@ function render(){
     ${bxu?`<a class="bxb" href="${esc(bxu)}" target="_blank" rel="noopener">Box score ↗</a>`:""}
     <div class="upn">Up next: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${sp(n.timeText)}</div></div>`}
   /* heads-up strip for the other sport when it has a live game, an imminent game or a fresh final */
-  const o=Object.keys(D).find(k=>k!==sport);let xs="";
+  const o=Object.keys(D).filter(k=>k!==sport).sort((a,b)=>rank(a)-rank(b))[0];let xs="";
   if(o&&rank(o)<=2){const ot=D[o],on=ot.next||{},om=mode(ot);let tag,txt;
     if(om==="live"){tag="Live";txt=`${SPN[o]}: ${on.live}`}
     else if(om==="recap"&&rank(o)===2){const m=ot.last.result.match(/^([WL]) (\d+)-(\d+)(.*)$/);tag="Final";txt=`${SPN[o]}: Kentucky ${m[2]}, ${ot.last.opp} ${m[3]}${m[4].trim()?" ("+m[4].trim()+")":""}`}
@@ -592,7 +640,15 @@ function render(){
     xs=`<button type="button" class="xs" data-switch="${o}"><em>${esc(tag)}</em><span>${esc(txt)}</span><i>›</i></button>`}
   const pc=pulseChart(t);
   const right=(pc?`<div class="desk-only">${pc}</div>`:"")+`<div class="${pc?"mob-only":""}"><div class="stats" style="margin-top:0">${t.stats.map(s=>`<div class="stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div></div>`;
-  $("#hero").innerHTML=xs+(rec?recap:matchup)+right;
+  const heroEl=document.querySelector(".hero");heroEl.classList.toggle("compact",tab!=="all");
+  if(tab!=="all"){
+    const sb=(a,bg,fg)=>`<span class="sb" style="background:${esc(bg)};color:${esc(fg)}">${esc(a)}</span>`;
+    let txt;
+    if(n.live)txt=`<em class="lv">Live</em><b>${esc(n.live)}</b>`;
+    else if(rec){const m=l.result.match(/^([WL]) (\d+)-(\d+)(.*)$/);txt=`<em>Final</em><b>Kentucky ${m[2]}, ${esc(l.opp)} ${m[3]}${m[4].trim()?" ("+esc(m[4].trim())+")":""}</b><span>Next: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)}</span>`}
+    else txt=`<em>Next up</em><b>${n.home?"vs":"at"} ${esc(n.opp)}</b><span>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))} · ${esc(n.tv||"TBA")}</span>`;
+    $("#hero").innerHTML=`<div class="hstrip">${sb("UK","#ffffff","#0033A0")}${rec&&!n.live?sb(l.oppAbbr||l.opp.slice(0,3).toUpperCase(),l.oppBg||"#334",l.oppFg||"#fff"):sb(n.oppAbbr||n.opp.slice(0,3).toUpperCase(),n.oppBg||"#334",n.oppFg||"#fff")}<div class="ht">${txt}</div><button type="button" class="hgo" data-go="all">Overview ›</button></div>`;
+  } else $("#hero").innerHTML=xs+(rec?recap:matchup)+right;
   tick();
 
   /* game-specific stories (previews, injury reports) live in Game Day; everything else is a Buzz headline */
@@ -620,8 +676,8 @@ function render(){
   const tvs=n.tv||"TBA",stream=/SEC Network\+/.test(tvs)?"Streaming only, in the ESPN app":/ESPN|ABC/.test(tvs)?"Cable, any live-TV streamer, or the ESPN app":/SEC Network/.test(tvs)?"YouTube TV, Hulu + Live TV, Fubo, Sling, DirecTV Stream or cable":"Check local listings";
   $("#main").innerHTML=[
     rec?`<div class="sect full" data-view="all"><h2>Postgame · ${l.home?"vs":"at"} ${esc(l.opp)} <small>Final, ${esc(l.result)} · ${esc(l.whenText)}</small></h2></div>`:`<div class="sect full" data-view="all"><h2>Game Day · ${n.home?"vs":"at"} ${esc(n.opp)} <small>${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</small></h2></div>`,
-    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Final <small>${l.home?"vs":"at"} ${esc(l.opp)} · ${esc(l.whenText)}</small></h2><div class="lines"><div class="line"><span>Result</span><b>${esc(l.result)}</b></div>${l.line?`<div class="line"><span>${esc(l.line.split(":")[0])}</span><b>${esc(l.line.split(":").slice(1).join(":").trim())}</b></div>`:""}</div>${bxu?`<a class="bxp" href="${esc(bxu)}" target="_blank" rel="noopener">Full box score &amp; stats ↗</a>`:""}${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>Odds &amp; Picks <small>${esc(etpt(t.odds.game))}</small></h2>${bestBet(t)}${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div>${clampL("picks",t.picks.map(pk).join(""),t.picks.length)}<p class="note">Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.</p>`),
-      P("all social","",`<h2>Follow <small>Official Kentucky ${sport==="football"?"football":"men's basketball"} accounts</small></h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
+    `<div class="duo full fixed" data-left="2">${[rec?P("all odds","",`<h2>Final <small>${l.home?"vs":"at"} ${esc(l.opp)} · ${esc(l.whenText)}</small></h2><div class="lines"><div class="line"><span>Result</span><b>${esc(l.result)}</b></div>${l.line?`<div class="line"><span>${esc(l.line.split(":")[0])}</span><b>${esc(l.line.split(":").slice(1).join(":").trim())}</b></div>`:""}</div>${bxu?`<a class="bxp" href="${esc(bxu)}" target="_blank" rel="noopener">Full box score &amp; stats ↗</a>`:""}${t.picks.length?`<h4 style="margin:14px 0 8px">Next game takes</h4><div class="links">${t.picks.map(pk).join("")}</div>`:""}<p class="note">Next up: ${n.home?"vs":"at"} ${esc(n.opp)} · ${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))}</p>`):P("all odds","",`<h2>${sport==="volleyball"?"Matchup":"Odds &amp; Picks"} <small>${esc(etpt(t.odds.game))}</small></h2>${bestBet(t)}${wp?`<div class="wp"><div class="wp-top"><div class="uk"><span>Kentucky</span><b>${wp.uk}%</b></div><div class="op"><span>${esc(wp.opp)}</span><b>${(100-wp.uk).toFixed(1)}%</b></div></div><div class="wp-bar"><div class="a" style="width:${wp.uk}%"></div><div class="b" style="width:${100-wp.uk}%"></div></div><div class="wp-cap">Win probability · ${esc(wp.src)}</div></div>`:""}<div class="lines">${t.odds.lines.map(l=>`<div class="line"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join("")}</div>${clampL("picks",t.picks.map(pk).join(""),t.picks.length)}<p class="note">${sport==="volleyball"?`Sources: ${esc(t.odds.src)}.`:`Lines: ${esc(t.odds.src)}. Odds move; check a sportsbook before game time.`}</p>`),
+      P("all social","",`<h2>Follow <small>Official Kentucky ${({football:"football",basketball:"men's basketball",volleyball:"volleyball"})[sport]} accounts</small></h2><div class="socs">${t.socials.map(s=>`<a class="soc" href="${esc(s[2])}" target="_blank" rel="noopener"><span class="si">${s[0]==="Instagram"?"IG":esc(s[0])}</span>${esc(s[1])}</a>`).join("")}</div>`),
       feat?P("all news","fp",`<a class="feat" href="${esc(feat[2])}" target="_blank" rel="noopener"><span class="lab">${rec?"Game recap":"Game preview"}</span><b>${esc(feat[0])}</b><span class="s">${esc(feat[1])}</span><span class="rd">${rec?"Read the recap":"Read the preview"} ↗</span></a>`):"",
       (()=>{const J=t.injuries;if(!J||J.game!==n.opp)return "";const grp=(name,rows)=>rows&&rows.length?`<div><h4>${esc(name)}</h4>${rows.map(r=>`<p><b class="${/^out/i.test(r[0])?"out":""}">${esc(r[0])}</b>${esc(r[1])}</p>`).join("")}</div>`:"";
         const src=J.src||(injNews?[injNews[0],injNews[1],injNews[2]]:null);
@@ -629,7 +685,7 @@ function render(){
       P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${/official stats/i.test(t.leadNote)?`<a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.leadNote)} ↗</a>`:esc(t.leadNote)}</p>`)].join("")}</div>`,
     P("all","full watchline",`<div class="wl"><b>${rec?`Up next · ${n.home?"vs":"at"} ${esc(n.opp)}`:"How to watch"}</b><span>${rec?`${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))} · `:""}TV: ${esc(tvs)} · ${esc(stream)}</span><button type="button" class="wlink" data-go="watch">Full guide ›</button></div>`),
     `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook, recruiting and the transfer portal</small></h2></div>`,
-    `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${sport==="football"?"Playoff projections":"Preseason predictions"}</small></h2>${clampL("outlook",t.outlook.map(pk).join(""),t.outlook.length)}`),
+    `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${({football:"Playoff projections",basketball:"Preseason predictions",volleyball:"NCAA Tournament projections"})[sport]}</small></h2>${clampL("outlook",t.outlook.map(pk).join(""),t.outlook.length)}`),
       P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`),
       P("all recruiting","",`<h2>Transfer portal</h2>${(()=>{const tr=t.roster.filter(p=>/^Transfer/.test(p[2]||""));return tr.length?`<div class="cat" style="margin-bottom:6px">Added from the portal</div><div class="padd">${tr.map(p=>`<div><b>${esc(p[1])}${p[0]?` <em>${esc(p[0])}</em>`:""}</b><span>${esc(p[2].replace(/^Transfer · /,"from "))}</span></div>`).join("")}</div>`:""})()}<div class="links">${(t.portal||[]).map(lk).join("")}</div>`)].join("")}</div>`,
     `<div class="duo full">${[P("news","",`<h2>Highlights</h2><div class="links">${t.highlights.map(lk).join("")}</div>`),
@@ -640,8 +696,8 @@ function render(){
       <dt>SEC Network+</dt><dd>Streaming only, in the ESPN app (ESPN subscription)</dd>
       <dt>Radio</dt><dd>UK Sports Network on iHeartRadio and local affiliates</dd></dl>
       <p class="note">Network for each game is listed in the schedule. TBA games are usually set 6–12 days out.</p>`),
-    P("team","full",`<h2>Players to know</h2><div class="roster">${t.roster.map(p=>`<div class="p">${p[0]?`<span class="tag">${esc(p[0])}</span>`:""}<b>${esc(p[1])}</b><span>${esc(p[2])}</span></div>`).join("")}</div><p class="note"><a href="${esc(t.espn[1])}" target="_blank" rel="noopener">Full roster &amp; stats on ESPN ↗</a></p>`),
-    P("all schedule","full",`<h2>Schedule <small>${sport==="football"?"2026 season":"2026-27 · times & TV announced closer to games"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div>${tab==="schedule"?"":`<button class="stog" type="button" id="stog" aria-expanded="${full}">${full?"Show less":`Full schedule · ${t.schedule.length} games`}</button>`}<p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
+    P("team","full",`<h2>Players to know</h2><div class="roster">${t.roster.map(p=>`<div class="p">${p[0]?`<span class="tag">${esc(p[0])}</span>`:""}<b>${esc(p[1])}</b><span>${esc(p[2])}</span></div>`).join("")}</div><p class="note"><a href="${esc(t.espn[1])}" target="_blank" rel="noopener">${sport==="volleyball"?esc(t.espn[0]):"Full roster &amp; stats on ESPN"} ↗</a></p>`),
+    P("all schedule","full",`<h2>Schedule <small>${sport==="basketball"?"2026-27 · times & TV announced closer to games":"2026 season"}</small></h2><div class="tbl"><table class="sched"><tbody>${rows}</tbody></table></div>${tab==="schedule"?"":`<button class="stog" type="button" id="stog" aria-expanded="${full}">${full?"Show less":`Full schedule · ${t.schedule.length} games`}</button>`}<p class="note"><a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.official[0])} ↗</a></p>`),
   ].join("");
   $("#buzz").style.display=(tab==="all"||tab==="news"||tab==="social")?"block":"none";
   $("#club").style.display=(tab==="all"||tab==="club")?"block":"none";
@@ -692,6 +748,7 @@ $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b
 $("#main").addEventListener("click",e=>{if(e.target.closest("#stog")){schedOpen=!schedOpen;render()}
   const mo=e.target.closest("[data-more]");if(mo){const k=sport+mo.dataset.more;openL[k]=!openL[k];const l=mo.previousElementSibling;l.classList.toggle("open",openL[k]);mo.setAttribute("aria-expanded",openL[k]);mo.textContent=openL[k]?"Show fewer":`Show all ${l.children.length}`;if(!openL[k])l.closest("section").scrollIntoView({block:"nearest"})}
   const g=e.target.closest("[data-go]");if(g){tab=g.dataset.go;render();window.scrollTo({top:0})}});
+$("#hero").addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){tab=g.dataset.go;render();window.scrollTo({top:0})}});
 render();
 /* show the footer's update time in Eastern and Pacific */
 (function(){const f=document.querySelector("footer");if(!f)return;const MS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -775,7 +832,7 @@ function shrink(file){return new Promise((res,rej)=>{const img=new Image(),url=U
 
 /* ---------- member view ---------- */
 function games(){
-  return ["football","basketball"].map(sport=>{const t=D[sport];if(!t)return null;const i=t.schedule.findIndex(r=>!isRes(r));if(i<0)return null;
+  return Object.keys(D).map(sport=>{const t=D[sport];if(!t)return null;const i=t.schedule.findIndex(r=>!isRes(r));if(i<0)return null;
     const row=t.schedule[i],n=t.next||{},lock=n.when?new Date(n.when):null;
     return{sport,row,id:gid(sport,row),opp:n.opp||row[1],abbr:n.oppAbbr||row[5]||"OPP",lock,open:!!lock&&Date.now()<lock.getTime(),whenText:(n.whenText||row[0])+(n.timeText?" · "+etpt(n.timeText):"")}}).filter(Boolean);
 }
@@ -804,9 +861,9 @@ function drawGames(){const el=document.getElementById("c-games");if(!el)return;
   el.innerHTML=gs.map(g=>{const ps=C.picks.filter(p=>p.gameId===g.id),mine=ps.find(p=>p.uid===C.user.uid),d=C.drafts[g.id]||{};
     const sel=d.pick||(mine&&mine.pick)||"";
     const side=(k,label)=>{const who=ps.filter(p=>p.pick===k);return `<button class="pk" type="button" data-g="${g.id}" data-k="${k}" aria-pressed="${sel===k}" ${g.open?"":"disabled"}>${esc(label)}<span class="cnt">${who.length} pick${who.length===1?"":"s"}</span><span class="ppl">${who.map(p=>av(C.members[p.uid],22,p.uid)).join("")}</span></button>`};
-    const status=!g.lock?"Picks open once the game time is announced.":g.open?`Picks lock at ${g.sport==="football"?"kickoff":"tip-off"}`:"Picks locked";
+    const status=!g.lock?"Picks open once the game time is announced.":g.open?`Picks lock at ${({football:"kickoff",basketball:"tip-off",volleyball:"first serve"})[g.sport]||"start time"}`:"Picks locked";
     const us=d.us??(mine&&mine.ukScore!=null?mine.ukScore:""),them=d.them??(mine&&mine.oppScore!=null?mine.oppScore:"");
-    return `<div class="game"><h3>${g.sport==="football"?"Football":"Basketball"}: Kentucky vs ${esc(g.opp)}</h3><div class="gm">${esc(g.whenText)} · ${esc(status)}</div>
+    return `<div class="game"><h3>${esc(D[g.sport].label)}: Kentucky vs ${esc(g.opp)}</h3><div class="gm">${esc(g.whenText)} · ${esc(status)}</div>
       <div class="sides">${side("UK","Kentucky")}${side("OPP",g.opp)}</div>
       ${g.open?`<div class="sg"><span class="sgl">Your score guess</span>Kentucky <input class="cin" type="number" min="0" max="200" id="us-${g.id}" value="${esc(us)}"> ${esc(g.abbr)} <input class="cin" type="number" min="0" max="200" id="them-${g.id}" value="${esc(them)}">
         <button class="cbtn" type="button" data-save="${g.id}" ${sel&&us!==""&&them!==""?"":"disabled"}>${mine?"Update pick":"Lock in pick"}</button></div>`:""}
@@ -832,7 +889,7 @@ async function savePick(id){
   catch(e){const el=document.getElementById("err-"+id);if(el)el.textContent=e.code==="permission-denied"?"Picks are locked for this game.":e.message}
 }
 function tallies(){
-  const finals={};["football","basketball"].forEach(sport=>(D[sport]?D[sport].schedule:[]).forEach(r=>{if(isRes(r)){const m=r[3].match(/^([WL]) (\d+)-(\d+)/);finals[gid(sport,r)]={w:m[1]==="W",a:+m[2],b:+m[3]}}}));
+  const finals={};Object.keys(D).forEach(sport=>(D[sport]?D[sport].schedule:[]).forEach(r=>{if(isRes(r)){const m=r[3].match(/^([WL]) (\d+)-(\d+)/);finals[gid(sport,r)]={w:m[1]==="W",a:+m[2],b:+m[3]}}}));
   const tally={};
   C.picks.forEach(p=>{const f=finals[p.gameId];if(!f||!C.members[p.uid])return;const t=tally[p.uid]=tally[p.uid]||{w:0,l:0,err:0};
     if((p.pick==="UK")===f.w)t.w++;else t.l++;
@@ -863,7 +920,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)close
 function showProfile(uid){const m=C.members[uid];if(!m)return;
   const j=m.joinedAt&&m.joinedAt.toDate?m.joinedAt.toDate():null;
   const mine=C.picks.filter(p=>p.uid===uid);
-  const cur=games().map(g=>{const p=mine.find(x=>x.gameId===g.id);return p?`<div>${g.sport==="football"?"Football":"Basketball"} vs ${esc(g.opp)}: <b>${p.pick==="UK"?"Kentucky":esc(g.opp)}</b>${p.ukScore!=null?` (${p.ukScore}-${p.oppScore})`:""}</div>`:""}).join("");
+  const cur=games().map(g=>{const p=mine.find(x=>x.gameId===g.id);return p?`<div>${esc(D[g.sport].label)} vs ${esc(g.opp)}: <b>${p.pick==="UK"?"Kentucky":esc(g.opp)}</b>${p.ukScore!=null?` (${p.ukScore}-${p.oppScore})`:""}</div>`:""}).join("");
   document.getElementById("pbody").innerHTML=(okPhoto(m.photo)?`<img class="pbig" src="${m.photo}" alt="${esc(m.name)}">`:`<div class="pbig">${esc((m.name||"?").trim().charAt(0).toUpperCase())}</div>`)
     +`<h3>${esc(m.name)}</h3><div class="pmeta">${j?"Joined "+j.toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"}):""}</div>
     ${cur?`<div class="pcur"><span>Current picks</span>${cur}</div>`:""}`;
@@ -898,5 +955,6 @@ function onUser(u){
 })();
 })();
 </script>
+
 </body>
 </html>
