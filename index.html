@@ -247,8 +247,8 @@ section.panel.fp{padding:0;overflow:hidden}
 .lk{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 .lk:hover{border-color:var(--uk)}
 .lk:focus-visible{outline:2px solid var(--uk);outline-offset:2px}
-.lk b{font-size:14px}
-.lk span{font-size:12px;color:var(--muted);display:block}
+.links>*{min-width:0;max-width:100%}.lk{min-width:0}.lk>div{min-width:0;flex:1}.lk b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lk span{font-size:12px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lk i{font-style:normal;color:var(--uk);font-weight:700}
 .watch dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:0;font-size:14px}
 .watch dt{font-weight:700}
@@ -411,6 +411,20 @@ footer{padding-bottom:max(32px,calc(env(safe-area-inset-bottom,0px) + 20px))}
   .club{padding-block:0 24px}
   .pk{padding:12px 8px}
 }
+.lvbar{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;margin:0 0 12px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(0,0,0,.18);font-size:13px;color:#fff}
+.lvbar em{font-style:normal;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#d4202c;color:#fff;padding:2px 7px;border-radius:4px}.lvbar em.fin{background:#fff;color:#0033a0}
+.lvbar .lvmsg{opacity:.85;flex:1;min-width:160px}.lvbar a{color:#fff;font-weight:700}
+.lvbtn{margin-left:auto;font:inherit;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}.lvbtn:hover{background:rgba(255,255,255,.15)}.lvbtn[disabled]{opacity:.6;cursor:wait}
+a.team.tl{text-decoration:none;color:inherit;border-radius:10px}a.team.tl:hover .badge{outline:2px solid rgba(255,255,255,.7);outline-offset:2px}
+a.pl{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}a.pl:hover{color:var(--blue,#0033a0);text-decoration-color:currentColor}
+.h2h .hh{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.h2h .hh a{text-decoration:none;color:inherit}.h2h .hh b{display:block;font-size:15px}.h2h .hh span{font-size:12px;color:var(--muted)}.h2h .hh .r{text-align:right}
+.h2h .hr{display:grid;grid-template-columns:70px 1fr 70px;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:14px}.h2h .hr b{font-weight:500;font-variant-numeric:tabular-nums}.h2h .hr b.r{text-align:right}.h2h .hr b.best{font-weight:800}
+.h2h .hl span{display:block;text-align:center;font-size:12px;color:var(--muted);margin-bottom:3px}
+.hb{display:flex;height:6px;border-radius:3px;overflow:hidden;background:var(--line);gap:2px}.hb .u{background:#0033a0}.hb .o{background:#9aa3ad}
+.l5w{margin-top:10px;display:grid;gap:6px}.l5{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:12px}.l5 b{width:46px}.l5 i{font-style:normal;padding:2px 6px;border-radius:4px;background:var(--line)}.l5 i.W{background:rgba(22,160,90,.18)}.l5 i.L{background:rgba(212,32,44,.15)}
+.ptw{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ptw h4{margin:0 0 6px;font-size:13px}.ptw .pr{display:grid;gap:1px;padding:6px 0;border-top:1px solid var(--line)}.ptw .pr .pv{font-size:12px;color:var(--muted)}
+@media(max-width:560px){.ptw{grid-template-columns:1fr}.h2h .hr{grid-template-columns:58px 1fr 58px}}
+.lvodds{display:grid;gap:10px;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px}.lvodds>div{display:grid;gap:3px}.lvodds span{font-size:12px;color:var(--muted)}
 </style>
 
 <header>
@@ -497,8 +511,8 @@ basketball:{
   outlook:[["AP Top 25","Preseason poll","No. 23 nationally, 6th among SEC teams","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-the-first-ap-poll-top-25-of-2026-27/"],["KenPom","Preseason ratings","No. 26 (Duke No. 1, Florida No. 2)","https://www.saturdaydownsouth.com/news/college-basketball/kenpom-college-basketball-rankings-2026-27-8-sec-teams-land-in-initial-top-25/"],["Preseason SEC power rankings","A Sea of Blue roundup, Oct 28","No. 7 in the SEC in rankings by Tristan Freeman and On3's James Fletcher III","https://sports.yahoo.com/articles/where-kentucky-wildcats-stand-preseason-004309464.html"],["SEC media poll","Predicted finish","7th. Momcilovic 2nd-team All-SEC, Moreno 3rd team.","https://www.si.com/college/kentucky/men-s-basketball/where-is-kentucky-basketball-ranked-in-the-sec-preseason-poll"],["Cameron Salerno","CBS Sports","Had UK higher than the media poll (top four on his ballot). Moreno \"has a very high ceiling.\"","https://www.cbssports.com/college-basketball/news/sec-basketball-preseason-poll-predictions-2026-27-overrated-underrated-alabama-lsu/"]],
   buzz:[["Take","\"Size and shooting describes this UCF team well\"","Wyatt Huff · Sports Illustrated, on 7-2 John Bol and an eight-senior roster","https://www.si.com/college/kentucky/men-s-basketball/what-to-know-about-ucf-before-wednesday-exhibition-matchup"],["Storyline","Only the second UK-UCF meeting ever; the Cats won the first 59-57 in Lexington in 2006","Ryan Black · Courier Journal via Yahoo","https://sports.yahoo.com/articles/channel-kentucky-basketball-exhibition-vs-091126038.html"],["Storyline","UCF arrives 1-1 in exhibitions; Dior Johnson led the Knights in both games","UK Athletics","https://ukathletics.com/news/2026/10/27/no-23-kentucky-hosts-ucf-in-final-exhibition-game-this-season/"],["Recruiting","No. 3 overall 2027 recruit DeMarcus Henry picks Friday; UK is a finalist","KSR / On3","https://on3.com/teams/kentucky-wildcats/news/5-star-sf-demarcus-henry-set-announce-week-kentucky-among-finalists"],["Quote","\"I thought Kentucky's length really bothered us. They did it without fouling.\"","Grant McCasland, Texas Tech coach · KSR","https://www.on3.com/teams/kentucky-wildcats/news/ksrs-takeaways-from-kentuckys-double-digit-exhibition-win-over-no-19-texas-tech"],["Quote","\"He's gonna have to play 24 minutes a game, 26 minutes a game.\"","Mark Pope on freshman Mason Williams · KSR","https://www.on3.com/teams/kentucky-wildcats/news/mason-williams-already-earning-himself-more-minutes"],["Quote","\"I think we are barely seeing the beginnings of what he can be\"","Mark Pope on Ousmane N'Diaye · KSR","https://www.on3.com/teams/kentucky-wildcats/news/kentucky-only-seeing-beginning-what-ousmane-ndiaye-can-be"],["Quote","\"Louisville?!\"","Alex Wilkins, when a Courier-Journal reporter introduced himself · KSR","https://www.on3.com/teams/kentucky-wildcats/news/alex-wilkins-reaction-to-louisville-proves-hes-one-of-us"]],
   xsearch:[["Kentucky basketball","Kentucky%20basketball"],["Mark Pope","%22Mark%20Pope%22"],["#BBN","%23BBN"]],
-  leaders:[["Returning","Malachi Moreno","7.8 ppg · 6.3 rpg"],["Returning","Kam Williams","6.0 ppg"],["Transfer","Milan Momcilovic","from Iowa State"],["Transfer","Zoom Diallo","from Washington"]],
-  leadNote:"Stats reset when the season tips Nov 3. Figures above are last season's.",
+  leaders:[["Scoring","Milan Momcilovic","15 pts (7-7 FT)"],["Scoring","Malachi Moreno","15 pts"],["Scoring","Mason Williams","14 pts"],["Playmaking","Alex Wilkins","13 pts · 7 ast"]],
+  leadNote:"From the 76-65 exhibition win over Texas Tech. Season stats start Nov 3.",
   roster:[["C","Malachi Moreno","So. · returning"],["G","Kam Williams","Returning"],["F","Trent Noah","Returning"],["F","Braydon Hawthorne","Returning"],["C","Reece Potter","Returning"],["G","Zoom Diallo","Transfer · Washington"],["F","Milan Momcilovic","Transfer · Iowa State"],["C","Franck Kepnang","Transfer · Washington"],["F","Justin McBride","Transfer · James Madison"],["G","Jerone Morton","Transfer · Washington St."],["G","Alex Wilkins","Transfer · Furman"],["PG","Mason Williams","Freshman"],["","Zyon Hawthorne","Freshman"],["","Ousmane N'Diaye","Freshman · international"]],
   injuries:{game:"UCF",asof:"UK injury update · Oct 22",
     uk:[["Out","Kam Williams (week-to-week, back at practice), Trent Noah (hamstring, week-to-week), Jerone Morton (knee). All three miss the exhibition season; Nov 3 opener uncertain."]],
@@ -566,7 +580,7 @@ try{const s=localStorage.getItem("bbn-sport");if(s&&D[s])pref=s;}catch(e){}
 {const r=Object.keys(D).map(s=>[rank(s),s]).sort((a,b)=>a[0]-b[0]);sport=r[0][0]<3?(r[1]&&r[1][0]===r[0][0]&&pref?pref:r[0][1]):(pref||"football");}
 const h=(location.hash||"").slice(1); if(D[h])sport=h;
 
-const lk=a=>`<a class="lk" href="${esc(a[2])}" target="_blank" rel="noopener"><div><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div><i>↗</i></a>`;
+const lk=a=>`<a class="lk" href="${esc(a[2])}" target="_blank" rel="noopener" title="${esc(a[0])}"><div><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div><i>↗</i></a>`;
 const isRes=r=>/^[WL] \d/.test(r[3]||"");
 /* add Pacific time next to any Eastern time, e.g. "7:00 PM ET" -> "7:00 PM ET / 4:00 PM PT" */
 const etpt=s=>String(s??"").replace(/\b(\d{1,2})(?::(\d{2}))? ?(AM|PM) ET\b(?! \/)/g,(m,h,mi,ap)=>{let H=(+h%12)+(ap==="PM"?12:0)-3;if(H<0)H+=24;return `${m} / ${H%12||12}${mi?":"+mi:""} ${H>=12?"PM":"AM"} PT`});
@@ -713,10 +727,9 @@ function render(){
         return P("all","",`<h2>Injury report <small>${esc(J.asof||"")}</small></h2><div class="inj">${grp("Kentucky",J.uk)}${grp(n.opp,J.opp)}</div>${src?`<p class="note"><a href="${esc(src[2])}" target="_blank" rel="noopener">${esc(src[1])} ↗</a></p>`:""}`)})(),
       P("all team","",`<h2>Players to watch <small>Season leaders · ${esc(t.coach)}</small></h2><div class="leaders">${t.leaders.map(l=>`<div class="leader"><span class="cat">${esc(l[0])}</span><b>${esc(l[1])}</b><span class="num">${esc(l[2])}</span></div>`).join("")}</div><p class="note">${/official stats/i.test(t.leadNote)?`<a href="${esc(t.official[1])}" target="_blank" rel="noopener">${esc(t.leadNote)} ↗</a>`:esc(t.leadNote)}</p>`)].join("")}</div>`,
     P("all","full watchline",`<div class="wl"><b>${rec?`Up next · ${n.home?"vs":"at"} ${esc(n.opp)}`:"How to watch"}</b><span>${rec?`${esc(n.whenText)} · ${esc(etpt(n.timeText||"TBA"))} · `:""}TV: ${esc(tvs)} · ${esc(stream)}</span><button type="button" class="wlink" data-go="watch">Full guide ›</button></div>`),
-    `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook, recruiting and the transfer portal</small></h2></div>`,
+    `<div class="sect full" data-view="all"><h2>The Big Picture <small>Season outlook and recruiting</small></h2></div>`,
     `<div class="duo full">${[P("all odds","",`<h2>Season outlook <small>${({football:"Playoff projections",basketball:"Preseason predictions",volleyball:"NCAA Tournament projections"})[sport]}</small></h2>${clampL("outlook",t.outlook.map(pk).join(""),t.outlook.length)}`),
-      P("all recruiting","",`<h2>Recruiting</h2><div class="links">${t.recruiting.map(lk).join("")}</div>`),
-      P("all recruiting","",`<h2>Transfer portal</h2>${(()=>{const tr=t.roster.filter(p=>/^Transfer/.test(p[2]||""));return tr.length?`<div class="cat" style="margin-bottom:6px">Added from the portal</div><div class="padd">${tr.map(p=>`<div><b>${esc(p[1])}${p[0]?` <em>${esc(p[0])}</em>`:""}</b><span>${esc(p[2].replace(/^Transfer · /,"from "))}</span></div>`).join("")}</div>`:""})()}<div class="links">${(t.portal||[]).map(lk).join("")}</div>`)].join("")}</div>`,
+      P("all recruiting","",`<h2>Recruiting <small>Including the transfer portal</small></h2>${(()=>{const r=[...t.recruiting,...(t.portal||[])];return clampL("recruit",r.map(lk).join(""),r.length)})()}`)].join("")}</div>`,
     `<div class="duo full">${[P("news","",`<h2>Highlights</h2><div class="links">${t.highlights.map(lk).join("")}</div>`),
       P("news","",`<h2>Beat coverage</h2><div class="links">${[["Kentucky Sports Radio","KSR / On3","https://www.on3.com/teams/kentucky-wildcats/"],["A Sea of Blue","SB Nation","https://www.aseaofblue.com/"],["Lexington Herald-Leader","UK sports","https://www.kentucky.com/sports/college/kentucky-sports/"],["Kentucky Kernel","Student paper","https://kykernel.com/category/sports/"]].map(lk).join("")}</div>`)].join("")}</div>`,
     P("watch","watch full",`<h2>How to watch</h2><dl>
@@ -985,6 +998,127 @@ function onUser(u){
 })();
 })();
 </script>
+<script>
+/* ===== Live from ESPN (works on the public website; the Claude copy can't reach ESPN):
+   live/final scores + "Check for updates", clickable team badges, head-to-head team stats,
+   both teams' players to watch, and player names linked to their ESPN stat pages ===== */
+(function(){
+const API="https://site.api.espn.com/apis/site/v2/sports/",UK="96";
+const LG={football:"football/college-football",basketball:"basketball/mens-college-basketball",volleyball:"volleyball/womens-college-volleyball"};
+const WEB={football:"college-football",basketball:"mens-college-basketball",volleyball:"womens-college-volleyball"};
+const S={};const st=s=>S[s]||(S[s]={roster:{},rteams:{}});
+let reach=null,busy=false;
+const get=async u=>{const r=await fetch(API+u);if(!r.ok)throw new Error("HTTP "+r.status);return r.json()};
+const etDay=d=>new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).format(d).replace(/-/g,"");
+const clk=d=>`${d.toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})} ET / ${d.toLocaleTimeString("en-US",{timeZone:"America/Los_Angeles",hour:"numeric",minute:"2-digit"})} PT`;
+const sv=x=>x==null?"":typeof x==="object"?String(x.displayValue??x.value??""):String(x);
+const tname=c=>c&&c.team?(c.team.shortDisplayName||c.team.location||c.team.abbreviation):"";
+const teamUrl=(s,id)=>`https://www.espn.com/${WEB[s]}/team/_/id/${id}`;
+
+async function check(s,force){
+  const t=D[s],n=(t&&t.next)||{},o=st(s);
+  if(!n.when){o.none="time";return}
+  try{
+    const sb=await get(`${LG[s]}/scoreboard?dates=${etDay(new Date(n.when))}${s==="basketball"?"&groups=50":""}&limit=500`);reach=true;
+    const ev=(sb.events||[]).find(e=>e.competitions&&e.competitions[0].competitors.some(c=>c.team&&c.team.id===UK));
+    o.checked=new Date();o.err=0;o.none=ev?null:"feed";
+    if(!ev){o.ev=null;return}
+    const c=ev.competitions[0];o.ev=ev;o.state=ev.status.type.state;o.detail=ev.status.type.shortDetail;
+    o.uk=c.competitors.find(x=>x.team.id===UK);o.op=c.competitors.find(x=>x.team.id!==UK);
+    o.link=`https://www.espn.com/${WEB[s]}/game/_/gameId/${ev.id}`;
+    if(s!=="volleyball"&&(force||!o.sum||o.state==="in"||Date.now()-o.sumAt>6e5)){try{o.sum=await get(`${LG[s]}/summary?event=${ev.id}`);o.sumAt=Date.now()}catch(e){}}
+    if(s!=="volleyball")[UK,o.op&&o.op.team.id].forEach(id=>{if(!id||o.rteams[id])return;o.rteams[id]=1;
+      get(`${LG[s]}/teams/${id}/roster`).then(r=>{const a=r.athletes||[];(a[0]&&a[0].items?a.flatMap(x=>x.items):a).forEach(p=>{const h=p.links&&p.links[0]&&p.links[0].href;if(h&&p.displayName)o.roster[p.displayName]=h});if(s===sport)decorate()}).catch(()=>{})});
+  }catch(e){if(reach!==true)reach=false;o.err=1;o.checked=new Date()}
+}
+
+/* wrap a name found in plain text with a link to that player's stats */
+function linkify(rootEl,map){
+  const names=Object.keys(map).filter(n=>n&&n.length>4).sort((a,b)=>b.length-a.length);if(!names.length||!rootEl)return;
+  const re=new RegExp(names.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|"),"g");
+  const w=document.createTreeWalker(rootEl,NodeFilter.SHOW_TEXT,{acceptNode:x=>x.parentElement.closest("a,button,h2,h3,h4")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+  nodes.forEach(tn=>{const txt=tn.nodeValue;re.lastIndex=0;if(!re.test(txt))return;re.lastIndex=0;const f=document.createDocumentFragment();let i=0,m;
+    while((m=re.exec(txt))){f.append(txt.slice(i,m.index));const a=document.createElement("a");a.className="pl";a.href=map[m[0]];a.target="_blank";a.rel="noopener";a.title=`${m[0]}: stats`;a.textContent=m[0];f.append(a);i=m.index+m[0].length}
+    f.append(txt.slice(i));tn.replaceWith(f)});
+}
+
+function decorate(){
+  const s=sport,t=D[s],n=t.next||{},o=S[s]||{},hero=document.getElementById("hero"),main=document.getElementById("main");if(!hero||!main)return;
+  /* 1 · live / final bar with the update button */
+  hero.querySelectorAll(".lvbar").forEach(x=>x.remove());
+  let m;
+  if(busy)m=`<span class="lvmsg">Checking ESPN for the latest…</span>`;
+  else if(reach===false)m=`<span class="lvmsg">Live scores and this button work on the public website, coffeeshopbbn.github.io.</span>`;
+  else if(o.ev&&(o.state==="in"||o.state==="post")){const a=+sv(o.uk.score),b=+sv(o.op.score),fin=o.state==="post";
+    const sets=s==="volleyball"&&o.uk.linescores&&o.uk.linescores.length?` · Sets ${o.uk.linescores.map((l,i)=>`${l.value}-${o.op.linescores&&o.op.linescores[i]?o.op.linescores[i].value:""}`).join(", ")}`:"";
+    m=`<em class="${fin?"fin":""}">${fin?"Final":"Live"}</em><b>Kentucky ${a} · ${esc(tname(o.op))} ${b}</b><span class="lvmsg">${esc(fin?(a>b?"Kentucky wins":a<b?"Kentucky falls":"Final"):o.detail)}${esc(sets)}${fin?" · full recap with the next refresh":""}</span><a href="${o.link}" target="_blank" rel="noopener">${fin?"Box score":"Gamecast"} ↗</a>`}
+  else if(o.none==="feed")m=`<span class="lvmsg">This game isn't on ESPN's live feed${/exh/i.test(n.whenText||"")?" (exhibition)":""}, so its score updates with the hourly refresh.</span>`;
+  else if(o.none==="time")m=`<span class="lvmsg">Game time not set yet.</span>`;
+  else m=`<span class="lvmsg">${o.checked?`No change · checked ${clk(o.checked)}`:"Checking ESPN…"}</span>`;
+  hero.insertAdjacentHTML("afterbegin",`<div class="lvbar" role="status">${m}<button type="button" class="lvbtn" data-lv="1" ${busy?"disabled":""}>${busy?"Checking…":"Check for updates"}</button></div>`);
+
+  /* 2 · team badges open each team's stats */
+  const recap=!!hero.querySelector(".fs");
+  hero.querySelectorAll(".mu .team").forEach(el=>{if(el.tagName==="A")return;const isUK=!!el.querySelector(".badge.uk");
+    const id=isUK?UK:(!recap&&o.op?o.op.team.id:null);if(!id)return;
+    const a=document.createElement("a");a.className="team tl";a.href=teamUrl(s,id);a.target="_blank";a.rel="noopener";a.title="Team stats on ESPN";a.innerHTML=el.innerHTML;el.replaceWith(a)});
+
+  const show=v=>v.split(" ").includes(tab==="all"?"all":tab);
+  /* 3 · head-to-head */
+  main.querySelectorAll(".h2h").forEach(x=>x.remove());
+  const bt=(o.sum&&o.sum.boxscore&&o.sum.boxscore.teams)||[],tu=bt.find(x=>x.team&&x.team.id===UK),to=bt.find(x=>x.team&&x.team.id!==UK);
+  if(!recap&&tu&&to&&(tu.statistics||[]).length>2){
+    const rows=tu.statistics.map(x=>{const y=(to.statistics||[]).find(z=>z.name===x.name);if(!y)return "";const a=parseFloat(String(x.displayValue).replace(/,/g,"")),b=parseFloat(String(y.displayValue).replace(/,/g,""));if(isNaN(a)||isNaN(b))return "";
+      const low=/allowed|against|turnover|penalt|interception|fumble/i.test(x.name+" "+x.label),ub=low?a<b:a>b,ob=low?b<a:b>a,tot=Math.abs(a)+Math.abs(b)||1;
+      return `<div class="hr"><b class="${ub?"best":""}">${esc(x.displayValue)}</b><div class="hl"><span>${esc(x.label)}</span><div class="hb"><i class="u" style="width:${(Math.abs(a)/tot*100).toFixed(1)}%"></i><i class="o" style="width:${(Math.abs(b)/tot*100).toFixed(1)}%"></i></div></div><b class="r ${ob?"best":""}">${esc(y.displayValue)}</b></div>`}).join("");
+    const l5=(o.sum.lastFiveGames||[]).map(g=>`<div class="l5"><b>${esc(g.team&&g.team.abbreviation)}</b>${(g.events||[]).map(e=>`<i class="${e.gameResult}" title="${esc((e.atVs||"")+" "+(e.opponent&&e.opponent.abbreviation||"")+" "+(e.score||""))}">${esc(e.gameResult)} ${esc(e.atVs)} ${esc(e.opponent&&e.opponent.abbreviation)}</i>`).join("")}</div>`).join("");
+    const hdr=o.sum.header&&o.sum.header.competitions&&o.sum.header.competitions[0].competitors||[],rec=id=>{const c=hdr.find(x=>x.team.id===id);return c?`${c.rank&&c.rank<99?"No. "+c.rank+" · ":""}${(c.record||[]).map(r=>r.summary).join(" · ")}`:""};
+    const html=`<section class="panel full h2h" data-view="all odds team"><h2>Head to head <small>Season averages from ESPN · bold is better</small></h2>
+      <div class="hh"><a href="${teamUrl(s,UK)}" target="_blank" rel="noopener"><b>Kentucky</b><span>${esc(rec(UK))}</span></a><a class="r" href="${teamUrl(s,o.op.team.id)}" target="_blank" rel="noopener"><b>${esc(tname(o.op))}</b><span>${esc(rec(o.op.team.id))}</span></a></div>${rows}${l5?`<div class="l5w"><span class="cat">Last five</span>${l5}</div>`:""}</section>`;
+    const sect=main.querySelector(".sect");(sect||main.firstChild)&&(sect?sect.insertAdjacentHTML("afterend",html):main.insertAdjacentHTML("afterbegin",html));
+    main.querySelectorAll(".h2h").forEach(x=>x.style.display=show(x.dataset.view)?"block":"none");
+  }
+
+  /* 4 · players to watch, both teams */
+  const ptw=[...main.querySelectorAll("section.panel")].find(p=>/^players to watch/i.test((p.querySelector("h2")||{}).textContent||""));
+  const ld=(o.sum&&o.sum.leaders)||[],lu=ld.find(x=>x.team&&x.team.id===UK),lo=ld.find(x=>x.team&&x.team.id!==UK);
+  const col=(name,cats)=>`<div><h4>${esc(name)}</h4>${cats.map(c=>`<div class="pr"><span class="cat">${esc(c[0])}</span>${c[2]?`<a class="pl" href="${esc(c[2])}" target="_blank" rel="noopener">${esc(c[1])}</a>`:`<b>${esc(c[1])}</b>`}<span class="pv">${esc(c[3])}</span></div>`).join("")}</div>`;
+  const fromEspn=x=>(x.leaders||[]).map(c=>{const l=(c.leaders||[])[0];return l&&l.athlete?[c.displayName,l.athlete.displayName+(l.athlete.position&&l.athlete.position.abbreviation?` (${l.athlete.position.abbreviation})`:""),l.athlete.links&&l.athlete.links[0]&&l.athlete.links[0].href,l.displayValue]:null}).filter(Boolean);
+  if(ptw&&!recap){let a=[],b=[],src="";
+    if(lu&&lo&&(lu.leaders||[]).length&&(lo.leaders||[]).length){a=fromEspn(lu);b=fromEspn(lo);src="Season leaders from ESPN · tap a name for full stats"}
+    else if(t.oppLeaders&&t.oppLeaders.length){a=t.leaders.map(l=>[l[0],l[1],"",l[2]]);b=t.oppLeaders.map(l=>[l[0],l[1],"",l[2]]);src=t.leadNote||""}
+    if(a.length&&b.length){ptw.innerHTML=`<h2>Players to watch <small>${esc(src)}</small></h2><div class="ptw">${col("Kentucky",a)}${col(n.opp||tname(o.op),b)}</div>`}}
+
+  /* 5 · ESPN line and predictor in Odds & Picks */
+  main.querySelectorAll(".lvodds").forEach(x=>x.remove());
+  const op=[...main.querySelectorAll("section.panel")].find(p=>/^odds/i.test((p.querySelector("h2")||{}).textContent||""));
+  const pc=o.sum&&o.sum.pickcenter&&o.sum.pickcenter[0],pr=o.sum&&o.sum.predictor;
+  if(op&&!recap&&(pc||pr)){let h="";
+    if(pc){const side=x=>x&&String(x.teamId)===UK?"UK":(o.op?o.op.team.abbreviation:"Opp"),ml=[pc.awayTeamOdds,pc.homeTeamOdds].filter(x=>x&&x.moneyLine!=null).map(x=>`${side(x)} ${x.moneyLine>0?"+":""}${x.moneyLine}`).join(" · ");
+      h+=`<div><span class="cat">Live line · ${esc(pc.provider&&pc.provider.name||"ESPN")}</span><b>${esc(pc.details||"")}${pc.overUnder!=null?` · O/U ${pc.overUnder}`:""}</b>${ml?`<span>Moneyline ${esc(ml)}</span>`:""}</div>`}
+    if(pr&&pr.homeTeam&&pr.awayTeam){const uk=String(pr.homeTeam.id)===UK?pr.homeTeam:pr.awayTeam,p=parseFloat(uk.gameProjection);if(!isNaN(p))h+=`<div><span class="cat">ESPN win probability</span><b>Kentucky ${p.toFixed(1)}%</b><div class="hb"><i class="u" style="width:${p}%"></i><i class="o" style="width:${100-p}%"></i></div></div>`}
+    const h2=op.querySelector("h2");h2&&h2.insertAdjacentHTML("afterend",`<div class="lvodds">${h}</div>`)}
+
+  /* 6 · player names link to their stats */
+  const map=Object.assign({},o.roster);
+  [lu,lo].forEach(x=>x&&fromEspn(x).forEach(c=>{if(c[2])map[c[1].replace(/ \([A-Z]+\)$/,"")]=c[2]}));
+  if(s==="volleyball"&&t.espn&&t.espn[1])[...(t.roster||[]),...(t.leaders||[])].forEach(p=>{if(p[1])map[p[1]]=t.espn[1]});
+  [".inj",".leaders",".roster",".padd"].forEach(q=>main.querySelectorAll(q).forEach(el=>linkify(el,map)));
+  hero.querySelectorAll(".qnote").forEach(el=>linkify(el,map));
+}
+
+/* re-decorate after every render; check when the sport changes; poll faster around game time */
+const baseRender=render;render=function(){baseRender();try{decorate()}catch(e){console.warn(e)}};
+async function run(s,force){await check(s,force);if(s===sport)render()}
+document.getElementById("hero").addEventListener("click",async e=>{const b=e.target.closest("[data-lv]");if(!b||busy)return;busy=true;decorate();await check(sport,true);busy=false;render()});
+window.addEventListener("bbn-sport",()=>{const o=S[sport];if(!o||!o.checked||Date.now()-o.checked>3e5)run(sport)});
+setInterval(()=>{const n=(D[sport]||{}).next||{},o=S[sport]||{};if(!n.when||reach===false)return;const d=Date.now()-new Date(n.when);
+  const hot=o.state==="in"||(d>-18e5&&d<18e6),age=o.checked?Date.now()-o.checked:Infinity;if(age>(hot?6e4:6e5))run(sport)},15e3);
+decorate();run(sport);
+})();
+</script>
+
 
 </body>
 </html>
